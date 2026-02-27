@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, Suspense } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, ArrowRight, Sparkles, ChevronLeft } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -10,9 +11,31 @@ import BackgroundGradient from "@/components/ui/background-gradient";
 import CodeCompiler from "@/components/CodeCompiler";
 import { OrbitingSkills } from "@/components/ui/orbiting-skills";
 
-export default function Home() {
-  const [showCards, setShowCards] = useState(false);
-  const [selectedModule, setSelectedModule] = useState<string | null>(null);
+function HomeContent() {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+
+  const view = searchParams.get("view");
+  const moduleParam = searchParams.get("module");
+
+  const showCards = view === "modules" || !!moduleParam;
+  const selectedModule = moduleParam;
+
+  const setShowCards = (val: boolean) => {
+    if (val) {
+      router.push("/?view=modules", { scroll: false });
+    } else {
+      router.push("/", { scroll: false });
+    }
+  };
+
+  const setSelectedModule = (val: string | null) => {
+    if (val) {
+      router.push(`/?module=${encodeURIComponent(val)}`, { scroll: false });
+    } else {
+      router.push("/?view=modules", { scroll: false });
+    }
+  };
 
   const BackButton = ({ onClick }: { onClick: () => void }) => (
     <motion.button
@@ -63,7 +86,7 @@ export default function Home() {
                 transition={{ delay: 0.2, duration: 0.6 }}
               >
                 <span className="text-xs font-black tracking-[0.4em] text-emerald-400 uppercase mb-8 block drop-shadow-[0_0_8px_rgba(52,211,153,0.3)] text-center md:text-left">
-                  decide your career
+                  decide to code
                 </span>
               </motion.div>
 
@@ -140,5 +163,13 @@ export default function Home() {
         )}
       </AnimatePresence>
     </div>
+  );
+}
+
+export default function Home() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-background" />}>
+      <HomeContent />
+    </Suspense>
   );
 }
