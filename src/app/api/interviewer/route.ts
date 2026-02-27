@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
-import { GoogleGenAI, Type } from "@google/genai";
+import { GoogleGenerativeAI, SchemaType } from "@google/generative-ai";
 
 // Initialize Gemini with the actual user-provided key
-const ai = new GoogleGenAI({ apiKey: "AIzaSyAMZkpVe7JqUrhgTNAZABMdf108J9LOR28" });
+const genAI = new GoogleGenerativeAI("AIzaSyAMZkpVe7JqUrhgTNAZABMdf108J9LOR28");
 
 const INTERVIEW_SYSTEM_PROMPT = `
 You are an advanced AI Interview Trainer integrated into a professional communication skills training platform.
@@ -40,8 +40,6 @@ export async function POST(req: Request) {
 
         // If interview is complete, trigger the deep grading mechanism
         if (turnCount >= 7) {
-
-            // Format transcript for Gemini to grade
             const transcript = messages.map(m => `${m.role.toUpperCase()}: ${m.content}`).join("\n");
 
             const gradingPrompt = `
@@ -55,30 +53,34 @@ ${transcript}
 Provide the output in STRICT JSON matching the required schema. Ensure the score is out of 50.
 `;
             try {
-                const gradeResponse = await ai.models.generateContent({
-                    model: 'gemini-2.5-flash',
-                    contents: gradingPrompt,
-                    config: {
+                // Correct SDK usage: getGenerativeModel + generateContent
+                const model = genAI.getGenerativeModel({
+                    model: 'gemini-1.5-flash',
+                    generationConfig: {
                         responseMimeType: "application/json",
                         responseSchema: {
-                            type: Type.OBJECT,
+                            type: SchemaType.OBJECT,
                             properties: {
-                                summary: { type: Type.STRING },
-                                strengths: { type: Type.ARRAY, items: { type: Type.STRING } },
-                                improvements: { type: Type.ARRAY, items: { type: Type.STRING } },
-                                mistakes: { type: Type.STRING },
-                                sampleAnswer: { type: Type.STRING },
-                                score: { type: Type.INTEGER },
-                                confidenceLevel: { type: Type.STRING },
-                                plan: { type: Type.ARRAY, items: { type: Type.STRING } }
+                                summary: { type: SchemaType.STRING },
+                                strengths: { type: SchemaType.ARRAY, items: { type: SchemaType.STRING } },
+                                improvements: { type: SchemaType.ARRAY, items: { type: SchemaType.STRING } },
+                                mistakes: { type: SchemaType.STRING },
+                                sampleAnswer: { type: SchemaType.STRING },
+                                score: { type: SchemaType.INTEGER },
+                                confidenceLevel: { type: SchemaType.STRING },
+                                plan: { type: SchemaType.ARRAY, items: { type: SchemaType.STRING } }
                             },
                             required: ["summary", "strengths", "improvements", "mistakes", "sampleAnswer", "score", "confidenceLevel", "plan"]
                         }
                     }
                 });
 
-                if (gradeResponse.text) {
-                    const feedback = JSON.parse(gradeResponse.text);
+                const gradeResult = await model.generateContent(gradingPrompt);
+                const response = await gradeResult.response;
+                const responseText = response.text();
+
+                if (responseText) {
+                    const feedback = JSON.parse(responseText);
                     return NextResponse.json({
                         reply: "Thank you for your time today. I appreciate your thoughtful responses. I will conclude our interview here and provide you with your evaluation.",
                         isComplete: true,
@@ -87,11 +89,9 @@ Provide the output in STRICT JSON matching the required schema. Ensure the score
                 }
             } catch (gradeError) {
                 console.error("Gemini Grading failed:", gradeError);
-                throw gradeError; // Fallback to generic error below
+                throw gradeError;
             }
         }
-
-        // Otherwise, continue the interview flow dynamically
 
         // Convert FE messages array to Gemini format
         const chatContents = [
@@ -103,15 +103,17 @@ Provide the output in STRICT JSON matching the required schema. Ensure the score
             }))
         ];
 
-        const chatResponse = await ai.models.generateContent({
-            model: "gemini-2.5-flash",
-            contents: chatContents,
-            config: {
-                temperature: 0.7, // Professional yet slightly creative
+        const model = genAI.getGenerativeModel({
+            model: "gemini-1.5-flash",
+            generationConfig: {
+                temperature: 0.7,
             }
         });
 
-        const replyRaw = chatResponse.text || "I'm sorry, I encountered an error formulating my thoughts. Could you repeat that?";
+        const chatResult = await model.generateContent({ contents: chatContents });
+        const chatResponse = await chatResult.response;
+        const replyRaw = chatResponse.text() || "I'm sorry, I encountered an error formulating my thoughts. Could you repeat that?";
+
 
         // Clean up any weird AI artifacts if it tries to format it strangely
         const reply = replyRaw.replace(/INTERVIEWER:/i, "").trim();

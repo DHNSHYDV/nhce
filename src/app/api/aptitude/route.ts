@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
-import { GoogleGenAI, Type } from "@google/genai";
+import { GoogleGenerativeAI, SchemaType } from "@google/generative-ai";
 
 // Initialize Gemini with the actual user-provided key
-const ai = new GoogleGenAI({ apiKey: "AIzaSyAMZkpVe7JqUrhgTNAZABMdf108J9LOR28" });
+const genAI = new GoogleGenerativeAI("AIzaSyAMZkpVe7JqUrhgTNAZABMdf108J9LOR28");
 
 // We keep the mock as a reliable fallback in case of rate limits or generation failures
 const MOCK_QUESTIONS = [
@@ -85,50 +85,55 @@ export async function POST(req: Request) {
         const difficulty = body.difficulty || "Medium";
 
         try {
-            const response = await ai.models.generateContent({
-                model: 'gemini-2.5-flash',
-                contents: `Generate 1 unique, highly engaging aptitude question.
-                
-                Category: ${category}
-                Difficulty: ${difficulty}
-                
-                Requirements:
-                - Question must be original and non-copyrighted.
-                - Must include exactly 4 options (A, B, C, D).
-                - Only 1 correct answer.
-                - Include step-by-step explanation.
-                - Include formula used (if applicable, else "N/A").
-                - Include real-life scenario where possible.
-                - Provide estimated time to solve as a raw number string in seconds (e.g. "60").
-                - Add topic tag (e.g., profit and loss, time and work, puzzles, percentages, etc).`,
-                config: {
+            const model = genAI.getGenerativeModel({
+                model: 'gemini-1.5-flash',
+                generationConfig: {
                     responseMimeType: "application/json",
                     responseSchema: {
-                        type: Type.OBJECT,
+                        type: SchemaType.OBJECT,
                         properties: {
-                            question: { type: Type.STRING },
+                            question: { type: SchemaType.STRING },
                             options: {
-                                type: Type.OBJECT,
+                                type: SchemaType.OBJECT,
                                 properties: {
-                                    A: { type: Type.STRING },
-                                    B: { type: Type.STRING },
-                                    C: { type: Type.STRING },
-                                    D: { type: Type.STRING }
+                                    A: { type: SchemaType.STRING },
+                                    B: { type: SchemaType.STRING },
+                                    C: { type: SchemaType.STRING },
+                                    D: { type: SchemaType.STRING }
                                 },
                             },
-                            correct_option: { type: Type.STRING, enum: ["A", "B", "C", "D"] },
-                            explanation: { type: Type.STRING },
-                            formula_used: { type: Type.STRING },
-                            estimated_time_seconds: { type: Type.STRING },
-                            topic: { type: Type.STRING }
+                            correct_option: { type: SchemaType.STRING, description: "Correct option from A, B, C, or D" },
+                            explanation: { type: SchemaType.STRING },
+                            formula_used: { type: SchemaType.STRING },
+                            estimated_time_seconds: { type: SchemaType.STRING },
+                            topic: { type: SchemaType.STRING }
                         },
                         required: ["question", "options", "correct_option", "explanation", "formula_used", "estimated_time_seconds", "topic"]
                     }
                 }
             });
 
-            if (response.text) {
-                return NextResponse.json(JSON.parse(response.text));
+            const prompt = `Generate 1 unique, highly engaging aptitude question.
+            
+            Category: ${category}
+            Difficulty: ${difficulty}
+            
+            Requirements:
+            - Question must be original and non-copyrighted.
+            - Must include exactly 4 options (A, B, C, D).
+            - Only 1 correct answer (must be either "A", "B", "C", or "D").
+            - Include step-by-step explanation.
+            - Include formula used (if applicable, else "N/A").
+            - Include real-life scenario where possible.
+            - Provide estimated time to solve as a raw number string in seconds (e.g. "60").
+            - Add topic tag (e.g., profit and loss, time and work, puzzles, percentages, etc).`;
+
+            const result = await model.generateContent(prompt);
+            const response = await result.response;
+            const responseText = response.text();
+
+            if (responseText) {
+                return NextResponse.json(JSON.parse(responseText));
             }
         } catch (genError) {
             console.error("Gemini failed, falling back to mock:", genError);
