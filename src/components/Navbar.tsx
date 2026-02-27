@@ -1,0 +1,69 @@
+"use client";
+
+import React from "react";
+import { Search, Bell, Sparkles } from "lucide-react";
+import { motion } from "framer-motion";
+
+export const Navbar = () => {
+    return (
+        <nav className="fixed top-6 left-24 right-6 z-40 flex items-center justify-between gap-4">
+            {/* Island 1: Branding */}
+            <motion.div
+                initial={{ opacity: 0, y: -20, rotateX: -20 }}
+                animate={{ opacity: 1, y: 0, rotateX: 0 }}
+                className="glass h-14 flex items-center px-8 rounded-2xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.4)] backdrop-blur-xl group cursor-pointer hover:border-emerald-500/30 transition-all duration-500"
+            >
+                <div className="flex items-center gap-3">
+                    <div className="relative">
+                        <Sparkles className="h-6 w-6 text-emerald-400 fill-emerald-400 animate-pulse" />
+                        <div className="absolute inset-0 blur-sm bg-emerald-400/20 scale-150 rounded-full" />
+                    </div>
+                    <span className="text-sm font-black tracking-[0.2em] text-white group-hover:text-emerald-400 transition-colors">DECIDE TO CODE</span>
+                </div>
+            </motion.div>
+
+            {/* Island 2: Main Navigation */}
+            <motion.div
+                initial={{ opacity: 0, y: -20, rotateX: -20 }}
+                animate={{ opacity: 1, y: 0, rotateX: 0 }}
+                transition={{ delay: 0.1 }}
+                className="glass h-14 flex items-center px-10 rounded-2xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.4)] backdrop-blur-xl"
+            >
+                <div className="flex items-center gap-10 text-[10px] font-bold text-slate-400 uppercase tracking-[0.3em]">
+                    <a href="#" className="hover:text-emerald-400 transition-all hover:scale-110 active:scale-95">Home</a>
+                    <div className="h-1 w-1 rounded-full bg-white/10" />
+                    <a href="#" className="hover:text-emerald-400 transition-all hover:scale-110 active:scale-95">About</a>
+                </div>
+            </motion.div>
+
+            {/* Island 3: Utilities */}
+            <motion.div
+                initial={{ opacity: 0, y: -20, rotateX: -20 }}
+                animate={{ opacity: 1, y: 0, rotateX: 0 }}
+                transition={{ delay: 0.2 }}
+                className="glass h-14 flex items-center px-4 md:px-6 rounded-2xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.4)] backdrop-blur-xl"
+            >
+                <div className="flex items-center gap-2">
+                    <motion.button
+                        whileHover={{ scale: 1.05, backgroundColor: "rgba(255, 255, 255, 0.05)" }}
+                        whileTap={{ scale: 0.95 }}
+                        className="px-5 py-2 text-[10px] font-black uppercase tracking-[0.2em] text-white/80 hover:text-emerald-400 transition-colors border border-white/5 rounded-xl bg-white/5"
+                    >
+                        Log In
+                    </motion.button>
+
+                    <div className="w-px h-6 bg-white/5 mx-1" />
+
+                    <button className="p-3 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl transition-all active:scale-90">
+                        <Search className="h-4 w-4" />
+                    </button>
+                    <div className="w-px h-6 bg-white/5 mx-1" />
+                    <button className="p-3 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl transition-all active:scale-90 relative">
+                        <Bell className="h-4 w-4" />
+                        <span className="absolute top-3 right-3 h-2 w-2 rounded-full bg-emerald-500 border-2 border-slate-900 animate-bounce" />
+                    </button>
+                </div>
+            </motion.div>
+        </nav>
+    );
+};
