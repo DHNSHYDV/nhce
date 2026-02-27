@@ -18,6 +18,7 @@ const geistMono = Geist_Mono({
 });
 
 import { ThemeProvider } from "@/components/theme-provider";
+import { Providers } from "@/components/Providers";
 
 export default function RootLayout({
   children,
@@ -29,19 +30,21 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          forcedTheme="dark"
-          disableTransitionOnChange
-        >
-          <Sidebar onProfileClick={() => setIsProfileOpen(true)} />
-          <Navbar />
-          <main className="min-h-screen pt-24 px-6">
-            {children}
-          </main>
-          <ProfileDashboard isOpen={isProfileOpen} onClose={() => setIsProfileOpen(false)} />
-        </ThemeProvider>
+        <Providers>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            forcedTheme="dark"
+            disableTransitionOnChange
+          >
+            <Sidebar onProfileClick={() => setIsProfileOpen(true)} />
+            <Navbar />
+            <main className="min-h-screen pt-24 px-6">
+              {children}
+            </main>
+            <ProfileDashboard isOpen={isProfileOpen} onClose={() => setIsProfileOpen(false)} />
+          </ThemeProvider>
+        </Providers>
       </body>
     </html>
   );

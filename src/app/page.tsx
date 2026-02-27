@@ -130,10 +130,10 @@ function HomeContent() {
                 <div className="text-center space-y-6">
                   <div className="flex items-center justify-center gap-2 mb-2">
                     <Sparkles className="h-5 w-5 text-emerald-400" />
-                    <span className="text-xs font-black tracking-[0.4em] text-emerald-400 uppercase">Competitive Programming Environment</span>
+                    <span className="text-xs font-black tracking-[0.4em] text-emerald-400 uppercase">Communicate through code</span>
                   </div>
                   <h2 className="text-5xl md:text-6xl font-black tracking-tighter text-white">
-                    Master the <span className="text-gradient">Algorithmic Sprints</span>
+                    Code Debug, <span className="text-gradient">Code Repeat</span>
                   </h2>
                 </div>
 
@@ -148,10 +148,10 @@ function HomeContent() {
                 <div className="text-center mb-4 space-y-4">
                   <div className="flex items-center justify-center gap-2 mb-2">
                     <Sparkles className="h-5 w-5 text-emerald-400" />
-                    <span className="text-xs font-black tracking-[0.4em] text-emerald-400 uppercase">Interactive Curriculum</span>
+                    <span className="text-xs font-black tracking-[0.4em] text-emerald-400 uppercase">Communicate through code</span>
                   </div>
                   <h2 className="text-5xl md:text-7xl font-black tracking-tighter text-white">
-                    Choose Your <span className="text-gradient">Battlefield</span>
+                    Code Debug, <span className="text-gradient">Code Repeat</span>
                   </h2>
                   <p className="text-slate-400 font-medium max-w-xl mx-auto">Select a core module to begin your high-intensity learning sprint and evolve your AI Skill Twin.</p>
                 </div>
