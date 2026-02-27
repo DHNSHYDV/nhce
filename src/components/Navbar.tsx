@@ -14,12 +14,14 @@ export const Navbar = () => {
                 animate={{ opacity: 1, y: 0, rotateX: 0 }}
                 className="glass h-14 flex items-center px-8 rounded-2xl border border-black/5 dark:border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.1)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)] backdrop-blur-xl group cursor-pointer hover:border-emerald-500/30 transition-all duration-500"
             >
-                <div className="flex items-center gap-3">
-                    <div className="relative">
-                        <Sparkles className="h-6 w-6 text-emerald-400 fill-emerald-400 animate-pulse" />
-                        <div className="absolute inset-0 blur-sm bg-emerald-400/20 scale-150 rounded-full" />
+                <div className="flex items-center gap-4">
+                    <div className="relative h-11 w-28">
+                        <img
+                            src="/images/logo.png"
+                            alt="Logo"
+                            className="h-full w-full object-contain filter drop-shadow-[0_0_8px_rgba(52,211,153,0.3)] group-hover:scale-110 transition-transform duration-500"
+                        />
                     </div>
-                    <span className="text-sm font-black tracking-[0.2em] text-foreground group-hover:text-emerald-400 transition-colors">DECIDE TO CODE</span>
                 </div>
             </motion.div>
 

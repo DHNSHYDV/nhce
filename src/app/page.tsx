@@ -63,13 +63,14 @@ export default function Home() {
                 transition={{ delay: 0.2, duration: 0.6 }}
               >
                 <span className="text-xs font-black tracking-[0.4em] text-emerald-400 uppercase mb-8 block drop-shadow-[0_0_8px_rgba(52,211,153,0.3)] text-center md:text-left">
-                  Optimized for Your Career
+                  decide your career
                 </span>
               </motion.div>
 
               <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-12 flex flex-col items-center md:items-start leading-[0.9]">
-                <span className="text-foreground drop-shadow-2xl">The Learning Platform</span>
-                <span className="text-gradient drop-shadow-2xl font-black italic">Feels Like Your FYP.</span>
+                <span className="text-foreground drop-shadow-2xl">code,</span>
+                <span className="text-foreground/90 drop-shadow-2xl">communicate,</span>
+                <span className="text-gradient drop-shadow-2xl font-black italic">conquer.</span>
               </h1>
 
               <div className="flex justify-center md:justify-start mt-4">
