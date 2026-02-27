@@ -1,7 +1,10 @@
 import { NextResponse } from "next/server";
+import { GoogleGenAI, Type } from "@google/genai";
 
-// We mock an AI generation response here since no API keys are configured for an LLM.
-// This matches the exact strict JSON schema requested by the user.
+// Initialize Gemini with the actual user-provided key
+const ai = new GoogleGenAI({ apiKey: "AIzaSyAMZkpVe7JqUrhgTNAZABMdf108J9LOR28" });
+
+// We keep the mock as a reliable fallback in case of rate limits or generation failures
 const MOCK_QUESTIONS = [
     {
         "question": "A shopkeeper marks his goods 20% above the cost price and then allows a discount of 10% on the marked price. During a festival sale, he gives an additional successive discount of 5%. If he sells an article for ₹513, what was the original cost price of the article?",
@@ -78,18 +81,62 @@ const MOCK_QUESTIONS = [
 export async function POST(req: Request) {
     try {
         const body = await req.json();
+        const category = body.category || "General Aptitude";
+        const difficulty = body.difficulty || "Medium";
 
-        // In a production environment with an LLM key:
-        // const prompt = `Generate 1 high-quality aptitude question... Category: ${body.category}... Difficulty: ${body.difficulty}... Output STRICT JSON: ...`;
-        // const response = await callOpenAI(prompt);
-        // return NextResponse.json(response);
+        try {
+            const response = await ai.models.generateContent({
+                model: 'gemini-2.5-flash',
+                contents: `Generate 1 unique, highly engaging aptitude question.
+                
+                Category: ${category}
+                Difficulty: ${difficulty}
+                
+                Requirements:
+                - Question must be original and non-copyrighted.
+                - Must include exactly 4 options (A, B, C, D).
+                - Only 1 correct answer.
+                - Include step-by-step explanation.
+                - Include formula used (if applicable, else "N/A").
+                - Include real-life scenario where possible.
+                - Provide estimated time to solve as a raw number string in seconds (e.g. "60").
+                - Add topic tag (e.g., profit and loss, time and work, puzzles, percentages, etc).`,
+                config: {
+                    responseMimeType: "application/json",
+                    responseSchema: {
+                        type: Type.OBJECT,
+                        properties: {
+                            question: { type: Type.STRING },
+                            options: {
+                                type: Type.OBJECT,
+                                properties: {
+                                    A: { type: Type.STRING },
+                                    B: { type: Type.STRING },
+                                    C: { type: Type.STRING },
+                                    D: { type: Type.STRING }
+                                },
+                            },
+                            correct_option: { type: Type.STRING, enum: ["A", "B", "C", "D"] },
+                            explanation: { type: Type.STRING },
+                            formula_used: { type: Type.STRING },
+                            estimated_time_seconds: { type: Type.STRING },
+                            topic: { type: Type.STRING }
+                        },
+                        required: ["question", "options", "correct_option", "explanation", "formula_used", "estimated_time_seconds", "topic"]
+                    }
+                }
+            });
 
-        // For this prototype, pick a random mock question to represent AI generation.
-        // Simulate slight network delay of AI processing
+            if (response.text) {
+                return NextResponse.json(JSON.parse(response.text));
+            }
+        } catch (genError) {
+            console.error("Gemini failed, falling back to mock:", genError);
+        }
+
+        // Fallback
         await new Promise(resolve => setTimeout(resolve, 1500));
-
         const randomQuestion = MOCK_QUESTIONS[Math.floor(Math.random() * MOCK_QUESTIONS.length)];
-
         return NextResponse.json(randomQuestion);
     } catch (error) {
         console.error("Aptitude generation error:", error);
