@@ -3,7 +3,6 @@
 import React from "react";
 import { Search, Bell, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
-import { ThemeToggle } from "./ThemeToggle";
 import { cn } from "@/lib/utils";
 
 export const Navbar = () => {
@@ -53,10 +52,6 @@ export const Navbar = () => {
                     >
                         Log In
                     </motion.button>
-
-                    <div className="w-px h-6 bg-foreground/10 mx-1" />
-
-                    <ThemeToggle />
 
                     <div className="w-px h-6 bg-foreground/10 mx-1" />
 

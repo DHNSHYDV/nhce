@@ -47,10 +47,10 @@ export const ProfileDashboard = ({ isOpen, onClose }: ProfileDashboardProps) => 
                     {/* Backdrop with Blur */}
                     <motion.div
                         initial={{ opacity: 0, backdropFilter: "blur(0px)" }}
-                        animate={{ opacity: 1, backdropFilter: "blur(12px)" }}
+                        animate={{ opacity: 1, backdropFilter: "blur(24px)" }}
                         exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
                         onClick={onClose}
-                        className="fixed inset-0 z-50 bg-black/40 cursor-pointer"
+                        className="fixed inset-0 z-50 bg-slate-950/40 cursor-pointer"
                     />
 
                     {/* Main Dashboard Overlay */}
@@ -58,7 +58,7 @@ export const ProfileDashboard = ({ isOpen, onClose }: ProfileDashboardProps) => 
                         initial={{ opacity: 0, scale: 0.95, y: 30 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.95, y: 30 }}
-                        className="fixed inset-6 z-[60] glass-dark rounded-[3.5rem] overflow-hidden shadow-2xl border border-white/10 flex flex-col"
+                        className="fixed inset-6 z-[60] bg-slate-900/40 backdrop-blur-3xl rounded-[3.5rem] overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.6)] border border-white/10 flex flex-col"
                     >
                         {/* Header */}
                         <div className="p-10 flex items-center justify-between border-b border-white/5">
@@ -180,8 +180,8 @@ export const ProfileDashboard = ({ isOpen, onClose }: ProfileDashboardProps) => 
                                 <div className="col-span-12 lg:col-span-4 space-y-8">
 
                                     {/* Streak Counter */}
-                                    <div className="rounded-[2.5rem] bg-emerald-400/10 border border-emerald-400/20 p-8 flex flex-col items-center text-center relative overflow-hidden group">
-                                        <div className="absolute inset-0 bg-gradient-to-t from-emerald-400/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                                    <div className="rounded-[2.5rem] bg-emerald-500/5 border border-emerald-500/10 p-8 flex flex-col items-center text-center relative overflow-hidden group">
+                                        <div className="absolute inset-0 bg-gradient-to-t from-emerald-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
                                         <div className="relative mb-6">
                                             <div className="h-32 w-32 rounded-full border-[10px] border-emerald-500/20 flex items-center justify-center">

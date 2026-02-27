@@ -21,6 +21,24 @@ export default function CodeCompiler() {
     const [isCopied, setIsCopied] = useState(false);
     const [showLangMenu, setShowLangMenu] = useState(false);
 
+    const editorRef = useRef<any>(null);
+
+    function handleEditorDidMount(editor: any, monaco: any) {
+        editorRef.current = editor;
+        monaco.editor.defineTheme('glassTheme', {
+            base: 'vs-dark',
+            inherit: true,
+            rules: [],
+            colors: {
+                'editor.background': '#00000000',
+                'editor.lineHighlightBackground': '#FFFFFF05',
+                'editorLineNumber.foreground': '#5A5A5A',
+                'editorLineNumber.activeForeground': '#10b981',
+            }
+        });
+        monaco.editor.setTheme('glassTheme');
+    }
+
     useEffect(() => {
         setCode(language.default);
     }, [language]);
@@ -43,9 +61,12 @@ export default function CodeCompiler() {
     };
 
     return (
-        <div className="w-full max-w-6xl mx-auto h-[700px] flex flex-col rounded-[2.5rem] border border-black/5 dark:border-white/10 bg-white/80 dark:bg-slate-950/80 backdrop-blur-2xl overflow-hidden shadow-2xl relative transition-colors duration-500">
+        <div className="w-full max-w-6xl mx-auto h-[700px] flex flex-col rounded-[2.5rem] border border-white/10 bg-slate-950/40 backdrop-blur-3xl overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.6)] relative group/ide transition-all duration-700">
+            {/* Ambient Glow */}
+            <div className="absolute -inset-1 bg-gradient-to-r from-emerald-500/10 to-blue-500/10 rounded-[2.5rem] blur-2xl opacity-0 group-hover/ide:opacity-100 transition-opacity duration-1000" />
+
             {/* Header / Toolbar */}
-            <div className="flex items-center justify-between px-8 py-4 border-b border-black/5 dark:border-white/5 bg-black/2 dark:bg-white/2 bg-slate-100/40 dark:bg-slate-900/40 transition-colors">
+            <div className="relative z-10 flex items-center justify-between px-8 py-5 border-b border-white/5 bg-slate-900/40 backdrop-blur-md">
                 <div className="flex items-center gap-6">
                     <div className="flex items-center gap-3">
                         <div className="p-2 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400">
@@ -132,15 +153,15 @@ export default function CodeCompiler() {
             </div>
 
             {/* Main Content Area */}
-            <div className="flex-1 flex overflow-hidden">
+            <div className="relative z-10 flex-1 flex overflow-hidden">
                 {/* Editor Panel */}
-                <div className="flex-[3] relative border-r border-white/5">
+                <div className="flex-[3] relative border-r border-white/5 bg-transparent">
                     <Editor
                         height="100%"
                         language={language.id === 'cpp' ? 'cpp' : language.id}
                         value={code}
                         onChange={(val) => setCode(val || "")}
-                        theme="vs-dark"
+                        onMount={handleEditorDidMount}
                         options={{
                             fontSize: 16,
                             fontFamily: "'Fira Code', 'Monaco', monospace",
@@ -162,8 +183,8 @@ export default function CodeCompiler() {
                 </div>
 
                 {/* Output Panel */}
-                <div className="flex-[1] bg-slate-100/50 dark:bg-slate-900/50 flex flex-col transition-colors">
-                    <div className="px-6 py-4 flex items-center gap-2 border-b border-black/5 dark:border-white/5 bg-white/40 dark:bg-slate-950/40">
+                <div className="flex-[1] bg-slate-950/30 backdrop-blur-md flex flex-col transition-colors">
+                    <div className="px-6 py-4 flex items-center gap-2 border-b border-white/5 bg-slate-950/40">
                         <Terminal className="h-4 w-4 text-slate-500" />
                         <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Standard Output</span>
                     </div>

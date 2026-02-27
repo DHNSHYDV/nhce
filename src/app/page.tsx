@@ -98,12 +98,12 @@ export default function Home() {
             className="w-full h-full relative z-10 flex flex-col items-center py-12"
           >
             {selectedModule === "Code" ? (
-              <div className="w-full flex flex-col items-center gap-8 px-4">
-                <div className="w-full max-w-6xl flex justify-start">
+              <div className="w-full max-w-7xl flex flex-col items-center gap-12 px-6 pb-24">
+                <div className="w-full flex justify-start">
                   <BackButton onClick={() => setSelectedModule(null)} />
                 </div>
 
-                <div className="text-center space-y-4">
+                <div className="text-center space-y-6">
                   <div className="flex items-center justify-center gap-2 mb-2">
                     <Sparkles className="h-5 w-5 text-emerald-400" />
                     <span className="text-xs font-black tracking-[0.4em] text-emerald-400 uppercase">Competitive Programming Environment</span>

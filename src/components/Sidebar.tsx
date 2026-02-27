@@ -29,7 +29,7 @@ export const Sidebar = ({ onProfileClick }: SidebarProps) => {
         <div className="fixed left-6 top-6 z-50">
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="flex h-12 w-12 items-center justify-center rounded-2xl glass hover:bg-white/10 transition-colors"
+                className="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-900/40 backdrop-blur-md border border-white/10 hover:bg-white/5 transition-all duration-300"
                 aria-label="Toggle Menu"
             >
                 {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}

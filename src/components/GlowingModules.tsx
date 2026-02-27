@@ -7,19 +7,18 @@ import { motion } from "framer-motion";
 
 interface GridItemProps {
     area: string;
-    icon: React.ReactNode;
     title: string;
     description: React.ReactNode;
     color: string;
     onClick?: () => void;
 }
 
-const GridItem = ({ area, icon, title, description, color, onClick }: GridItemProps) => {
+const GridItem = ({ area, title, description, color, onClick }: GridItemProps) => {
     return (
         <li className={cn("min-h-[14rem] list-none", area)}>
             <div
                 onClick={onClick}
-                className="relative h-full rounded-[2rem] border-[0.75px] border-black/5 dark:border-white/10 p-2 md:p-3 bg-white/40 dark:bg-slate-900/50 backdrop-blur-md group hover:border-black/10 dark:hover:border-white/20 transition-all duration-500 cursor-pointer active:scale-[0.98]"
+                className="relative h-full rounded-[2rem] border-[0.75px] border-white/10 p-2 md:p-3 bg-slate-900/50 backdrop-blur-md group hover:border-white/20 transition-all duration-500 cursor-pointer active:scale-[0.98]"
             >
                 <GlowingEffect
                     spread={40}
@@ -29,16 +28,15 @@ const GridItem = ({ area, icon, title, description, color, onClick }: GridItemPr
                     inactiveZone={0.01}
                     borderWidth={3}
                 />
-                <div className="relative flex h-full flex-col justify-between gap-6 overflow-hidden rounded-[1.5rem] border-[0.75px] border-black/5 dark:border-white/5 bg-white/70 dark:bg-slate-950/50 p-6 shadow-[0_8px_32px_rgba(0,0,0,0.05)] dark:shadow-2xl md:p-8">
+                <div className="relative flex h-full flex-col justify-between gap-6 overflow-hidden rounded-[1.5rem] border-[0.75px] border-white/5 bg-slate-950/50 p-6 shadow-2xl md:p-8">
                     <div className="relative flex flex-1 flex-col justify-between gap-3">
-                        <div className={cn("w-fit rounded-xl border border-black/5 dark:border-white/10 bg-black/5 dark:bg-white/5 p-3 shadow-inner", color)}>
-                            {icon}
+                        <div className={cn("hidden h-0 w-0", color)}>
                         </div>
                         <div className="space-y-4">
                             <h3 className="pt-0.5 text-2xl leading-none font-black font-sans tracking-tight text-foreground transition-colors duration-500">
                                 {title}
                             </h3>
-                            <p className="font-sans text-sm leading-relaxed text-slate-500 dark:text-slate-400 font-medium transition-colors duration-500">
+                            <p className="font-sans text-sm leading-relaxed text-slate-400 font-medium transition-colors duration-500">
                                 {description}
                             </p>
                         </div>
@@ -64,7 +62,6 @@ export function GlowingModules({ onSelect }: { onSelect?: (title: string) => voi
         >
             <GridItem
                 area="md:[grid-area:1/1/2/7] lg:[grid-area:1/1/2/7]"
-                icon={<Code className="h-6 w-6" />}
                 title="Code"
                 description="Master Data Structures and Algorithms with real-time AI-driven feedback and interactive sprints."
                 color="text-emerald-400 shadow-[0_0_15px_rgba(52,211,153,0.2)]"
@@ -72,7 +69,6 @@ export function GlowingModules({ onSelect }: { onSelect?: (title: string) => voi
             />
             <GridItem
                 area="md:[grid-area:1/7/2/13] lg:[grid-area:1/7/2/13]"
-                icon={<Brain className="h-6 w-6" />}
                 title="Aptitude"
                 description="Sharpen your logical reasoning and quantitative skills through adaptive, high-intensity challenges."
                 color="text-blue-400 shadow-[0_0_15px_rgba(96,165,250,0.2)]"
@@ -80,7 +76,6 @@ export function GlowingModules({ onSelect }: { onSelect?: (title: string) => voi
             />
             <GridItem
                 area="md:[grid-area:2/1/3/7] lg:[grid-area:2/1/3/7]"
-                icon={<MessageSquare className="h-6 w-6" />}
                 title="Communication Skill"
                 description="Refine your pitch with AI mock interviews, pronunciation analysis, and stress behavior tracking."
                 color="text-purple-400 shadow-[0_0_15px_rgba(192,132,252,0.2)]"
@@ -88,7 +83,6 @@ export function GlowingModules({ onSelect }: { onSelect?: (title: string) => voi
             />
             <GridItem
                 area="md:[grid-area:2/7/3/13] lg:[grid-area:2/7/3/13]"
-                icon={<PieChart className="h-6 w-6" />}
                 title="Performance Tracker"
                 description="Monitor your AI Skill Twin evolution with deep analytics on topic mastery and cognitive growth."
                 color="text-pink-400 shadow-[0_0_15px_rgba(244,114,182,0.2)]"
