@@ -31,17 +31,23 @@ export const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
                     password,
                     redirect: false,
                 });
+
                 if (result?.error) throw new Error(result.error);
             } else {
-                const res = await fetch("/api/auth/signup", {
+                const signupUrl = `${window.location.origin}/api/auth/signup`;
+
+                const res = await fetch(signupUrl, {
                     method: "POST",
-                    headers: { "Content-Type": "application/json" },
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Accept": "application/json"
+                    },
                     body: JSON.stringify({ username, email, password }),
                 });
+
                 const data = await res.json();
                 if (!res.ok) throw new Error(data.error || "Signup failed");
 
-                // Automatically log in after signup
                 await signIn("credentials", {
                     email,
                     password,
