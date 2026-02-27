@@ -9,7 +9,10 @@ import { GridPattern } from "@/components/ui/grid-pattern";
 import { GlowingModules } from "@/components/GlowingModules";
 import BackgroundGradient from "@/components/ui/background-gradient";
 import CodeCompiler from "@/components/CodeCompiler";
+import AptitudeModule from "@/components/AptitudeModule";
 import { OrbitingSkills } from "@/components/ui/orbiting-skills";
+
+// ... [existing HomeContent]
 
 function HomeContent() {
   const searchParams = useSearchParams();
@@ -138,6 +141,24 @@ function HomeContent() {
                 </div>
 
                 <CodeCompiler />
+              </div>
+            ) : selectedModule === "Aptitude" ? (
+              <div className="w-full max-w-7xl flex flex-col items-center gap-12 px-6 pb-24">
+                <div className="w-full flex justify-start">
+                  <BackButton onClick={() => setSelectedModule(null)} />
+                </div>
+
+                <div className="text-center space-y-6">
+                  <div className="flex items-center justify-center gap-2 mb-2">
+                    <Sparkles className="h-5 w-5 text-blue-400" />
+                    <span className="text-xs font-black tracking-[0.4em] text-blue-400 uppercase">Cognitive Assessment Engine</span>
+                  </div>
+                  <h2 className="text-5xl md:text-6xl font-black tracking-tighter text-white">
+                    Sharpen Your <span className="text-blue-400 italic">Logic</span>
+                  </h2>
+                </div>
+
+                <AptitudeModule />
               </div>
             ) : (
               <div className="w-full flex flex-col items-center gap-8">
