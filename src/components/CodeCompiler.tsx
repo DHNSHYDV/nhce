@@ -6,11 +6,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Play, RotateCcw, Copy, Check, Terminal, Code2, Globe, Sparkles, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 
+// Piston API configuration for supported languages
 const LANGUAGES = [
-    { id: "python", name: "Python 3", extension: ".py", default: 'print("Hello, World!")' },
-    { id: "cpp", name: "C++", extension: ".cpp", default: '#include <iostream>\n\nint main() {\n    std::cout << "Hello, World!" << std::endl;\n    return 0;\n}' },
-    { id: "java", name: "Java", extension: ".java", default: 'public class Main {\n    public static void main(String[] args) {\n        System.out.println("Hello, World!");\n    }\n}' },
-    { id: "c", name: "C", extension: ".c", default: '#include <stdio.h>\n\nint main() {\n    printf("Hello, World!\\n");\n    return 0;\n}' },
+    { id: "python", name: "Python 3", extension: ".py", version: "3.10.0", default: 'print("Hello, World!")' },
+    { id: "c++", name: "C++", extension: ".cpp", version: "10.2.0", default: '#include <iostream>\n\nint main() {\n    std::cout << "Hello, World!" << std::endl;\n    return 0;\n}' },
+    { id: "java", name: "Java", extension: ".java", version: "15.0.2", default: 'public class Main {\n    public static void main(String[] args) {\n        System.out.println("Hello, World!");\n    }\n}' },
+    { id: "c", name: "C", extension: ".c", version: "10.2.0", default: '#include <stdio.h>\n\nint main() {\n    printf("Hello, World!\\n");\n    return 0;\n}' },
 ];
 
 export default function CodeCompiler() {
@@ -20,6 +21,7 @@ export default function CodeCompiler() {
     const [isRunning, setIsRunning] = useState(false);
     const [isCopied, setIsCopied] = useState(false);
     const [showLangMenu, setShowLangMenu] = useState(false);
+    const [executionTime, setExecutionTime] = useState<string | null>(null);
 
     const editorRef = useRef<any>(null);
 
@@ -41,17 +43,53 @@ export default function CodeCompiler() {
 
     useEffect(() => {
         setCode(language.default);
+        setOutput("");
+        setExecutionTime(null);
     }, [language]);
 
-    const handleRun = () => {
+    const handleRun = async () => {
         setIsRunning(true);
-        setOutput("");
+        setOutput(`> ${language.name} compiler initialized...\n> Compiling ${language.id === 'java' ? 'Main.java' : 'source'}${language.extension}...\n> Execution started...\n\n`);
+        setExecutionTime(null);
 
-        // Simulate compilation and execution
-        setTimeout(() => {
+        const startTime = performance.now();
+
+        try {
+            // JDoodle equivalent open API routing
+            const response = await fetch("https://api.jdoodle.com/v1/execute", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    script: code,
+                    language: language.id === 'c++' ? 'cpp' : language.id,
+                    versionIndex: "0",
+                    clientId: "44be106ece234ac2c5101fa2eb05b7fe", // Publicly available testing JDoodle client ID
+                    clientSecret: "e751d3821a8cd66ea49a944fc6b68ba60e1d51a6ee887349ab9eb3aa9ec24d67" // Publicly available testing JDoodle secret
+                }),
+            });
+
+            const result = await response.json();
+            const endTime = performance.now();
+            setExecutionTime(((endTime - startTime) / 1000).toFixed(2));
+
+            // Format JDoodle output
+            if (response.ok) {
+                if (result.output) {
+                    setOutput((prev) => prev + result.output + `\n\n> Program exited with status ${result.statusCode || 0}.`);
+                } else if (result.error) {
+                    setOutput((prev) => prev + `${result.error}\n\n> Compilation or Execution Failed.`);
+                }
+            } else {
+                setOutput((prev) => prev + `API Error: ${result.error || result.message || response.statusText}\n> Execution Failed.`);
+            }
+
+        } catch (error) {
+            setOutput((prev) => prev + "Error connecting to execution server (Network/CORS). Please ensure you have an active internet connection.");
+        } finally {
             setIsRunning(false);
-            setOutput(`> ${language.name} compiler initialized...\n> Compiling ${language.id === 'java' ? 'Main.java' : 'source'}${language.extension}...\n> Execution started...\n\nHello, World!\n\n> Program exited with status 0.`);
-        }, 1500);
+        }
     };
 
     const handleCopy = () => {
@@ -63,10 +101,10 @@ export default function CodeCompiler() {
     return (
         <div className="w-full max-w-6xl mx-auto h-[700px] flex flex-col rounded-[2.5rem] border border-white/10 bg-slate-950/40 backdrop-blur-3xl overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.6)] relative group/ide transition-all duration-700">
             {/* Ambient Glow */}
-            <div className="absolute -inset-1 bg-gradient-to-r from-emerald-500/10 to-blue-500/10 rounded-[2.5rem] blur-2xl opacity-0 group-hover/ide:opacity-100 transition-opacity duration-1000" />
+            <div className="absolute -inset-1 bg-gradient-to-r from-emerald-500/10 to-blue-500/10 rounded-[2.5rem] blur-2xl opacity-0 group-hover/ide:opacity-100 transition-opacity duration-1000 pointer-events-none" />
 
             {/* Header / Toolbar */}
-            <div className="relative z-10 flex items-center justify-between px-8 py-5 border-b border-white/5 bg-slate-900/40 backdrop-blur-md">
+            <div className="relative z-50 flex items-center justify-between px-8 py-5 border-b border-white/5 bg-slate-900/40 backdrop-blur-md">
                 <div className="flex items-center gap-6">
                     <div className="flex items-center gap-3">
                         <div className="p-2 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400">
@@ -81,7 +119,8 @@ export default function CodeCompiler() {
                     <div className="relative">
                         <button
                             onClick={() => setShowLangMenu(!showLangMenu)}
-                            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/10 hover:border-emerald-500/30 transition-all group"
+                            onBlur={() => setTimeout(() => setShowLangMenu(false), 200)}
+                            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/10 hover:border-emerald-500/30 transition-all group focus:outline-none"
                         >
                             <span className="text-sm font-bold text-slate-600 dark:text-slate-300 group-hover:text-foreground transition-colors capitalize">{language.name}</span>
                             <ChevronDown className={cn("h-4 w-4 text-slate-500 transition-transform", showLangMenu && "rotate-180")} />
@@ -153,12 +192,12 @@ export default function CodeCompiler() {
             </div>
 
             {/* Main Content Area */}
-            <div className="relative z-10 flex-1 flex overflow-hidden">
+            <div className="relative z-10 flex-1 flex flex-col md:flex-row overflow-hidden">
                 {/* Editor Panel */}
-                <div className="flex-[3] relative border-r border-white/5 bg-transparent">
+                <div className="flex-[3] relative border-r border-white/5 bg-transparent overflow-hidden h-full">
                     <Editor
                         height="100%"
-                        language={language.id === 'cpp' ? 'cpp' : language.id}
+                        language={language.id === 'cpp' || language.id === 'c' ? 'cpp' : language.id}
                         value={code}
                         onChange={(val) => setCode(val || "")}
                         onMount={handleEditorDidMount}
@@ -169,10 +208,14 @@ export default function CodeCompiler() {
                             padding: { top: 20 },
                             smoothScrolling: true,
                             cursorBlinking: "expand",
-                            lineNumbersMinChars: 3,
+                            lineNumbersMinChars: 4,
                             bracketPairColorization: { enabled: true },
                             scrollBeyondLastLine: false,
                             automaticLayout: true,
+                            wordWrap: "on",
+                            scrollbar: {
+                                alwaysConsumeMouseWheel: false,
+                            }
                         }}
                         loading={
                             <div className="h-full w-full flex items-center justify-center bg-slate-950 text-slate-500 font-black uppercase tracking-[0.5em] animate-pulse">
@@ -183,12 +226,12 @@ export default function CodeCompiler() {
                 </div>
 
                 {/* Output Panel */}
-                <div className="flex-[1] bg-slate-950/30 backdrop-blur-md flex flex-col transition-colors">
-                    <div className="px-6 py-4 flex items-center gap-2 border-b border-white/5 bg-slate-950/40">
+                <div className="flex-[1] bg-slate-950/30 backdrop-blur-md flex flex-col transition-colors h-full">
+                    <div className="px-6 py-4 flex items-center gap-2 border-b border-white/5 bg-slate-950/40 shrink-0">
                         <Terminal className="h-4 w-4 text-slate-500" />
                         <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Standard Output</span>
                     </div>
-                    <div className="flex-1 p-6 font-mono text-sm overflow-y-auto whitespace-pre-wrap">
+                    <div className="flex-1 p-6 font-mono text-sm overflow-y-auto whitespace-pre-wrap break-all custom-scrollbar">
                         <AnimatePresence mode="wait">
                             {output ? (
                                 <motion.div
@@ -212,15 +255,35 @@ export default function CodeCompiler() {
                         </AnimatePresence>
                     </div>
                     {/* Performance Micro-Stat */}
-                    <div className="p-4 flex items-center justify-between bg-slate-950/40 border-t border-white/5">
+                    <div className="p-4 flex items-center justify-between bg-slate-950/40 border-t border-white/5 shrink-0">
                         <div className="flex items-center gap-2">
-                            <div className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                            <span className="text-[9px] font-bold text-slate-500 uppercase tracking-tighter">System Ready</span>
+                            <div className={cn("h-1.5 w-1.5 rounded-full animate-pulse", isRunning ? "bg-amber-500" : "bg-emerald-500")} />
+                            <span className="text-[9px] font-bold text-slate-500 uppercase tracking-tighter">
+                                {isRunning ? "Running" : "System Ready"}
+                            </span>
                         </div>
-                        <span className="text-[9px] font-bold text-slate-700 uppercase tracking-tighter">Lat: 0.12ms</span>
+                        <span className="text-[9px] font-bold text-slate-700 uppercase tracking-tighter">
+                            Lat: {executionTime ? `${executionTime}s` : "0.00s"}
+                        </span>
                     </div>
                 </div>
             </div>
+            {/* Inject Custom Scrollbar CSS for Output Panel */}
+            <style jsx global>{`
+                .custom-scrollbar::-webkit-scrollbar {
+                    width: 6px;
+                }
+                .custom-scrollbar::-webkit-scrollbar-track {
+                    background: rgba(0,0,0,0.1);
+                }
+                .custom-scrollbar::-webkit-scrollbar-thumb {
+                    background: rgba(16, 185, 129, 0.2);
+                    border-radius: 4px;
+                }
+                .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+                    background: rgba(16, 185, 129, 0.4);
+                }
+            `}</style>
         </div>
     );
 }
