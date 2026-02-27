@@ -9,7 +9,8 @@
     "dev": "next dev",
     "build": "DATABASE_URL=\"file:./dev.db\" prisma generate && DATABASE_URL=\"file:./dev.db\" prisma migrate deploy && next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "db:studio": "prisma studio"
   },
   "dependencies": {
     "@monaco-editor/react": "^4.7.0",

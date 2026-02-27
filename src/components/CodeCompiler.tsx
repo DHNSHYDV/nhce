@@ -55,18 +55,14 @@ export default function CodeCompiler() {
         const startTime = performance.now();
 
         try {
-            // JDoodle equivalent open API routing
-            const response = await fetch("https://api.jdoodle.com/v1/execute", {
+            const response = await fetch("/api/execute", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
                     script: code,
-                    language: language.id === 'c++' ? 'cpp' : language.id,
-                    versionIndex: "0",
-                    clientId: "44be106ece234ac2c5101fa2eb05b7fe", // Publicly available testing JDoodle client ID
-                    clientSecret: "e751d3821a8cd66ea49a944fc6b68ba60e1d51a6ee887349ab9eb3aa9ec24d67" // Publicly available testing JDoodle secret
+                    language: language.id,
                 }),
             });
 
@@ -74,15 +70,14 @@ export default function CodeCompiler() {
             const endTime = performance.now();
             setExecutionTime(((endTime - startTime) / 1000).toFixed(2));
 
-            // Format JDoodle output
             if (response.ok) {
                 if (result.output) {
-                    setOutput((prev) => prev + result.output + `\n\n> Program exited with status ${result.statusCode || 0}.`);
-                } else if (result.error) {
-                    setOutput((prev) => prev + `${result.error}\n\n> Compilation or Execution Failed.`);
+                    setOutput((prev) => prev + result.output + `\n\n> Program exited with status ${result.statusCode ?? 0}.`);
+                } else {
+                    setOutput((prev) => prev + "\n> Program finished with no output.");
                 }
             } else {
-                setOutput((prev) => prev + `API Error: ${result.error || result.message || response.statusText}\n> Execution Failed.`);
+                setOutput((prev) => prev + `Error: ${result.error || "Execution failed"}\n> Execution stopped.`);
             }
 
         } catch (error) {
