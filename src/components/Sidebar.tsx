@@ -15,13 +15,17 @@ const menuItems = [
 interface SidebarProps {
     onProfileClick: () => void;
 }
+import { useRouter } from "next/navigation";
 
 export const Sidebar = ({ onProfileClick }: SidebarProps) => {
     const [isOpen, setIsOpen] = useState(false);
+    const router = useRouter();
 
     const handleItemClick = (label: string) => {
         if (label === "Profile") {
             onProfileClick();
+        } else if (label === "Projects" || label === "Portfolio") {
+            router.push("/?module=Portfolio", { scroll: false });
         }
     };
 

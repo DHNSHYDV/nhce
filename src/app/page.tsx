@@ -10,6 +10,9 @@ import { GlowingModules } from "@/components/GlowingModules";
 import BackgroundGradient from "@/components/ui/background-gradient";
 import CodeCompiler from "@/components/CodeCompiler";
 import AptitudeModule from "@/components/AptitudeModule";
+import AIInterviewerModule from "@/components/AIInterviewerModule";
+import PerformanceTrackerModule from "@/components/PerformanceTrackerModule";
+import PortfolioModule from "@/components/PortfolioModule";
 import { OrbitingSkills } from "@/components/ui/orbiting-skills";
 
 // ... [existing HomeContent]
@@ -160,6 +163,61 @@ function HomeContent() {
 
                 <AptitudeModule />
               </div>
+            ) : selectedModule === "Communication Skill" ? (
+              <div className="w-full max-w-7xl flex flex-col items-center gap-12 px-6 pb-24">
+                <div className="w-full flex justify-start">
+                  <BackButton onClick={() => setSelectedModule(null)} />
+                </div>
+
+                <div className="text-center space-y-6">
+                  <div className="flex items-center justify-center gap-2 mb-2">
+                    <Sparkles className="h-5 w-5 text-purple-400" />
+                    <span className="text-xs font-black tracking-[0.4em] text-purple-400 uppercase">AI Interview Simulation</span>
+                  </div>
+                  <h2 className="text-5xl md:text-6xl font-black tracking-tighter text-white">
+                    Master Your <span className="text-purple-400 italic">Delivery</span>
+                  </h2>
+                </div>
+
+                <AIInterviewerModule />
+              </div>
+            ) : selectedModule === "Performance Tracker" ? (
+              <div className="w-full max-w-7xl flex flex-col items-center gap-12 px-6 pb-24">
+                <div className="w-full flex justify-start">
+                  <BackButton onClick={() => setSelectedModule(null)} />
+                </div>
+
+                <div className="text-center space-y-6">
+                  <div className="flex items-center justify-center gap-2 mb-2">
+                    <Sparkles className="h-5 w-5 text-blue-400" />
+                    <span className="text-xs font-black tracking-[0.4em] text-blue-400 uppercase">Skill Analytics & Growth Strategy</span>
+                  </div>
+                  <h2 className="text-5xl md:text-6xl font-black tracking-tighter text-white">
+                    Measure. Adjust. <span className="text-emerald-400 italic">Evolve.</span>
+                  </h2>
+                </div>
+
+                <PerformanceTrackerModule />
+              </div>
+            ) : selectedModule === "Portfolio" ? (
+              <div className="w-full max-w-7xl flex flex-col items-center gap-12 px-6 pb-24">
+                <div className="w-full flex justify-start">
+                  <BackButton onClick={() => setSelectedModule(null)} />
+                </div>
+
+                <div className="text-center space-y-6">
+                  <div className="flex items-center justify-center gap-2 mb-2">
+                    <Sparkles className="h-5 w-5 text-purple-400" />
+                    <span className="text-xs font-black tracking-[0.4em] text-purple-400 uppercase">Hemanth Reddy</span>
+                  </div>
+                  <h2 className="text-5xl md:text-6xl font-black tracking-tighter text-white">
+                    Portfolio & <span className="text-purple-400 italic">Projects</span>
+                  </h2>
+                  <p className="text-slate-400 font-medium max-w-xl mx-auto">Showcasing Vision, Innovation & Execution.</p>
+                </div>
+
+                <PortfolioModule />
+              </div>
             ) : (
               <div className="w-full flex flex-col items-center gap-8">
                 <div className="w-full max-w-6xl flex justify-start px-8">
@@ -169,10 +227,10 @@ function HomeContent() {
                 <div className="text-center mb-4 space-y-4">
                   <div className="flex items-center justify-center gap-2 mb-2">
                     <Sparkles className="h-5 w-5 text-emerald-400" />
-                    <span className="text-xs font-black tracking-[0.4em] text-emerald-400 uppercase">Communicate through code</span>
+                    <span className="text-xs font-black tracking-[0.4em] text-emerald-400 uppercase">Interactive Curriculum</span>
                   </div>
                   <h2 className="text-5xl md:text-7xl font-black tracking-tighter text-white">
-                    Code Debug, <span className="text-gradient">Code Repeat</span>
+                    Choose Your <span className="text-gradient">Battlefield</span>
                   </h2>
                   <p className="text-slate-400 font-medium max-w-xl mx-auto">Select a core module to begin your high-intensity learning sprint and evolve your AI Skill Twin.</p>
                 </div>

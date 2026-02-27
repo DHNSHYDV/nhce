@@ -7,10 +7,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { AuthModal } from "./AuthModal";
+import { AboutModal } from "./AboutModal";
 import { useSession, signOut } from "next-auth/react";
 
 export const Navbar = () => {
     const [isAuthModalOpen, setIsAuthModalOpen] = React.useState(false);
+    const [isAboutModalOpen, setIsAboutModalOpen] = React.useState(false);
     const { data: session, status } = useSession();
     const user = session?.user;
 
@@ -47,7 +49,7 @@ export const Navbar = () => {
                 <div className="flex items-center gap-10 text-[10px] font-bold text-slate-400 uppercase tracking-[0.3em]">
                     <Link href="/" className="hover:text-emerald-400 transition-all hover:scale-110 active:scale-95">Home</Link>
                     <div className="h-1 w-1 rounded-full bg-white/10" />
-                    <a href="#" className="hover:text-emerald-400 transition-all hover:scale-110 active:scale-95">About</a>
+                    <button onClick={() => setIsAboutModalOpen(true)} className="hover:text-emerald-400 transition-all hover:scale-110 active:scale-95 uppercase tracking-[0.3em]">About</button>
                 </div>
             </motion.div>
 
@@ -102,6 +104,7 @@ export const Navbar = () => {
                 </div>
             </motion.div>
             <AuthModal isOpen={isAuthModalOpen} onClose={() => setIsAuthModalOpen(false)} />
+            <AboutModal isOpen={isAboutModalOpen} onClose={() => setIsAboutModalOpen(false)} />
         </nav>
     );
 };
