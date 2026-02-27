@@ -17,6 +17,8 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+import { ThemeProvider } from "@/components/theme-provider";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -25,14 +27,21 @@ export default function RootLayout({
   const [isProfileOpen, setIsProfileOpen] = useState(false);
 
   return (
-    <html lang="en" className="dark">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg - background text - foreground`}>
-        <Sidebar onProfileClick={() => setIsProfileOpen(true)} />
-        <Navbar />
-        <main className="min-h-screen pt-24 px-6">
-          {children}
-        </main>
-        <ProfileDashboard isOpen={isProfileOpen} onClose={() => setIsProfileOpen(false)} />
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Sidebar onProfileClick={() => setIsProfileOpen(true)} />
+          <Navbar />
+          <main className="min-h-screen pt-24 px-6">
+            {children}
+          </main>
+          <ProfileDashboard isOpen={isProfileOpen} onClose={() => setIsProfileOpen(false)} />
+        </ThemeProvider>
       </body>
     </html>
   );

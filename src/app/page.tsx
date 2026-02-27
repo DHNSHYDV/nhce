@@ -8,6 +8,7 @@ import { GridPattern } from "@/components/ui/grid-pattern";
 import { GlowingModules } from "@/components/GlowingModules";
 import BackgroundGradient from "@/components/ui/background-gradient";
 import CodeCompiler from "@/components/CodeCompiler";
+import { OrbitingSkills } from "@/components/ui/orbiting-skills";
 
 export default function Home() {
   const [showCards, setShowCards] = useState(false);
@@ -42,33 +43,46 @@ export default function Home() {
               duration: 0.8,
               ease: [0.16, 1, 0.3, 1]
             }}
-            className="text-center max-w-4xl relative z-10 flex flex-col items-center"
+            className="w-full max-w-7xl relative z-10 flex flex-col md:flex-row items-center justify-center gap-12 md:gap-24 px-6 md:px-12 py-12"
           >
+            {/* Left: Orbiting Skills Animation */}
             <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.6 }}
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.4, duration: 0.8 }}
+              className="flex-1 flex justify-center items-center"
             >
-              <span className="text-xs font-black tracking-[0.4em] text-emerald-400 uppercase mb-8 block drop-shadow-[0_0_8px_rgba(52,211,153,0.3)]">
-                Optimized for Your Career
-              </span>
+              <OrbitingSkills />
             </motion.div>
 
-            <h1 className="text-6xl md:text-8xl font-black tracking-tighter mb-12 flex flex-col items-center">
-              <span className="text-white drop-shadow-2xl">The Learning Platform</span>
-              <span className="text-gradient drop-shadow-2xl">Feels Like Your FYP.</span>
-            </h1>
-
-            <div className="flex justify-center mt-4">
-              <motion.button
-                onClick={() => setShowCards(true)}
-                whileHover={{ scale: 1.02, y: -2 }}
-                whileTap={{ scale: 0.98 }}
-                className="px-10 py-5 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black rounded-2xl transition-all flex items-center gap-3 shadow-[0_20px_50px_rgba(16,185,129,0.3)] group"
+            {/* Right: Hero Text & Call to Action */}
+            <div className="flex-1 flex flex-col items-center md:items-start text-center md:text-left">
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2, duration: 0.6 }}
               >
-                Start Grinding
-                <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </motion.button>
+                <span className="text-xs font-black tracking-[0.4em] text-emerald-400 uppercase mb-8 block drop-shadow-[0_0_8px_rgba(52,211,153,0.3)] text-center md:text-left">
+                  Optimized for Your Career
+                </span>
+              </motion.div>
+
+              <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-12 flex flex-col items-center md:items-start leading-[0.9]">
+                <span className="text-foreground drop-shadow-2xl">The Learning Platform</span>
+                <span className="text-gradient drop-shadow-2xl font-black italic">Feels Like Your FYP.</span>
+              </h1>
+
+              <div className="flex justify-center md:justify-start mt-4">
+                <motion.button
+                  onClick={() => setShowCards(true)}
+                  whileHover={{ scale: 1.02, y: -2 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="px-10 py-5 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black rounded-2xl transition-all flex items-center gap-3 shadow-[0_20px_50px_rgba(16,185,129,0.3)] group"
+                >
+                  Start Grinding
+                  <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                </motion.button>
+              </div>
             </div>
           </motion.div>
         ) : (

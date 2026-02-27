@@ -19,7 +19,7 @@ const GridItem = ({ area, icon, title, description, color, onClick }: GridItemPr
         <li className={cn("min-h-[14rem] list-none", area)}>
             <div
                 onClick={onClick}
-                className="relative h-full rounded-[2rem] border-[0.75px] border-white/10 p-2 md:p-3 bg-slate-900/50 backdrop-blur-md group hover:border-white/20 transition-all duration-500 cursor-pointer active:scale-[0.98]"
+                className="relative h-full rounded-[2rem] border-[0.75px] border-black/5 dark:border-white/10 p-2 md:p-3 bg-white/40 dark:bg-slate-900/50 backdrop-blur-md group hover:border-black/10 dark:hover:border-white/20 transition-all duration-500 cursor-pointer active:scale-[0.98]"
             >
                 <GlowingEffect
                     spread={40}
@@ -29,16 +29,16 @@ const GridItem = ({ area, icon, title, description, color, onClick }: GridItemPr
                     inactiveZone={0.01}
                     borderWidth={3}
                 />
-                <div className="relative flex h-full flex-col justify-between gap-6 overflow-hidden rounded-[1.5rem] border-[0.75px] border-white/5 bg-slate-950/50 p-6 shadow-2xl md:p-8">
+                <div className="relative flex h-full flex-col justify-between gap-6 overflow-hidden rounded-[1.5rem] border-[0.75px] border-black/5 dark:border-white/5 bg-white/70 dark:bg-slate-950/50 p-6 shadow-[0_8px_32px_rgba(0,0,0,0.05)] dark:shadow-2xl md:p-8">
                     <div className="relative flex flex-1 flex-col justify-between gap-3">
-                        <div className={cn("w-fit rounded-xl border border-white/10 bg-white/5 p-3 shadow-inner", color)}>
+                        <div className={cn("w-fit rounded-xl border border-black/5 dark:border-white/10 bg-black/5 dark:bg-white/5 p-3 shadow-inner", color)}>
                             {icon}
                         </div>
                         <div className="space-y-4">
-                            <h3 className="pt-0.5 text-2xl leading-none font-black font-sans tracking-tight text-white">
+                            <h3 className="pt-0.5 text-2xl leading-none font-black font-sans tracking-tight text-foreground transition-colors duration-500">
                                 {title}
                             </h3>
-                            <p className="font-sans text-sm leading-relaxed text-slate-400 font-medium">
+                            <p className="font-sans text-sm leading-relaxed text-slate-500 dark:text-slate-400 font-medium transition-colors duration-500">
                                 {description}
                             </p>
                         </div>

@@ -43,15 +43,15 @@ export default function CodeCompiler() {
     };
 
     return (
-        <div className="w-full max-w-6xl mx-auto h-[700px] flex flex-col rounded-[2.5rem] border border-white/10 bg-slate-950/80 backdrop-blur-2xl overflow-hidden shadow-2xl relative">
+        <div className="w-full max-w-6xl mx-auto h-[700px] flex flex-col rounded-[2.5rem] border border-black/5 dark:border-white/10 bg-white/80 dark:bg-slate-950/80 backdrop-blur-2xl overflow-hidden shadow-2xl relative transition-colors duration-500">
             {/* Header / Toolbar */}
-            <div className="flex items-center justify-between px-8 py-4 border-b border-white/5 bg-white/2 bg-slate-900/40">
+            <div className="flex items-center justify-between px-8 py-4 border-b border-black/5 dark:border-white/5 bg-black/2 dark:bg-white/2 bg-slate-100/40 dark:bg-slate-900/40 transition-colors">
                 <div className="flex items-center gap-6">
                     <div className="flex items-center gap-3">
                         <div className="p-2 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400">
                             <Code2 className="h-5 w-5" />
                         </div>
-                        <h3 className="text-lg font-black tracking-tight text-white uppercase italic">IDE<span className="text-emerald-400 font-sans not-italic">.beta</span></h3>
+                        <h3 className="text-lg font-black tracking-tight text-foreground uppercase italic transition-colors">IDE<span className="text-emerald-500 font-sans not-italic">.beta</span></h3>
                     </div>
 
                     <div className="h-6 w-px bg-white/10" />
@@ -60,9 +60,9 @@ export default function CodeCompiler() {
                     <div className="relative">
                         <button
                             onClick={() => setShowLangMenu(!showLangMenu)}
-                            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 border border-white/10 hover:border-emerald-500/30 transition-all group"
+                            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/10 hover:border-emerald-500/30 transition-all group"
                         >
-                            <span className="text-sm font-bold text-slate-300 group-hover:text-white transition-colors capitalize">{language.name}</span>
+                            <span className="text-sm font-bold text-slate-600 dark:text-slate-300 group-hover:text-foreground transition-colors capitalize">{language.name}</span>
                             <ChevronDown className={cn("h-4 w-4 text-slate-500 transition-transform", showLangMenu && "rotate-180")} />
                         </button>
                         <AnimatePresence>
@@ -162,8 +162,8 @@ export default function CodeCompiler() {
                 </div>
 
                 {/* Output Panel */}
-                <div className="flex-[1] bg-slate-900/50 flex flex-col">
-                    <div className="px-6 py-4 flex items-center gap-2 border-b border-white/5 bg-slate-950/40">
+                <div className="flex-[1] bg-slate-100/50 dark:bg-slate-900/50 flex flex-col transition-colors">
+                    <div className="px-6 py-4 flex items-center gap-2 border-b border-black/5 dark:border-white/5 bg-white/40 dark:bg-slate-950/40">
                         <Terminal className="h-4 w-4 text-slate-500" />
                         <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Standard Output</span>
                     </div>

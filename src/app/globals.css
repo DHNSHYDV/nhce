@@ -1,10 +1,19 @@
 @import "tailwindcss";
 
 :root {
-  --background: #020617; /* Very dark slate */
+  --background: #ffffff;
+  --foreground: #020617;
+  --primary: #10b981;
+  --accent: #6366f1;
+  --glass: rgba(255, 255, 255, 0.7);
+  --border-glass: rgba(0, 0, 0, 0.05);
+}
+
+.dark {
+  --background: #020617;
   --foreground: #f8fafc;
-  --primary: #10b981; /* Emerald/Mint */
-  --accent: #8b5cf6; /* Violet */
+  --primary: #10b981;
+  --accent: #8b5cf6;
   --glass: rgba(15, 23, 42, 0.7);
   --border-glass: rgba(255, 255, 255, 0.1);
 }
@@ -29,7 +38,7 @@ body {
   .glass {
     @apply border border-white/10 bg-white/5 backdrop-blur-md;
   }
-  
+
   .glass-dark {
     @apply border border-white/5 bg-black/40 backdrop-blur-xl;
   }
