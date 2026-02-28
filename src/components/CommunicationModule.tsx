@@ -12,7 +12,11 @@ interface Question {
     explanation: string;
 }
 
-export const CommunicationModule = () => {
+interface CommunicationModuleProps {
+    onExit?: () => void;
+}
+
+export const CommunicationModule = ({ onExit }: CommunicationModuleProps) => {
     const [view, setView] = useState<'selection' | 'loading' | 'quiz' | 'voice' | 'results' | 'voice-analysis'>('selection');
     const [questions, setQuestions] = useState<Question[]>([]);
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -384,7 +388,7 @@ export const CommunicationModule = () => {
                             </div>
 
                             <button
-                                onClick={() => setView('selection')}
+                                onClick={() => onExit ? onExit() : setView('selection')}
                                 className="w-full py-6 bg-white text-black font-black rounded-none transition-all shadow-2xl uppercase tracking-[0.3em] text-[11px] flex items-center justify-center gap-3"
                             >
                                 <ArrowLeft className="h-3 w-3" />
