@@ -230,117 +230,114 @@ function HomeContent() {
                 ))}
               </div>
             </div>
-
           </div>
-            </div >
-          </div >
         );
-}
+    }
   };
 
-const BackButton = ({ onClick }: { onClick: () => void }) => (
-  <motion.button
-    onClick={onClick}
-    initial={{ opacity: 0, scale: 0.8 }}
-    animate={{ opacity: 1, scale: 1 }}
-    whileHover={{ scale: 1.1, backgroundColor: "rgba(255, 255, 255, 0.1)" }}
-    whileTap={{ scale: 0.9 }}
-    className="flex items-center justify-center h-10 w-10 rounded-none liquid-glass border border-white/10 text-white/60 hover:text-white transition-colors shadow-2xl"
-  >
-    <ChevronLeft className="h-5 w-5" />
-  </motion.button>
-);
-
-return (
   return (
-  <div className="relative flex flex-col items-center justify-start min-h-[calc(100vh-6rem)] overflow-y-auto overflow-x-hidden selection:bg-white selection:text-black">
-    <DottedSurface />
+    <div className="relative flex flex-col items-center justify-start min-h-[calc(100vh-6rem)] overflow-y-auto overflow-x-hidden selection:bg-white selection:text-black">
+      <DottedSurface />
 
-    <AnimatePresence mode="wait">
-      {!showCards ? (
-        <motion.div
-          key="hero"
-          initial={{ opacity: 0, scale: 0.95, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 1.05, y: -20, filter: "blur(20px)" }}
-          transition={{
-            duration: 0.8,
-            ease: [0.16, 1, 0.3, 1]
-          }}
-          className="w-full max-w-7xl relative z-10 flex flex-col md:flex-row items-center justify-between gap-12 md:gap-8 px-6 md:px-20 py-12 md:py-24"
-        >
-          {/* Left: Orbiting Skills Animation */}
+      <AnimatePresence mode="wait">
+        {!showCards ? (
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.8 }}
-            className="w-full md:flex-1 flex justify-center items-center order-2 md:order-1 mt-12 md:mt-0"
+            key="hero"
+            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 1.05, y: -20, filter: "blur(20px)" }}
+            transition={{
+              duration: 0.8,
+              ease: [0.16, 1, 0.3, 1]
+            }}
+            className="w-full flex flex-col items-center"
           >
-            <OrbitingSkills />
-          </motion.div>
-
-          {/* Right: Hero Text & Call to Action */}
-          <div className="flex-1 flex flex-col items-center md:items-start text-center md:text-left">
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.6 }}
-            >
-              <div className="flex items-center gap-4 mb-10 opacity-40">
-                <div className="h-px w-12 bg-white" />
-                <span className="text-[12px] font-black tracking-[0.6em] text-white uppercase font-display">
-                  Protocol 01: Initialize
-                </span>
-              </div>
-            </motion.div>
-
-            <h1 className="text-4xl sm:text-7xl md:text-8xl lg:text-[10rem] font-black tracking-[-0.03em] mb-10 md:mb-16 flex flex-col items-center md:items-start leading-[0.7] text-white uppercase italic font-display">
-              <span className="drop-shadow-2xl">Code.</span>
-              <span className="drop-shadow-2xl opacity-50">Skill.</span>
-              <span className="drop-shadow-2xl opacity-20">Conquer.</span>
-            </h1>
-
-            <div className="flex justify-center md:justify-start mt-6">
-              <motion.button
-                onClick={() => setShowCards(true)}
-                whileHover={{ scale: 1.05, filter: "brightness(1.2)" }}
-                whileTap={{ scale: 0.95 }}
-                className="px-16 py-8 bg-white text-black font-black rounded-none transition-all flex items-center gap-6 shadow-[0_0_60px_rgba(255,255,255,0.2)] group hover:shadow-[0_0_80px_rgba(255,255,255,0.4)]"
+            <div className="w-full max-w-7xl relative z-10 flex flex-col md:flex-row items-center justify-between gap-12 md:gap-8 px-6 md:px-20 py-12 md:py-24">
+              {/* Left: Orbiting Skills Animation */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4, duration: 0.8 }}
+                className="w-full md:flex-1 flex justify-center items-center order-2 md:order-1 mt-12 md:mt-0"
               >
-                <span className="tracking-[0.3em] uppercase text-sm font-display">Enter Experience</span>
-                <ArrowRight className="h-6 w-6 group-hover:translate-x-3 transition-transform" />
-              </motion.button>
-            </div>
-          </div>
+                <OrbitingSkills />
+              </motion.div>
 
-          {/* About Section Integrated into Landing */}
-          <div className="w-full mt-32 md:mt-64 border-t border-white/5 pt-32">
-            <AboutSection />
-          </div>
-        </motion.div>
-      ) : (
-        <motion.div
-          key="modules"
-          initial={{ opacity: 0, scale: 0.9, y: 40 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.9, y: 40, filter: "blur(20px)" }}
-          transition={{
-            duration: 0.8,
-            ease: [0.16, 1, 0.3, 1]
-          }}
-          className="w-full h-full relative z-10 flex flex-col items-center py-12"
-        >
-          {renderModule()}
-        </motion.div>
-      )}
-    </AnimatePresence>
-  </div>
-);
+              {/* Right: Hero Text & Call to Action */}
+              <div className="flex-1 flex flex-col items-center md:items-start text-center md:text-left">
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2, duration: 0.6 }}
+                >
+                  <div className="flex items-center gap-4 mb-10 opacity-40">
+                    <div className="h-px w-12 bg-white" />
+                    <span className="text-[12px] font-black tracking-[0.6em] text-white uppercase font-display">
+                      Protocol 01: Initialize
+                    </span>
+                  </div>
+                </motion.div>
+
+                <h1 className="text-4xl sm:text-7xl md:text-8xl lg:text-[10rem] font-black tracking-[-0.03em] mb-10 md:mb-16 flex flex-col items-center md:items-start leading-[0.7] text-white uppercase italic font-display">
+                  <span className="drop-shadow-2xl">Code.</span>
+                  <span className="drop-shadow-2xl opacity-50">Skill.</span>
+                  <span className="drop-shadow-2xl opacity-20">Conquer.</span>
+                </h1>
+
+                <div className="flex justify-center md:justify-start mt-6">
+                  <motion.button
+                    onClick={() => setShowCards(true)}
+                    whileHover={{ scale: 1.05, filter: "brightness(1.2)" }}
+                    whileTap={{ scale: 0.95 }}
+                    className="px-16 py-8 bg-white text-black font-black rounded-none transition-all flex items-center gap-6 shadow-[0_0_60px_rgba(255,255,255,0.2)] group hover:shadow-[0_0_80px_rgba(255,255,255,0.4)]"
+                  >
+                    <span className="tracking-[0.3em] uppercase text-sm font-display">Enter Experience</span>
+                    <ArrowRight className="h-6 w-6 group-hover:translate-x-3 transition-transform" />
+                  </motion.button>
+                </div>
+              </div>
+            </div>
+
+            {/* About Section Integrated into Landing */}
+            <div className="w-full border-t border-white/5 bg-black/50 backdrop-blur-3xl relative z-20">
+              <AboutSection />
+            </div>
+          </motion.div>
+        ) : (
+          <motion.div
+            key="modules"
+            initial={{ opacity: 0, scale: 0.9, y: 40 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.9, y: 40, filter: "blur(20px)" }}
+            transition={{
+              duration: 0.8,
+              ease: [0.16, 1, 0.3, 1]
+            }}
+            className="w-full h-full relative z-10 flex flex-col items-center py-12"
+          >
+            {renderModule()}
+          </motion.div>
+        )}
+      </AnimatePresence>
+      );
 }
 
-export default function Home() {
+      const BackButton = ({onClick}: {onClick: () => void }) => (
+      <motion.button
+        onClick={onClick}
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        whileHover={{ scale: 1.1, backgroundColor: "rgba(255, 255, 255, 0.1)" }}
+        whileTap={{ scale: 0.9 }}
+        className="flex items-center justify-center h-10 w-10 rounded-none liquid-glass border border-white/10 text-white/60 hover:text-white transition-colors shadow-2xl"
+      >
+        <ChevronLeft className="h-5 w-5" />
+      </motion.button>
+      );
+
+      export default function Home() {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
-  const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
+      const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
 
   // Listen for custom notification trigger event
   useState(() => {
@@ -351,19 +348,19 @@ export default function Home() {
     }
   });
 
-  return (
-    <main className="min-h-screen bg-black text-white relative flex overflow-hidden">
-      <Sidebar onProfileClick={() => setIsProfileOpen(true)} />
+      return (
+      <main className="min-h-screen bg-black text-white relative flex overflow-hidden">
+        <Sidebar onProfileClick={() => setIsProfileOpen(true)} />
 
-      <div className="flex-1 flex flex-col relative z-10">
-        <Navbar />
-        <Suspense fallback={<div className="min-h-screen bg-black" />}>
-          <HomeContent />
-        </Suspense>
-      </div>
+        <div className="flex-1 flex flex-col relative z-10">
+          <Navbar />
+          <Suspense fallback={<div className="min-h-screen bg-black" />}>
+            <HomeContent />
+          </Suspense>
+        </div>
 
-      <ProfileDashboard isOpen={isProfileOpen} onClose={() => setIsProfileOpen(false)} />
-      <NotificationSystem isOpen={isNotificationsOpen} onClose={() => setIsNotificationsOpen(false)} />
-    </main>
-  );
+        <ProfileDashboard isOpen={isProfileOpen} onClose={() => setIsProfileOpen(false)} />
+        <NotificationSystem isOpen={isNotificationsOpen} onClose={() => setIsNotificationsOpen(false)} />
+      </main>
+      );
 }
