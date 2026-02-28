@@ -176,38 +176,38 @@ function HomeContent() {
               </h2>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-6xl px-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 w-full max-w-6xl px-4 md:px-8">
               <button
                 onClick={() => setSelectedModule('Aptitude')}
-                className="glass-dark p-14 rounded-none border border-white/10 group hover:border-white/40 transition-all text-left relative overflow-hidden"
+                className="glass-dark p-8 md:p-14 rounded-none border border-white/10 group hover:border-white/40 transition-all text-left relative overflow-hidden"
               >
-                <div className="h-16 w-16 bg-white/5 flex items-center justify-center mb-10 border border-white/10 group-hover:bg-white group-hover:text-black transition-all">
-                  <Zap className="h-8 w-8" />
+                <div className="h-12 w-12 md:h-16 md:w-16 bg-white/5 flex items-center justify-center mb-6 md:mb-10 border border-white/10 group-hover:bg-white group-hover:text-black transition-all">
+                  <Zap className="h-6 w-6 md:h-8 md:w-8" />
                 </div>
-                <h3 className="text-3xl font-black italic uppercase tracking-tighter mb-4 font-display">Aptitude</h3>
-                <p className="text-white/40 text-[12px] uppercase font-black tracking-widest leading-loose">Cognitive logic assessment protocol</p>
+                <h3 className="text-2xl md:text-3xl font-black italic uppercase tracking-tighter mb-4 font-display">Aptitude</h3>
+                <p className="text-white/40 text-[10px] md:text-[12px] uppercase font-black tracking-widest leading-loose">Cognitive logic assessment protocol</p>
               </button>
 
               <button
                 onClick={() => setSelectedModule('Communication')}
-                className="glass-dark p-14 rounded-none border border-white/10 group hover:border-white/40 transition-all text-left relative overflow-hidden"
+                className="glass-dark p-8 md:p-14 rounded-none border border-white/10 group hover:border-white/40 transition-all text-left relative overflow-hidden"
               >
-                <div className="h-16 w-16 bg-white/5 flex items-center justify-center mb-10 border border-white/10 group-hover:bg-white group-hover:text-black transition-all">
-                  <MessageSquare className="h-8 w-8" />
+                <div className="h-12 w-12 md:h-16 md:w-16 bg-white/5 flex items-center justify-center mb-6 md:mb-10 border border-white/10 group-hover:bg-white group-hover:text-black transition-all">
+                  <MessageSquare className="h-6 w-6 md:h-8 md:w-8" />
                 </div>
-                <h3 className="text-3xl font-black italic uppercase tracking-tighter mb-4 font-display">Communication</h3>
-                <p className="text-white/40 text-[12px] uppercase font-black tracking-widest leading-loose">Vocal and linguistic synchronization</p>
+                <h3 className="text-2xl md:text-3xl font-black italic uppercase tracking-tighter mb-4 font-display">Communication</h3>
+                <p className="text-white/40 text-[10px] md:text-[12px] uppercase font-black tracking-widest leading-loose">Vocal and linguistic synchronization</p>
               </button>
 
               <button
                 onClick={() => setSelectedModule('Interview')}
-                className="glass-dark p-14 rounded-none border border-white/10 group hover:border-white/40 transition-all text-left relative overflow-hidden"
+                className="glass-dark p-8 md:p-14 rounded-none border border-white/10 group hover:border-white/40 transition-all text-left relative overflow-hidden sm:col-span-2 md:col-span-1"
               >
-                <div className="h-16 w-16 bg-white/5 flex items-center justify-center mb-10 border border-white/10 group-hover:bg-white group-hover:text-black transition-all">
-                  <Shield className="h-8 w-8" />
+                <div className="h-12 w-12 md:h-16 md:w-16 bg-white/5 flex items-center justify-center mb-6 md:mb-10 border border-white/10 group-hover:bg-white group-hover:text-black transition-all">
+                  <Shield className="h-6 w-6 md:h-8 md:w-8" />
                 </div>
-                <h3 className="text-3xl font-black italic uppercase tracking-tighter mb-4 font-display">AI Interview</h3>
-                <p className="text-white/40 text-[12px] uppercase font-black tracking-widest leading-loose">Multi-round stress simulator</p>
+                <h3 className="text-2xl md:text-3xl font-black italic uppercase tracking-tighter mb-4 font-display">AI Interview</h3>
+                <p className="text-white/40 text-[10px] md:text-[12px] uppercase font-black tracking-widest leading-loose">Multi-round stress simulator</p>
               </button>
             </div>
 
@@ -218,7 +218,7 @@ function HomeContent() {
                 <span className="text-[11px] font-black tracking-[0.5em] text-white uppercase italic font-display">Advanced Mastery Protocols</span>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
                 {[
                   { id: 'leadership', title: 'Leadership', icon: Shield, desc: 'EI & Command simulations' },
                   { id: 'career', title: 'Career AI', icon: Zap, desc: 'Neural path prediction' },
@@ -229,13 +229,13 @@ function HomeContent() {
                     onClick={() => {
                       router.push(`/?view=${item.id}`, { scroll: false });
                     }}
-                    className="glass-dark p-10 rounded-none border border-white/5 group hover:border-white/40 transition-all text-left relative overflow-hidden bg-white/[0.01]"
+                    className="glass-dark p-6 md:p-10 rounded-none border border-white/5 group hover:border-white/40 transition-all text-left relative overflow-hidden bg-white/[0.01]"
                   >
-                    <div className="h-12 w-12 bg-white/5 flex items-center justify-center mb-8 border border-white/10 group-hover:bg-white group-hover:text-black transition-all">
-                      <item.icon className="h-5 w-5" />
+                    <div className="h-10 w-10 md:h-12 md:w-12 bg-white/5 flex items-center justify-center mb-6 md:mb-8 border border-white/10 group-hover:bg-white group-hover:text-black transition-all">
+                      <item.icon className="h-4 w-4 md:h-5 md:w-5" />
                     </div>
-                    <h3 className="text-lg font-black italic uppercase tracking-tighter mb-2 font-display">{item.title}</h3>
-                    <p className="text-white/20 text-[10px] uppercase font-black tracking-widest leading-relaxed">{item.desc}</p>
+                    <h3 className="text-base md:text-lg font-black italic uppercase tracking-tighter mb-2 font-display">{item.title}</h3>
+                    <p className="text-white/20 text-[9px] md:text-[10px] uppercase font-black tracking-widest leading-relaxed">{item.desc}</p>
                   </button>
                 ))}
               </div>
@@ -258,7 +258,7 @@ function HomeContent() {
             exit={{ opacity: 0 }}
             className="w-full flex flex-col items-center"
           >
-            <div className="w-full max-w-7xl relative z-10 flex flex-col md:flex-row items-center justify-center gap-12 md:gap-32 px-6 md:px-12 min-h-[calc(100vh-6rem)] py-20">
+            <div className="w-full max-w-7xl relative z-10 flex flex-col md:flex-row items-center justify-center gap-12 lg:gap-32 px-4 md:px-12 min-h-[calc(100vh-6rem)] py-12 md:py-20">
               {/* Left: Orbiting Skills Animation */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -284,7 +284,7 @@ function HomeContent() {
                   </div>
                 </motion.div>
 
-                <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[8rem] font-black tracking-[-0.04em] mb-10 md:mb-16 flex flex-col items-center md:items-start leading-[0.75] text-white uppercase italic font-display">
+                <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[8rem] font-black tracking-[-0.04em] mb-8 md:mb-16 flex flex-col items-center md:items-start leading-[0.8] md:leading-[0.75] text-white uppercase italic font-display">
                   <span className="drop-shadow-2xl whitespace-nowrap hover:text-white transition-all cursor-default">Code.</span>
                   <span className="drop-shadow-2xl opacity-50 whitespace-nowrap hover:opacity-100 transition-all cursor-default">Skill.</span>
                   <span className="drop-shadow-2xl opacity-10 whitespace-nowrap hover:opacity-100 transition-all cursor-default">Conquer.</span>

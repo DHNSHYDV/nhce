@@ -38,7 +38,7 @@ const contributors = [
 
 export const AboutSection = () => {
     return (
-        <div id="about" className="w-full max-w-7xl mx-auto py-24 px-6 space-y-32">
+        <div id="about" className="w-full max-w-7xl mx-auto py-16 md:py-24 px-4 md:px-6 space-y-24 md:space-y-32">
             {/* Mission Statement */}
             <div className="flex flex-col items-center text-center space-y-12">
                 <div className="flex items-center gap-4 opacity-40">
@@ -47,11 +47,11 @@ export const AboutSection = () => {
                     <div className="h-px w-12 bg-white" />
                 </div>
 
-                <h2 className="text-5xl md:text-8xl font-black text-white italic tracking-tighter uppercase leading-none font-display max-w-5xl">
+                <h2 className="text-3xl sm:text-4xl md:text-8xl font-black text-white italic tracking-tighter uppercase leading-none font-display max-w-5xl">
                     Beyond Code. <span className="text-white/40">Beyond Education.</span>
                 </h2>
 
-                <p className="text-white/40 text-lg md:text-2xl font-medium max-w-4xl tracking-tight leading-relaxed">
+                <p className="text-white/40 text-xs sm:text-sm md:text-2xl font-medium max-w-4xl tracking-tight leading-relaxed px-4 md:px-0">
                     Decide To Code is a state-of-the-art career ecosystem designed to transform technical potential into industry mastery.
                     Through AI-driven simulations, cognitive auditing, and regional language integration, we are building the foundation for the next billion engineers.
                 </p>
@@ -64,7 +64,7 @@ export const AboutSection = () => {
                     <span className="text-[11px] font-black tracking-[0.5em] text-white uppercase italic font-display">Core Contributors</span>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
                     {contributors.map((person, idx) => (
                         <motion.div
                             key={person.name}
@@ -72,10 +72,10 @@ export const AboutSection = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ delay: idx * 0.1 }}
                             viewport={{ once: true }}
-                            className="glass-dark p-10 border border-white/5 group hover:border-white/40 transition-all text-left relative overflow-hidden flex flex-col h-full"
+                            className="glass-dark p-6 md:p-10 border border-white/5 group hover:border-white/40 transition-all text-left relative overflow-hidden flex flex-col h-full"
                         >
-                            <div className="h-14 w-14 bg-white/5 flex items-center justify-center mb-8 border border-white/10 group-hover:bg-white group-hover:text-black transition-all">
-                                <person.icon className="h-6 w-6" />
+                            <div className="h-12 w-12 md:h-14 md:w-14 bg-white/5 flex items-center justify-center mb-6 md:mb-8 border border-white/10 group-hover:bg-white group-hover:text-black transition-all">
+                                <person.icon className="h-5 w-5 md:h-6 md:w-6" />
                             </div>
 
                             <div className="space-y-4 flex-1">

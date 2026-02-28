@@ -54,7 +54,7 @@ export const Sidebar = ({ onProfileClick }: SidebarProps) => {
     };
 
     return (
-        <div className="fixed left-6 top-6 z-50">
+        <div className="fixed left-4 md:left-6 top-4 md:top-6 z-50">
             <button
                 onClick={() => setIsOpen(!isOpen)}
                 className="flex h-12 w-12 items-center justify-center rounded-none liquid-glass sheen-effect border border-white/10 hover:bg-white/5 transition-all duration-300"
@@ -69,7 +69,7 @@ export const Sidebar = ({ onProfileClick }: SidebarProps) => {
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: -20 }}
-                        className="absolute left-0 top-16 flex flex-col gap-3 perspective-1000"
+                        className="absolute left-0 top-14 md:top-16 flex flex-col gap-2 md:gap-3 perspective-1000"
                     >
                         {menuItems.map((item, index) => (
                             <motion.div
@@ -97,9 +97,9 @@ export const Sidebar = ({ onProfileClick }: SidebarProps) => {
                                 className="group relative"
                                 onClick={() => handleItemClick(item.label)}
                             >
-                                <div className="flex h-14 items-center gap-6 rounded-none liquid-glass sheen-effect px-6 py-2 w-72 transition-all cursor-pointer border border-white/5 group-hover:border-white/40 group-hover:translate-x-4">
-                                    <item.icon className={cn("h-5 w-5 transition-colors group-hover:text-white", item.color)} />
-                                    <span className="text-[12px] font-black uppercase tracking-[0.4em] text-white/40 group-hover:text-white transition-colors font-display">
+                                <div className="flex h-12 md:h-14 items-center gap-4 md:gap-6 rounded-none liquid-glass sheen-effect px-4 md:px-6 py-2 w-64 md:w-72 transition-all cursor-pointer border border-white/5 group-hover:border-white/40 group-hover:translate-x-4">
+                                    <item.icon className={cn("h-4 w-4 md:h-5 md:w-5 transition-colors group-hover:text-white", item.color)} />
+                                    <span className="text-[10px] md:text-[12px] font-black uppercase tracking-[0.3em] md:tracking-[0.4em] text-white/40 group-hover:text-white transition-colors font-display">
                                         {item.label}
                                     </span>
 
