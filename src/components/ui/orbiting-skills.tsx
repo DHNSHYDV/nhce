@@ -274,15 +274,31 @@ export function OrbitingSkills() {
         return () => cancelAnimationFrame(animationFrameId);
     }, [isPaused]);
 
+    const [dimensions, setDimensions] = useState({ radius1: 100, radius2: 180, sizeMult: 1 });
+
+    useEffect(() => {
+        const updateDimensions = () => {
+            const width = window.innerWidth;
+            if (width < 768) {
+                setDimensions({ radius1: 60, radius2: 110, sizeMult: 0.7 });
+            } else {
+                setDimensions({ radius1: 100, radius2: 180, sizeMult: 1 });
+            }
+        };
+        updateDimensions();
+        window.addEventListener('resize', updateDimensions);
+        return () => window.removeEventListener('resize', updateDimensions);
+    }, []);
+
     const orbitConfigs: Array<{ radius: number; glowColor: GlowColor; delay: number }> = [
-        { radius: 100, glowColor: 'cyan', delay: 0 },
-        { radius: 180, glowColor: 'cyan', delay: 1.5 }
+        { radius: dimensions.radius1, glowColor: 'cyan', delay: 0 },
+        { radius: dimensions.radius2, glowColor: 'cyan', delay: 1.5 }
     ];
 
     return (
         <div className="w-full flex items-center justify-center overflow-hidden">
             <div
-                className="relative w-[calc(100vw-40px)] h-[calc(100vw-40px)] md:w-[450px] md:h-[450px] flex items-center justify-center"
+                className="relative w-[300px] h-[300px] md:w-[450px] md:h-[450px] flex items-center justify-center"
                 onMouseEnter={() => setIsPaused(true)}
                 onMouseLeave={() => setIsPaused(false)}
             >
@@ -311,10 +327,15 @@ export function OrbitingSkills() {
                 {/* Render orbiting skill icons */}
                 {skillsConfig.map((config) => {
                     const angle = time * config.speed + (config.phaseShift || 0);
+                    const responsiveConfig = {
+                        ...config,
+                        orbitRadius: config.orbitRadius === 100 ? dimensions.radius1 : dimensions.radius2,
+                        size: config.size * dimensions.sizeMult
+                    };
                     return (
                         <OrbitingSkill
                             key={config.id}
-                            config={config}
+                            config={responsiveConfig}
                             angle={angle}
                         />
                     );

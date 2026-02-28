@@ -27,16 +27,6 @@ function HomeContent() {
 
   const view = searchParams.get("view");
   const moduleParam = searchParams.get("module");
-  const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
-
-  // Listen for custom notification trigger event
-  useState(() => {
-    if (typeof window !== 'undefined') {
-      const handler = () => setIsNotificationsOpen(true);
-      window.addEventListener('open-notifications', handler);
-      return () => window.removeEventListener('open-notifications', handler);
-    }
-  });
 
   const showCards = view === "modules" || !!moduleParam || view === "leaderboard";
   const selectedModule = moduleParam;
@@ -208,7 +198,7 @@ function HomeContent() {
               duration: 0.8,
               ease: [0.16, 1, 0.3, 1]
             }}
-            className="w-full max-w-7xl relative z-10 flex flex-col md:flex-row items-center justify-center gap-12 md:gap-24 px-6 md:px-12 py-12"
+            className="w-full max-w-7xl relative z-10 flex flex-col md:flex-row items-center justify-center gap-4 md:gap-24 px-6 md:px-12 py-12"
           >
             {/* Left: Orbiting Skills Animation */}
             <motion.div
@@ -235,7 +225,7 @@ function HomeContent() {
                 </div>
               </motion.div>
 
-              <h1 className="text-6xl md:text-8xl lg:text-9xl font-black tracking-[0.02em] mb-12 flex flex-col items-center md:items-start leading-[0.85] text-white uppercase italic">
+              <h1 className="text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-black tracking-[0.02em] mb-8 md:mb-12 flex flex-col items-center md:items-start leading-[0.85] text-white uppercase italic">
                 <span className="drop-shadow-2xl">Code.</span>
                 <span className="drop-shadow-2xl opacity-50">Skill.</span>
                 <span className="drop-shadow-2xl opacity-20">Conquer.</span>
@@ -276,6 +266,16 @@ function HomeContent() {
 
 export default function Home() {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
+
+  // Listen for custom notification trigger event
+  useState(() => {
+    if (typeof window !== 'undefined') {
+      const handler = () => setIsNotificationsOpen(true);
+      window.addEventListener('open-notifications', handler);
+      return () => window.removeEventListener('open-notifications', handler);
+    }
+  });
 
   return (
     <main className="min-h-screen bg-black text-white relative flex overflow-hidden">

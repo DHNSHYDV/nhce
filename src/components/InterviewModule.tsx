@@ -278,10 +278,10 @@ export const InterviewModule = ({ onExit }: { onExit: () => void }) => {
                         key="session-container"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        className="w-full flex flex-col md:flex-row gap-8 items-stretch h-[700px]"
+                        className="w-full flex flex-col md:flex-row gap-8 items-stretch min-h-[800px] md:h-[700px]"
                     >
                         {/* Left Column: 3D Robot Interaction */}
-                        <div className="flex-[1.5] relative glass-dark border border-white/10 overflow-hidden flex items-center justify-center">
+                        <div className="flex-[1.5] relative glass-dark border border-white/10 overflow-hidden flex items-center justify-center min-h-[300px] md:min-h-0">
                             <div className="absolute top-8 left-8 z-20">
                                 <span className="text-[10px] font-black uppercase tracking-[0.4em] text-white/40">AI INTERVIEWER: WHOBEE</span>
                             </div>
