@@ -29,15 +29,15 @@ const roadmap = [
 export const CareerRoadmapModule = () => {
     return (
         <div className="w-full max-w-5xl mx-auto py-12 px-6">
-            <div className="text-center mb-20 space-y-6">
-                <div className="flex items-center justify-center gap-3">
-                    <Map className="h-4 w-4 text-white/40" />
-                    <span className="text-[10px] font-black tracking-[0.5em] text-white/40 uppercase italic">Dynamic Trajectory</span>
+            <div className="text-center mb-24 space-y-8">
+                <div className="flex items-center justify-center gap-4">
+                    <Map className="h-6 w-6 text-white/40" />
+                    <span className="text-[12px] font-black tracking-[0.7em] text-white/40 uppercase italic font-display">Dynamic Trajectory</span>
                 </div>
-                <h2 className="text-5xl md:text-8xl font-black text-white italic tracking-tighter uppercase leading-none">
+                <h2 className="text-6xl md:text-9xl font-black text-white italic tracking-tighter uppercase leading-none font-display">
                     Career <span className="text-white/40">Roadmap</span>
                 </h2>
-                <p className="text-white/20 text-[10px] uppercase tracking-[0.4em] max-w-xl mx-auto font-medium">
+                <p className="text-white/20 text-[11px] uppercase tracking-[0.5em] max-w-xl mx-auto font-black leading-loose font-display">
                     AI-driven skill auditing and behavioral mapping to predict your optimal professional path.
                 </p>
             </div>

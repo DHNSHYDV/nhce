@@ -30,12 +30,12 @@ export const FreelanceModule = () => {
     return (
         <div className="w-full max-w-6xl mx-auto py-12 px-6">
             <div className="header mb-20 flex flex-col md:flex-row justify-between items-start md:items-end gap-10">
-                <div className="space-y-4">
-                    <div className="flex items-center gap-3">
-                        <Briefcase className="h-4 w-4 text-white/40" />
-                        <span className="text-[10px] font-black tracking-[0.4em] text-white/40 uppercase italic">Industry Ready</span>
+                <div className="space-y-6">
+                    <div className="flex items-center gap-4">
+                        <Briefcase className="h-6 w-6 text-white/40" />
+                        <span className="text-[12px] font-black tracking-[0.6em] text-white/40 uppercase italic font-display">Industry Ready</span>
                     </div>
-                    <h2 className="text-5xl md:text-8xl font-black text-white italic tracking-tighter uppercase leading-none">
+                    <h2 className="text-6xl md:text-9xl font-black text-white italic tracking-tighter uppercase leading-none font-display">
                         Business <span className="text-white/40">Unit</span>
                     </h2>
                 </div>

@@ -11,6 +11,7 @@ import {
     CheckCircle2,
     Zap,
     Shield,
+    Brain,
     User,
     Sparkles,
     AlertCircle

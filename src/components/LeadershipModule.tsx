@@ -35,17 +35,17 @@ export const LeadershipModule = () => {
     return (
         <div className="w-full max-w-6xl mx-auto py-12 px-6">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-8 mb-16">
-                <div className="space-y-4">
-                    <div className="flex items-center gap-3">
-                        <Shield className="h-4 w-4 text-white/40" />
-                        <span className="text-[10px] font-black tracking-[0.4em] text-white/40 uppercase italic">Command & Influence</span>
+                <div className="space-y-6">
+                    <div className="flex items-center gap-4">
+                        <Shield className="h-6 w-6 text-white/40" />
+                        <span className="text-[12px] font-black tracking-[0.6em] text-white/40 uppercase italic font-display">Command & Influence</span>
                     </div>
-                    <h2 className="text-5xl md:text-7xl font-black text-white italic tracking-tighter uppercase leading-none">
+                    <h2 className="text-6xl md:text-8xl font-black text-white italic tracking-tighter uppercase leading-none font-display">
                         Leadership <span className="text-white/40">Nexus</span>
                     </h2>
                 </div>
                 <div className="hidden md:block">
-                    <p className="text-white/30 text-[9px] uppercase tracking-[0.4em] max-w-[250px] text-right">
+                    <p className="text-white/30 text-[11px] uppercase tracking-[0.5em] max-w-[300px] text-right leading-relaxed font-display">
                         High-fidelity emotional intelligence simulations for future technical leaders.
                     </p>
                 </div>
