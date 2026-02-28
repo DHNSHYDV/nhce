@@ -60,9 +60,9 @@ export const Navbar = () => {
                     <button
                         onClick={() => {
                             if (window.location.pathname !== "/" || window.location.search !== "") {
-                                window.location.href = "/#about";
+                                window.location.href = "/#about-container";
                             } else {
-                                document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
+                                document.getElementById('about-container')?.scrollIntoView({ behavior: 'smooth' });
                             }
                         }}
                         className="text-[12px] font-black uppercase tracking-[0.4em] text-white/40 hover:text-white transition-colors font-display"

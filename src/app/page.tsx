@@ -258,7 +258,7 @@ function HomeContent() {
             exit={{ opacity: 0 }}
             className="w-full flex flex-col items-center"
           >
-            <div className="w-full max-w-7xl relative z-10 flex flex-col md:flex-row items-center justify-center gap-12 md:gap-32 px-6 md:px-12 py-10 md:py-32 overflow-hidden">
+            <div className="w-full max-w-7xl relative z-10 flex flex-col md:flex-row items-center justify-center gap-12 md:gap-32 px-6 md:px-12 min-h-[calc(100vh-6rem)] py-20">
               {/* Left: Orbiting Skills Animation */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -305,7 +305,7 @@ function HomeContent() {
             </div>
 
             {/* About Section Integrated into Landing */}
-            <div className="w-full border-t border-white/5 bg-black/50 backdrop-blur-3xl relative z-20">
+            <div id="about-container" className="w-full min-h-screen border-t border-white/5 bg-black/50 backdrop-blur-3xl relative z-20 flex items-center justify-center py-32">
               <AboutSection />
             </div>
           </motion.div>
