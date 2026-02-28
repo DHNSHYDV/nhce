@@ -2,21 +2,43 @@
 
 import React from "react";
 
-import { Search, Bell, Sparkles, User as UserIcon, LogOut, Zap } from "lucide-react";
+import { Search, Bell, Sparkles, User as UserIcon, LogOut, Zap, Home, Users } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { AuthModal } from "./AuthModal";
 import { useSession, signOut } from "next-auth/react";
+import { LimelightNav } from "./ui/limelight-nav";
+import { useSearchParams } from "next/navigation";
 
 export const Navbar = () => {
     const [isAuthModalOpen, setIsAuthModalOpen] = React.useState(false);
     const { data: session, status } = useSession();
     const user = session?.user;
 
+    const [activeIndex, setActiveIndex] = React.useState(0);
+    const searchParams = useSearchParams();
+
     const handleSignOut = async () => {
         await signOut({ redirect: false });
     };
+
+    React.useEffect(() => {
+        const handleScroll = () => {
+            const aboutRef = document.getElementById('about-container');
+            if (aboutRef) {
+                const rect = aboutRef.getBoundingClientRect();
+                if (rect.top < window.innerHeight / 2) {
+                    setActiveIndex(1);
+                } else {
+                    setActiveIndex(0);
+                }
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     return (
         <nav className="fixed top-6 left-24 right-6 z-40 flex items-center justify-between gap-4">
@@ -48,28 +70,38 @@ export const Navbar = () => {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 }}
-                className="liquid-glass sheen-effect h-14 flex items-center px-12 rounded-none"
+                className="hidden md:flex"
             >
-                <div className="hidden md:flex items-center gap-10">
-                    <button
-                        onClick={() => window.location.href = "/"}
-                        className="text-[12px] font-black uppercase tracking-[0.4em] text-white/40 hover:text-white transition-colors font-display"
-                    >
-                        Home
-                    </button>
-                    <button
-                        onClick={() => {
-                            if (window.location.pathname !== "/" || window.location.search !== "") {
-                                window.location.href = "/#about-container";
-                            } else {
-                                document.getElementById('about-container')?.scrollIntoView({ behavior: 'smooth' });
+                <LimelightNav
+                    activeIndex={activeIndex}
+                    onTabChange={setActiveIndex}
+                    items={[
+                        {
+                            id: 'home',
+                            icon: <Home />,
+                            label: 'Home',
+                            onClick: () => {
+                                if (window.location.pathname !== "/" || window.location.search !== "") {
+                                    window.location.href = "/";
+                                } else {
+                                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                                }
                             }
-                        }}
-                        className="text-[12px] font-black uppercase tracking-[0.4em] text-white/40 hover:text-white transition-colors font-display"
-                    >
-                        About
-                    </button>
-                </div>
+                        },
+                        {
+                            id: 'about',
+                            icon: <Users />,
+                            label: 'About',
+                            onClick: () => {
+                                if (window.location.pathname !== "/" || window.location.search !== "") {
+                                    window.location.href = "/#about-container";
+                                } else {
+                                    document.getElementById('about-container')?.scrollIntoView({ behavior: 'smooth' });
+                                }
+                            }
+                        },
+                    ]}
+                />
             </motion.div>
 
             {/* Island 3: Utilities */}
