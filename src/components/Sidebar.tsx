@@ -2,10 +2,11 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Code, PieChart, User, Settings } from "lucide-react";
+import { Menu, X, Code, PieChart, User, Settings, Trophy } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const menuItems = [
+    { icon: Trophy, label: "Leaderboard", color: "text-white/40" },
     { icon: User, label: "Profile", color: "text-white/40" },
     { icon: Code, label: "Projects", color: "text-white/40" },
     { icon: PieChart, label: "Portfolio", color: "text-white/40" },
@@ -22,6 +23,10 @@ export const Sidebar = ({ onProfileClick }: SidebarProps) => {
     const handleItemClick = (label: string) => {
         if (label === "Profile") {
             onProfileClick();
+        }
+        if (label === "Leaderboard") {
+            window.history.pushState(null, '', '/?view=leaderboard');
+            window.dispatchEvent(new PopStateEvent('popstate'));
         }
     };
 

@@ -3,7 +3,7 @@
 import { useState, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowLeft, ArrowRight, Sparkles, ChevronLeft } from "lucide-react";
+import { ArrowLeft, ArrowRight, Sparkles, ChevronLeft, Zap, MessageSquare, Shield } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { DottedSurface } from "@/components/ui/dotted-surface";
 import { GlowingModules } from "@/components/GlowingModules";
@@ -11,6 +11,10 @@ import CodeCompiler from "@/components/CodeCompiler";
 import { OrbitingSkills } from "@/components/ui/orbiting-skills";
 import { AptitudeModule } from "@/components/AptitudeModule";
 import { CommunicationModule } from "@/components/CommunicationModule";
+import { InterviewModule } from "@/components/InterviewModule";
+import { Leaderboard } from "@/components/Leaderboard";
+import { Navbar } from "@/components/Navbar";
+import { Sidebar } from "@/components/Sidebar";
 import { ProfileDashboard } from "@/components/ProfileDashboard";
 
 function HomeContent() {
@@ -20,7 +24,7 @@ function HomeContent() {
   const view = searchParams.get("view");
   const moduleParam = searchParams.get("module");
 
-  const showCards = view === "modules" || !!moduleParam;
+  const showCards = view === "modules" || !!moduleParam || view === "leaderboard";
   const selectedModule = moduleParam;
 
   const setShowCards = (val: boolean) => {
@@ -40,27 +44,15 @@ function HomeContent() {
   };
 
   const renderModule = () => {
+    if (view === "leaderboard") {
+      return (
+        <div className="w-full">
+          <Leaderboard onExit={() => router.push("/", { scroll: false })} />
+        </div>
+      );
+    }
+
     switch (selectedModule) {
-      case "Code":
-        return (
-          <div className="w-full max-w-7xl flex flex-col items-center gap-12 px-6 pb-24">
-            <div className="w-full flex justify-start">
-              <BackButton onClick={() => setSelectedModule(null)} />
-            </div>
-
-            <div className="text-center space-y-6">
-              <div className="flex items-center justify-center gap-2 mb-2">
-                <Sparkles className="h-5 w-5 text-emerald-400" />
-                <span className="text-xs font-black tracking-[0.4em] text-emerald-400 uppercase">Communicate through code</span>
-              </div>
-              <h2 className="text-5xl md:text-6xl font-black tracking-tighter text-white">
-                Code Debug, <span className="text-gradient">Code Repeat</span>
-              </h2>
-            </div>
-
-            <CodeCompiler />
-          </div>
-        );
       case "Aptitude":
         return (
           <div className="w-full max-w-7xl flex flex-col items-center gap-12 px-6 pb-24">
@@ -70,18 +62,23 @@ function HomeContent() {
             <AptitudeModule />
           </div>
         );
-      case "Communication Skill":
+      case "Communication":
         return (
           <div className="w-full max-w-7xl flex flex-col items-center gap-12 px-6 pb-24">
             <div className="w-full flex justify-start">
               <BackButton onClick={() => setSelectedModule(null)} />
             </div>
-            <CommunicationModule />
+            <CommunicationModule onExit={() => setSelectedModule(null)} />
           </div>
         );
-      case "Performance Tracker":
+      case "Interview":
         return (
-          <ProfileDashboard isOpen={true} onClose={() => setSelectedModule(null)} />
+          <div className="w-full max-w-7xl flex flex-col items-center gap-12 px-6 pb-24">
+            <div className="w-full flex justify-start">
+              <BackButton onClick={() => setSelectedModule(null)} />
+            </div>
+            <InterviewModule onExit={() => setSelectedModule(null)} />
+          </div>
         );
       default:
         return (
@@ -90,18 +87,50 @@ function HomeContent() {
               <BackButton onClick={() => setShowCards(false)} />
             </div>
 
-            <div className="text-center mb-4 space-y-4">
+            <div className="text-center mb-8 space-y-4">
               <div className="flex items-center justify-center gap-2 mb-2">
                 <Sparkles className="h-4 w-4 text-white/40" />
                 <span className="text-[10px] font-black tracking-[0.5em] text-white/40 uppercase">System Ready</span>
               </div>
-              <h2 className="text-5xl md:text-7xl font-black tracking-tighter text-white">
-                Select your <span className="text-white/50 italic">Module</span>
+              <h2 className="text-6xl md:text-8xl font-black tracking-tighter text-white italic uppercase leading-none">
+                Select <span className="text-white/20">Protocol</span>
               </h2>
-              <p className="text-white/40 font-medium max-w-xl mx-auto text-sm">Synchronizing with your AI Skill Twin architecture.</p>
             </div>
 
-            <GlowingModules onSelect={(module) => setSelectedModule(module)} />
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-6xl px-8">
+              <button
+                onClick={() => setSelectedModule('Aptitude')}
+                className="glass-dark p-12 rounded-none border border-white/10 group hover:border-white/40 transition-all text-left relative overflow-hidden"
+              >
+                <div className="h-12 w-12 bg-white/5 flex items-center justify-center mb-8 border border-white/10 group-hover:bg-white group-hover:text-black transition-all">
+                  <Zap className="h-6 w-6" />
+                </div>
+                <h3 className="text-2xl font-black italic uppercase tracking-tighter mb-2">Aptitude</h3>
+                <p className="text-white/40 text-[10px] uppercase font-black tracking-widest leading-loose">Cognitive logic assessment protocol</p>
+              </button>
+
+              <button
+                onClick={() => setSelectedModule('Communication')}
+                className="glass-dark p-12 rounded-none border border-white/10 group hover:border-white/40 transition-all text-left relative overflow-hidden"
+              >
+                <div className="h-12 w-12 bg-white/5 flex items-center justify-center mb-8 border border-white/10 group-hover:bg-white group-hover:text-black transition-all">
+                  <MessageSquare className="h-6 w-6" />
+                </div>
+                <h3 className="text-2xl font-black italic uppercase tracking-tighter mb-2">Communication</h3>
+                <p className="text-white/40 text-[10px] uppercase font-black tracking-widest leading-loose">Vocal and linguistic synchronization</p>
+              </button>
+
+              <button
+                onClick={() => setSelectedModule('Interview')}
+                className="glass-dark p-12 rounded-none border border-white/10 group hover:border-white/40 transition-all text-left relative overflow-hidden"
+              >
+                <div className="h-12 w-12 bg-white/5 flex items-center justify-center mb-8 border border-white/10 group-hover:bg-white group-hover:text-black transition-all">
+                  <Shield className="h-6 w-6" />
+                </div>
+                <h3 className="text-2xl font-black italic uppercase tracking-tighter mb-2">AI Interview</h3>
+                <p className="text-white/40 text-[10px] uppercase font-black tracking-widest leading-loose">Multi-round stress simulator</p>
+              </button>
+            </div>
           </div>
         );
     }
@@ -114,7 +143,7 @@ function HomeContent() {
       animate={{ opacity: 1, scale: 1 }}
       whileHover={{ scale: 1.1, backgroundColor: "rgba(255, 255, 255, 0.1)" }}
       whileTap={{ scale: 0.9 }}
-      className="flex items-center justify-center h-10 w-10 rounded-full glass border border-white/10 text-white/60 hover:text-white transition-colors shadow-2xl"
+      className="flex items-center justify-center h-10 w-10 rounded-none liquid-glass border border-white/10 text-white/60 hover:text-white transition-colors shadow-2xl"
     >
       <ChevronLeft className="h-5 w-5" />
     </motion.button>
@@ -122,7 +151,6 @@ function HomeContent() {
 
   return (
     <div className="relative flex flex-col items-center justify-center min-h-[calc(100vh-6rem)] overflow-hidden selection:bg-white selection:text-black">
-      {/* Dynamic 3D Dotted Surface Background */}
       <DottedSurface />
 
       <AnimatePresence mode="wait">
@@ -203,9 +231,20 @@ function HomeContent() {
 }
 
 export default function Home() {
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
+
   return (
-    <Suspense fallback={<div className="min-h-screen bg-background" />}>
-      <HomeContent />
-    </Suspense>
+    <main className="min-h-screen bg-black text-white relative flex overflow-hidden">
+      <Sidebar onProfileClick={() => setIsProfileOpen(true)} />
+
+      <div className="flex-1 flex flex-col relative z-10">
+        <Navbar />
+        <Suspense fallback={<div className="min-h-screen bg-black" />}>
+          <HomeContent />
+        </Suspense>
+      </div>
+
+      <ProfileDashboard isOpen={isProfileOpen} onClose={() => setIsProfileOpen(false)} />
+    </main>
   );
 }
