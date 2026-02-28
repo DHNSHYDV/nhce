@@ -39,23 +39,23 @@ export const Navbar = () => {
     }, []);
 
     return (
-        <nav className="fixed top-6 left-24 right-6 z-40 flex items-center justify-between gap-4">
+        <nav className="fixed top-4 md:top-6 left-16 md:left-24 right-4 md:right-6 z-40 flex items-center justify-between gap-2 md:gap-4">
             {/* Island 1: Branding */}
             <Link href="/" className="contents">
                 <motion.div
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="liquid-glass sheen-effect h-14 flex items-center px-8 rounded-none group cursor-pointer hover:border-white/40 transition-all duration-500"
+                    className="liquid-glass sheen-effect h-12 md:h-14 flex items-center px-4 md:px-8 rounded-none group cursor-pointer hover:border-white/40 transition-all duration-500"
                 >
-                    <div className="flex items-center gap-4 cursor-pointer group" onClick={() => (window.location.href = "/")}>
-                        <div className="h-10 w-10 flex items-center justify-center liquid-glass group-hover:border-white/40 transition-all">
-                            <Zap className="h-5 w-5 text-white" />
+                    <div className="flex items-center gap-2 md:gap-4 cursor-pointer group" onClick={() => (window.location.href = "/")}>
+                        <div className="h-8 w-8 md:h-10 md:w-10 flex items-center justify-center liquid-glass group-hover:border-white/40 transition-all">
+                            <Zap className="h-4 w-4 md:h-5 md:w-5 text-white" />
                         </div>
                         <div className="flex flex-col">
-                            <h1 className="text-xl md:text-2xl font-black italic tracking-tighter text-white uppercase font-display leading-none">
-                                Decide To Code
+                            <h1 className="text-sm md:text-2xl font-black italic tracking-tighter text-white uppercase font-display leading-none">
+                                Decode
                             </h1>
-                            <span className="text-[8px] font-black tracking-[0.4em] text-white/20 uppercase italic mt-1 group-hover:text-white/40 transition-colors">
+                            <span className="hidden md:block text-[8px] font-black tracking-[0.4em] text-white/20 uppercase italic mt-1 group-hover:text-white/40 transition-colors">
                                 Career Ecosystem
                             </span>
                         </div>
@@ -107,47 +107,41 @@ export const Navbar = () => {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
-                className="liquid-glass sheen-effect h-14 flex items-center px-4 md:px-6 rounded-none"
+                className="liquid-glass sheen-effect h-12 md:h-14 flex items-center px-3 md:px-6 rounded-none"
             >
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-1 md:gap-2">
                     {user ? (
                         <div className="flex items-center gap-2">
                             <motion.div
                                 whileHover={{ scale: 1.02 }}
-                                className="flex items-center gap-2 px-4 py-2 rounded-none bg-white/5 border border-white/10 text-white/40"
+                                className="flex items-center gap-2 px-3 md:px-4 py-2 rounded-none bg-white/5 border border-white/10 text-white/40"
                             >
                                 <UserIcon className="h-3 w-3" />
-                                <span className="text-[9px] font-black uppercase tracking-[0.2em] truncate max-w-[100px]">
+                                <span className="hidden sm:block text-[8px] md:text-[9px] font-black uppercase tracking-[0.2em] truncate max-w-[60px] md:max-w-[100px]">
                                     {user.name || user.email?.split('@')[0]}
                                 </span>
                             </motion.div>
-                            <button
-                                onClick={handleSignOut}
-                                className="p-3 text-white/20 hover:text-white hover:bg-white/5 rounded-none transition-all active:scale-95"
-                                title="Sign Out"
-                            >
-                                <LogOut className="h-3 w-3" />
-                            </button>
                         </div>
                     ) : (
                         <motion.button
                             onClick={() => setIsAuthModalOpen(true)}
                             whileHover={{ scale: 1.02, backgroundColor: "rgba(255, 255, 255, 0.1)" }}
                             whileTap={{ scale: 0.98 }}
-                            className="px-6 py-2 text-[9px] font-black uppercase tracking-[0.3em] text-white/60 hover:text-white transition-all border border-white/10 rounded-none bg-white/5"
+                            className="px-3 md:px-6 py-2 text-[8px] md:text-[9px] font-black uppercase tracking-[0.2em] md:tracking-[0.3em] text-white/60 hover:text-white transition-all border border-white/10 rounded-none bg-white/5"
                         >
-                            Login / SignUp
+                            <span className="hidden xs:block">Login</span>
+                            <UserIcon className="h-3 w-3 xs:hidden" />
                         </motion.button>
                     )}
 
-                    <div className="w-px h-6 bg-white/5 mx-1" />
+                    <div className="w-px h-5 md:h-6 bg-white/5 mx-1" />
 
                     <button
                         onClick={() => window.dispatchEvent(new CustomEvent('open-notifications'))}
-                        className="p-3 text-white/20 hover:text-white hover:bg-white/5 rounded-none transition-all active:scale-90 relative"
+                        className="p-2 md:p-3 text-white/20 hover:text-white hover:bg-white/5 rounded-none transition-all active:scale-90 relative"
                     >
-                        <Bell className="h-4 w-4" />
-                        <span className="absolute top-3 right-3 h-1.5 w-1.5 rounded-full bg-white shadow-[0_0_10px_rgba(255,255,255,0.5)]" />
+                        <Bell className="h-3 w-3 md:h-4 md:w-4" />
+                        <span className="absolute top-2 right-2 md:top-3 md:right-3 h-1.5 w-1.5 rounded-full bg-white shadow-[0_0_10px_rgba(255,255,255,0.5)]" />
                     </button>
                 </div>
             </motion.div>
