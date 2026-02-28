@@ -87,21 +87,21 @@ export const AptitudeModule = () => {
                         <div className="text-center space-y-6">
                             <div className="flex items-center justify-center gap-2 mb-2">
                                 <Brain className="h-4 w-4 text-white/40" />
-                                <span className="text-[10px] font-black tracking-[0.4em] text-white/40 uppercase">Cognitive Intelligence</span>
+                                <span className="text-[10px] font-black tracking-[0.4em] text-white/40 uppercase">Aptitude & Logic</span>
                             </div>
                             <h2 className="text-5xl md:text-6xl font-black tracking-tighter text-white uppercase italic">
-                                Master your <span className="text-white/40">Logic</span>
+                                Test your <span className="text-white/40">Logic</span>
                             </h2>
                             <p className="text-white/40 font-medium max-w-xl mx-auto text-sm">
-                                AI-driven aptitude sprints optimized for terminal velocity.
+                                AI-powered logic tests to sharpen your critical thinking.
                             </p>
                         </div>
 
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
                             {[
-                                { title: "Quantitative", desc: "Numerical reasoning sprints", icon: Zap, cat: "Quantitative Aptitude" },
-                                { title: "Logical", desc: "Pattern recognition trials", icon: Brain, cat: "Logical Reasoning" },
-                                { title: "Verbal", desc: "Critical reading analysis", icon: Sparkles, cat: "Verbal Ability" },
+                                { title: "Quantitative", desc: "Math and logic puzzles", icon: Zap, cat: "Quantitative Aptitude" },
+                                { title: "Logical", desc: "Pattern matching games", icon: Brain, cat: "Logical Reasoning" },
+                                { title: "Verbal", desc: "Reading comprehension", icon: Sparkles, cat: "Verbal Ability" },
                             ].map((item, i) => (
                                 <button
                                     key={item.title}
@@ -114,7 +114,7 @@ export const AptitudeModule = () => {
                                     <h3 className="text-xl font-bold mb-2 group-hover:text-white transition-colors uppercase italic">{item.title}</h3>
                                     <p className="text-white/40 text-xs leading-relaxed mb-6">{item.desc}</p>
                                     <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-white/40 group-hover:translate-x-1 transition-transform">
-                                        <span>Start Sprint</span>
+                                        <span>Practice More</span>
                                         <ChevronRight className="h-3 w-3" />
                                     </div>
                                 </button>
@@ -132,8 +132,8 @@ export const AptitudeModule = () => {
                     >
                         <Loader2 className="h-12 w-12 text-white/20 animate-spin" />
                         <div className="text-center">
-                            <h3 className="text-2xl font-black text-white italic uppercase tracking-[0.2em]">Crafting Sprint</h3>
-                            <p className="text-white/30 text-[10px] uppercase tracking-widest mt-2">Gemini is synthesizing logical patterns...</p>
+                            <h3 className="text-2xl font-black text-white italic uppercase tracking-[0.2em]">Preparing Test</h3>
+                            <p className="text-white/30 text-[10px] uppercase tracking-widest mt-2">AI is generating your questions...</p>
                         </div>
                     </motion.div>
                 )}
@@ -183,7 +183,7 @@ export const AptitudeModule = () => {
                                     className="mb-12 p-8 bg-white/5 rounded-[2rem] border border-white/10"
                                 >
                                     <p className="text-xs text-white/40 leading-relaxed uppercase tracking-tight">
-                                        <span className="font-black tracking-[0.2em] block mb-3 text-white/60">Logic Breakdown:</span>
+                                        <span className="font-black tracking-[0.2em] block mb-3 text-white/60">Explanation:</span>
                                         {questions[currentQuestionIndex].explanation}
                                     </p>
                                 </motion.div>
@@ -195,7 +195,7 @@ export const AptitudeModule = () => {
                                 onClick={nextQuestion}
                                 className="w-full py-6 bg-white text-black font-black rounded-none transition-all flex items-center justify-center gap-3 uppercase tracking-[0.3em] text-xs shadow-2xl"
                             >
-                                {currentQuestionIndex === questions.length - 1 ? "End Experience" : "Next Protocol"}
+                                {currentQuestionIndex === questions.length - 1 ? "See Results" : "Next Question"}
                                 <ChevronRight className="h-4 w-4" />
                             </button>
                         )}
@@ -214,7 +214,7 @@ export const AptitudeModule = () => {
                                 <Sparkles className="h-10 w-10 text-white/40" />
                             </div>
 
-                            <h2 className="text-5xl font-black text-white italic tracking-tighter mb-4 uppercase">Analysis Complete</h2>
+                            <h2 className="text-5xl font-black text-white italic tracking-tighter mb-4 uppercase">Results</h2>
                             <p className="text-white/20 font-black tracking-[0.4em] uppercase text-[10px] mb-12">{category}</p>
 
                             <div className="flex items-center justify-center gap-16 mb-16">
