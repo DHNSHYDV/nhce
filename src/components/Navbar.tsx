@@ -9,7 +9,6 @@ import Link from "next/link";
 import { AuthModal } from "./AuthModal";
 import { useSession, signOut } from "next-auth/react";
 import { LimelightNav } from "./ui/limelight-nav";
-import { useSearchParams } from "next/navigation";
 
 export const Navbar = () => {
     const [isAuthModalOpen, setIsAuthModalOpen] = React.useState(false);
@@ -17,7 +16,6 @@ export const Navbar = () => {
     const user = session?.user;
 
     const [activeIndex, setActiveIndex] = React.useState(0);
-    const searchParams = useSearchParams();
 
     const handleSignOut = async () => {
         await signOut({ redirect: false });

@@ -330,31 +330,9 @@ function HomeContent() {
 }
 
 export default function Home() {
-  const [isProfileOpen, setIsProfileOpen] = useState(false);
-  const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
-
-  // Listen for custom notification trigger event
-  useState(() => {
-    if (typeof window !== 'undefined') {
-      const handler = () => setIsNotificationsOpen(true);
-      window.addEventListener('open-notifications', handler);
-      return () => window.removeEventListener('open-notifications', handler);
-    }
-  });
-
   return (
-    <main className="min-h-screen bg-black text-white relative flex overflow-hidden">
-      <Sidebar onProfileClick={() => setIsProfileOpen(true)} />
-
-      <div className="flex-1 flex flex-col relative z-10">
-        <Navbar />
-        <Suspense fallback={<div className="min-h-screen bg-black" />}>
-          <HomeContent />
-        </Suspense>
-      </div>
-
-      <ProfileDashboard isOpen={isProfileOpen} onClose={() => setIsProfileOpen(false)} />
-      <NotificationSystem isOpen={isNotificationsOpen} onClose={() => setIsNotificationsOpen(false)} />
-    </main>
+    <Suspense fallback={<div className="min-h-screen bg-black" />}>
+      <HomeContent />
+    </Suspense>
   );
 }
