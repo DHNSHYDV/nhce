@@ -104,12 +104,12 @@ export const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
                                         <Sparkles className="h-8 w-8 text-white/40" />
                                     </div>
                                     <h2 className="text-3xl font-black tracking-tighter text-white mb-2 uppercase italic">
-                                        {mode === "login" ? "Kernel.join()" : "Account.init()"}
+                                        {mode === "login" ? "Welcome Back" : "Create Account"}
                                     </h2>
                                     <p className="text-[10px] font-black uppercase tracking-[0.3em] text-white/20">
                                         {mode === "login"
-                                            ? "Requesting permission to sync"
-                                            : "Generating new identity signature"}
+                                            ? "Enter your credentials to continue"
+                                            : "Join the next generation of learners"}
                                     </p>
                                 </div>
 
@@ -157,7 +157,7 @@ export const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
                                             <Mail className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-white/20" />
                                             <input
                                                 type="email"
-                                                placeholder="Email / Signature"
+                                                placeholder="Email Address"
                                                 required
                                                 value={email}
                                                 onChange={(e) => setEmail(e.target.value)}
@@ -170,7 +170,7 @@ export const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
                                             <Lock className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-white/20" />
                                             <input
                                                 type="password"
-                                                placeholder="Keycode"
+                                                placeholder="Password"
                                                 required
                                                 value={password}
                                                 onChange={(e) => setPassword(e.target.value)}
@@ -195,19 +195,19 @@ export const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
                                         disabled={loading}
                                         className="group relative flex w-full items-center justify-center gap-3 overflow-hidden rounded-none bg-white py-5 text-[10px] font-black uppercase tracking-[0.4em] text-black transition-all disabled:opacity-50"
                                     >
-                                        {loading ? "Decrypting..." : mode === "login" ? "Establish Sync" : "Initialize Identity"}
+                                        {loading ? "Processing..." : mode === "login" ? "Sign In" : "Get Started"}
                                         {!loading && <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1" />}
                                     </motion.button>
                                 </form>
 
                                 {/* Footer Link */}
                                 <div className="mt-8 text-center text-[9px] font-black uppercase tracking-[0.2em] text-white/20">
-                                    {mode === "login" ? "No identity signature?" : "Already synced?"}{" "}
+                                    {mode === "login" ? "Don't have an account?" : "Already have an account?"}{" "}
                                     <button
                                         onClick={() => setMode(mode === "login" ? "signup" : "login")}
                                         className="text-white hover:underline transition-all"
                                     >
-                                        {mode === "login" ? "Generate Now" : "Sync Profile"}
+                                        {mode === "login" ? "Register Now" : "Log In"}
                                     </button>
                                 </div>
                             </div>
