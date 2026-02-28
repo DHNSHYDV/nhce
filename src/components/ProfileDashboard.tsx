@@ -95,7 +95,7 @@ export const ProfileDashboard = ({ isOpen, onClose }: ProfileDashboardProps) => 
                                     ) : (
                                         <h1 className="text-3xl font-black tracking-tighter uppercase italic text-white">{profile.name}</h1>
                                     )}
-                                    <p className="text-white/30 text-[10px] font-black uppercase tracking-[0.4em]">AI Skill Twin Architecture</p>
+                                    <p className="text-white/30 text-[10px] font-black uppercase tracking-[0.4em]">Your Learning Profile</p>
                                 </div>
                             </div>
 
@@ -105,7 +105,7 @@ export const ProfileDashboard = ({ isOpen, onClose }: ProfileDashboardProps) => 
                                     className="h-12 px-6 rounded-none glass bg-white/5 border border-white/10 flex items-center gap-3 hover:bg-white/10 transition-all group"
                                 >
                                     {isEditing ? <Check className="h-4 w-4" /> : <Edit3 className="h-4 w-4" />}
-                                    <span className="text-[10px] uppercase font-black tracking-widest">{isEditing ? "Save Protocol" : "Edit Identity"}</span>
+                                    <span className="text-[10px] uppercase font-black tracking-widest">{isEditing ? "Save Profile" : "Edit Profile"}</span>
                                 </button>
                                 <button
                                     onClick={onClose}
@@ -129,7 +129,7 @@ export const ProfileDashboard = ({ isOpen, onClose }: ProfileDashboardProps) => 
                                             <div className="flex items-center gap-4">
                                                 <School className="h-5 w-5 text-white/40" />
                                                 <div className="flex flex-col">
-                                                    <span className="text-[10px] font-black uppercase tracking-widest text-white/20">Educational Node</span>
+                                                    <span className="text-[10px] font-black uppercase tracking-widest text-white/20">College / University</span>
                                                     {isEditing ? (
                                                         <input
                                                             value={profile.college}
@@ -179,7 +179,7 @@ export const ProfileDashboard = ({ isOpen, onClose }: ProfileDashboardProps) => 
                                         <div className="flex items-center justify-between mb-8">
                                             <h3 className="text-[10px] font-black uppercase tracking-[0.4em] flex items-center gap-3 text-white/40 italic">
                                                 <Code className="h-4 w-4" />
-                                                Contribution Architecture
+                                                Coding Activity
                                             </h3>
                                         </div>
 
@@ -209,7 +209,7 @@ export const ProfileDashboard = ({ isOpen, onClose }: ProfileDashboardProps) => 
                                         <div className="glass-dark rounded-none p-10 border border-white/5">
                                             <h3 className="text-[10px] font-black uppercase tracking-[0.4em] mb-10 flex items-center gap-3 text-white/40 italic">
                                                 <Zap className="h-4 w-4" />
-                                                Biometric Skills
+                                                Skill Progress
                                             </h3>
                                             <div className="space-y-8">
                                                 {skills.map(skill => (
@@ -237,10 +237,10 @@ export const ProfileDashboard = ({ isOpen, onClose }: ProfileDashboardProps) => 
                                                 <div className="absolute inset-0 bg-white/20 blur-3xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                                                 <Brain className="h-12 w-12 text-white/40 relative z-10" />
                                             </div>
-                                            <h4 className="font-black text-[10px] text-white/40 uppercase tracking-[0.3em] mb-4">Neural Milestone</h4>
+                                            <h4 className="font-black text-[10px] text-white/40 uppercase tracking-[0.3em] mb-4">Next Goal</h4>
                                             <p className="text-[10px] text-white/20 uppercase tracking-widest leading-loose max-w-[200px]">
                                                 Quantitative Aptitude <br />
-                                                <span className="text-white/60">Level 4 Protocol</span>
+                                                <span className="text-white/60">Level 4</span>
                                             </p>
                                         </div>
                                     </div>
@@ -263,7 +263,7 @@ export const ProfileDashboard = ({ isOpen, onClose }: ProfileDashboardProps) => 
                                         </div>
 
                                         <h2 className="text-2xl font-black mb-2 italic uppercase tracking-tighter text-white">Day Streak</h2>
-                                        <p className="text-white/20 text-[10px] font-black tracking-[0.5em] mb-12 uppercase">Synchronization: Active</p>
+                                        <p className="text-white/20 text-[10px] font-black tracking-[0.5em] mb-12 uppercase">Status: Active</p>
 
                                         <button className="w-full py-6 rounded-none bg-white text-black font-black text-[11px] uppercase tracking-[0.4em] flex items-center justify-center gap-3 hover:scale-[1.02] transition-all shadow-2xl active:scale-95">
                                             <Check className="h-4 w-4" />

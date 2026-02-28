@@ -147,13 +147,13 @@ export const CommunicationModule = ({ onExit }: CommunicationModuleProps) => {
                         <div className="text-center space-y-6">
                             <div className="flex items-center justify-center gap-2 mb-2">
                                 <MessageSquare className="h-4 w-4 text-white/40" />
-                                <span className="text-[10px] font-black tracking-[0.4em] text-white/40 uppercase">Communication Intelligence</span>
+                                <span className="text-[10px] font-black tracking-[0.4em] text-white/40 uppercase">Communication Skills</span>
                             </div>
                             <h2 className="text-5xl md:text-6xl font-black tracking-tighter text-white uppercase italic">
-                                Refine your <span className="text-white/40">Persona</span>
+                                Improve your <span className="text-white/40">Speaking</span>
                             </h2>
                             <p className="text-white/40 font-medium max-w-xl mx-auto text-sm">
-                                AI-powered biometric analysis of your interview presence.
+                                AI analysis of your communication style and interview presence.
                             </p>
                         </div>
 
@@ -165,12 +165,12 @@ export const CommunicationModule = ({ onExit }: CommunicationModuleProps) => {
                                 <div className="h-24 w-24 rounded-none bg-white/5 flex items-center justify-center mb-10 text-white/40 group-hover:scale-110 transition-transform">
                                     <Mic className="h-10 w-10" />
                                 </div>
-                                <h3 className="text-2xl font-black tracking-tight mb-4 uppercase italic">Voice Labs</h3>
+                                <h3 className="text-2xl font-black tracking-tight mb-4 uppercase italic">Voice Practice</h3>
                                 <p className="text-white/20 text-[10px] max-w-xs mb-10 uppercase tracking-[0.2em] leading-relaxed">
-                                    Record 30 seconds of speech for biometric tonal analysis.
+                                    Record 30 seconds of speech for detailed tonal analysis.
                                 </p>
                                 <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-white/40 group-hover:translate-x-1 transition-transform">
-                                    <span>Enter Lab</span>
+                                    <span>Start Practice</span>
                                     <ChevronRight className="h-3 w-3" />
                                 </div>
                             </button>
@@ -182,12 +182,12 @@ export const CommunicationModule = ({ onExit }: CommunicationModuleProps) => {
                                 <div className="h-24 w-24 rounded-none bg-white/5 flex items-center justify-center mb-10 text-white/40 group-hover:scale-110 transition-transform">
                                     <Sparkles className="h-10 w-10" />
                                 </div>
-                                <h3 className="text-2xl font-black tracking-tight mb-4 uppercase italic">Scenario Trials</h3>
+                                <h3 className="text-2xl font-black tracking-tight mb-4 uppercase italic">Interview Scenarios</h3>
                                 <p className="text-white/20 text-[10px] max-w-xs mb-10 uppercase tracking-[0.2em] leading-relaxed">
                                     Gemini-synthesized high-level communication case studies.
                                 </p>
                                 <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-white/40 group-hover:translate-x-1 transition-transform">
-                                    <span>Start Trials</span>
+                                    <span>Start Practice</span>
                                     <ChevronRight className="h-3 w-3" />
                                 </div>
                             </button>
@@ -205,7 +205,7 @@ export const CommunicationModule = ({ onExit }: CommunicationModuleProps) => {
                         <Loader2 className="h-12 w-12 text-white/20 animate-spin" />
                         <div className="text-center">
                             <h3 className="text-2xl font-black text-white italic uppercase tracking-[0.2em]">Processing</h3>
-                            <p className="text-white/30 text-[10px] uppercase tracking-widest mt-2">Gemini is analyzing communication biometrics...</p>
+                            <p className="text-white/30 text-[10px] uppercase tracking-widest mt-2">Gemini is analyzing your speech patterns...</p>
                         </div>
                     </motion.div>
                 )}
@@ -231,7 +231,7 @@ export const CommunicationModule = ({ onExit }: CommunicationModuleProps) => {
                             <Mic className={cn("h-10 w-10 transition-colors", isRecording ? "text-white" : "text-white/20")} />
                         </div>
 
-                        <h2 className="text-4xl font-black text-white italic tracking-tighter mb-4 uppercase">Voice Lab Protocol</h2>
+                        <h2 className="text-4xl font-black text-white italic tracking-tighter mb-4 uppercase">Voice Recording</h2>
                         <p className="text-white/30 text-[10px] uppercase tracking-[0.4em] mb-12">
                             {isRecording ? `Recording... 00:${recordingTime.toString().padStart(2, '0')} / 00:30` : "Ready to log speaking patterns"}
                         </p>
@@ -346,7 +346,7 @@ export const CommunicationModule = ({ onExit }: CommunicationModuleProps) => {
                                 onClick={nextQuestion}
                                 className="w-full py-6 bg-white text-black font-black rounded-none transition-all flex items-center justify-center gap-3 uppercase tracking-[0.3em] text-[10px] shadow-2xl"
                             >
-                                {currentQuestionIndex === questions.length - 1 ? "Complete Analysis" : "Next Protocol"}
+                                {currentQuestionIndex === questions.length - 1 ? "See Results" : "Next Question"}
                                 <ChevronRight className="h-4 w-4" />
                             </button>
                         )}
@@ -372,7 +372,7 @@ export const CommunicationModule = ({ onExit }: CommunicationModuleProps) => {
                                 <Sparkles className="h-10 w-10 text-white/40" />
                             </div>
 
-                            <h2 className="text-5xl font-black text-white italic tracking-tighter mb-4 uppercase">Protocol Closed</h2>
+                            <h2 className="text-5xl font-black text-white italic tracking-tighter mb-4 uppercase">Practice Complete</h2>
                             <p className="text-white/20 font-black tracking-[0.4em] uppercase text-[10px] mb-12">Scenario Mastery Analysis</p>
 
                             <div className="flex items-center justify-center gap-16 mb-16">
@@ -392,7 +392,7 @@ export const CommunicationModule = ({ onExit }: CommunicationModuleProps) => {
                                 className="w-full py-6 bg-white text-black font-black rounded-none transition-all shadow-2xl uppercase tracking-[0.3em] text-[11px] flex items-center justify-center gap-3"
                             >
                                 <ArrowLeft className="h-3 w-3" />
-                                Return to Command
+                                <span>Back to Menu</span>
                             </button>
                         </div>
                     </motion.div>
