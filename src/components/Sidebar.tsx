@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useRouter } from "next/navigation";
 import { Menu, X, Code, PieChart, User, Settings, Trophy } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -18,27 +19,23 @@ interface SidebarProps {
 }
 
 export const Sidebar = ({ onProfileClick }: SidebarProps) => {
-    const [isOpen, setIsOpen] = useState(false);
+    const router = useRouter();
 
     const handleItemClick = (label: string) => {
         if (label === "Profile") {
             onProfileClick();
         }
         if (label === "Leaderboard") {
-            window.history.pushState(null, '', '/?view=leaderboard');
-            window.dispatchEvent(new PopStateEvent('popstate'));
+            router.push('/?view=leaderboard', { scroll: false });
         }
         if (label === "Projects") {
-            window.history.pushState(null, '', '/?view=projects');
-            window.dispatchEvent(new PopStateEvent('popstate'));
+            router.push('/?view=projects', { scroll: false });
         }
         if (label === "Portfolio") {
-            window.history.pushState(null, '', '/?view=portfolio');
-            window.dispatchEvent(new PopStateEvent('popstate'));
+            router.push('/?view=portfolio', { scroll: false });
         }
         if (label === "Settings") {
-            window.history.pushState(null, '', '/?view=settings');
-            window.dispatchEvent(new PopStateEvent('popstate'));
+            router.push('/?view=settings', { scroll: false });
         }
         setIsOpen(false);
     };
