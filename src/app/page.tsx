@@ -3,11 +3,9 @@
 import { useState, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowLeft, ArrowRight, Sparkles, ChevronLeft, Zap, MessageSquare, Shield } from "lucide-react";
+import { ArrowRight, Sparkles, ChevronLeft, Zap, MessageSquare, Shield } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { DottedSurface } from "@/components/ui/dotted-surface";
-import { GlowingModules } from "@/components/GlowingModules";
-import CodeCompiler from "@/components/CodeCompiler";
 import { OrbitingSkills } from "@/components/ui/orbiting-skills";
 import { AptitudeModule } from "@/components/AptitudeModule";
 import { CommunicationModule } from "@/components/CommunicationModule";
@@ -22,9 +20,21 @@ import { SettingsModule } from "@/components/SettingsModule";
 import { NotificationSystem } from "@/components/NotificationSystem";
 import { LeadershipModule } from "@/components/LeadershipModule";
 import { CareerRoadmapModule } from "@/components/CareerRoadmapModule";
-import { FreelanceModule } from "@/components/FreelanceModule";
 import { VernacularModule } from "@/components/VernacularModule";
 import { AboutSection } from "@/components/AboutSection";
+
+const BackButton = ({ onClick }: { onClick: () => void }) => (
+  <motion.button
+    onClick={onClick}
+    initial={{ opacity: 0, scale: 0.8 }}
+    animate={{ opacity: 1, scale: 1 }}
+    whileHover={{ scale: 1.1, backgroundColor: "rgba(255, 255, 255, 0.1)" }}
+    whileTap={{ scale: 0.9 }}
+    className="flex items-center justify-center h-10 w-10 rounded-none liquid-glass border border-white/10 text-white/60 hover:text-white transition-colors shadow-2xl"
+  >
+    <ChevronLeft className="h-5 w-5" />
+  </motion.button>
+);
 
 function HomeContent() {
   const searchParams = useSearchParams();
@@ -217,7 +227,7 @@ function HomeContent() {
                   <button
                     key={item.id}
                     onClick={() => {
-                      window.history.pushState(null, '', `/?view=${item.id}`);
+                      router.push(`/?view=${item.id}`, { scroll: false });
                     }}
                     className="glass-dark p-10 rounded-none border border-white/5 group hover:border-white/40 transition-all text-left relative overflow-hidden bg-white/[0.01]"
                   >
@@ -242,14 +252,10 @@ function HomeContent() {
       <AnimatePresence mode="wait">
         {!showCards ? (
           <motion.div
-            key="hero"
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 1.05, y: -20, filter: "blur(20px)" }}
-            transition={{
-              duration: 0.8,
-              ease: [0.16, 1, 0.3, 1]
-            }}
+            key="landing"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             className="w-full flex flex-col items-center"
           >
             <div className="w-full max-w-7xl relative z-10 flex flex-col md:flex-row items-center justify-between gap-12 md:gap-8 px-6 md:px-20 py-12 md:py-24">
@@ -264,7 +270,7 @@ function HomeContent() {
               </motion.div>
 
               {/* Right: Hero Text & Call to Action */}
-              <div className="flex-1 flex flex-col items-center md:items-start text-center md:text-left">
+              <div className="flex-1 flex flex-col items-center md:items-start text-center md:text-left order-1 md:order-2">
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -319,25 +325,13 @@ function HomeContent() {
           </motion.div>
         )}
       </AnimatePresence>
-      );
+    </div>
+  );
 }
 
-      const BackButton = ({onClick}: {onClick: () => void }) => (
-      <motion.button
-        onClick={onClick}
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        whileHover={{ scale: 1.1, backgroundColor: "rgba(255, 255, 255, 0.1)" }}
-        whileTap={{ scale: 0.9 }}
-        className="flex items-center justify-center h-10 w-10 rounded-none liquid-glass border border-white/10 text-white/60 hover:text-white transition-colors shadow-2xl"
-      >
-        <ChevronLeft className="h-5 w-5" />
-      </motion.button>
-      );
-
-      export default function Home() {
+export default function Home() {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
-      const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
+  const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
 
   // Listen for custom notification trigger event
   useState(() => {
@@ -348,19 +342,19 @@ function HomeContent() {
     }
   });
 
-      return (
-      <main className="min-h-screen bg-black text-white relative flex overflow-hidden">
-        <Sidebar onProfileClick={() => setIsProfileOpen(true)} />
+  return (
+    <main className="min-h-screen bg-black text-white relative flex overflow-hidden">
+      <Sidebar onProfileClick={() => setIsProfileOpen(true)} />
 
-        <div className="flex-1 flex flex-col relative z-10">
-          <Navbar />
-          <Suspense fallback={<div className="min-h-screen bg-black" />}>
-            <HomeContent />
-          </Suspense>
-        </div>
+      <div className="flex-1 flex flex-col relative z-10">
+        <Navbar />
+        <Suspense fallback={<div className="min-h-screen bg-black" />}>
+          <HomeContent />
+        </Suspense>
+      </div>
 
-        <ProfileDashboard isOpen={isProfileOpen} onClose={() => setIsProfileOpen(false)} />
-        <NotificationSystem isOpen={isNotificationsOpen} onClose={() => setIsNotificationsOpen(false)} />
-      </main>
-      );
+      <ProfileDashboard isOpen={isProfileOpen} onClose={() => setIsProfileOpen(false)} />
+      <NotificationSystem isOpen={isNotificationsOpen} onClose={() => setIsNotificationsOpen(false)} />
+    </main>
+  );
 }
