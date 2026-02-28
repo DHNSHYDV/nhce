@@ -28,7 +28,7 @@ function HomeContent() {
   const view = searchParams.get("view");
   const moduleParam = searchParams.get("module");
 
-  const showCards = view === "modules" || !!moduleParam || view === "leaderboard";
+  const showCards = view === "modules" || !!moduleParam || view === "leaderboard" || view === "projects" || view === "portfolio" || view === "settings";
   const selectedModule = moduleParam;
 
   const setShowCards = (val: boolean) => {
