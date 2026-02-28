@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
-import { Menu, X, Code, PieChart, User, Settings, Trophy } from "lucide-react";
+import { Menu, X, Code, PieChart, User, Settings, Trophy, Shield, Zap, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const menuItems = [
