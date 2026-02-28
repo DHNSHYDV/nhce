@@ -207,13 +207,13 @@ export const InterviewModule = ({ onExit }: { onExit: () => void }) => {
                         <div className="text-center space-y-6">
                             <div className="flex items-center justify-center gap-2 mb-2">
                                 <Shield className="h-4 w-4 text-white/40" />
-                                <span className="text-[10px] font-black tracking-[0.4em] text-white/40 uppercase">AI Interview Protocol</span>
+                                <span className="text-[10px] font-black tracking-[0.4em] text-white/40 uppercase">AI Interview Session</span>
                             </div>
                             <h2 className="text-5xl md:text-6xl font-black tracking-tighter text-white uppercase italic leading-none">
-                                Master the <span className="text-white/40">Simulator</span>
+                                Practice Your <span className="text-white/40">Interviews</span>
                             </h2>
                             <p className="text-white/30 font-medium max-w-xl mx-auto text-xs uppercase tracking-[0.2em]">
-                                Multi-round biometric stress testing for high-stakes roles.
+                                High-stakes interview practice with AI feedback.
                             </p>
                         </div>
 
@@ -238,14 +238,14 @@ export const InterviewModule = ({ onExit }: { onExit: () => void }) => {
                                     </div>
                                     <h3 className="text-xl font-black tracking-tight mb-2 uppercase italic">{round.type}</h3>
                                     <p className="text-white/20 text-[9px] uppercase tracking-widest leading-relaxed">
-                                        {round.questions.length} Scenario Trials
+                                        {round.questions.length} Questions
                                     </p>
                                 </button>
                             ))}
                         </div>
 
                         <div className="flex flex-col items-center gap-4">
-                            <span className="text-[9px] font-black text-white/20 uppercase tracking-[0.4em]">Select Protocol Above to Initialize</span>
+                            <span className="text-[9px] font-black text-white/20 uppercase tracking-[0.4em]">Select a round above to begin</span>
                         </div>
                     </motion.div>
                 )}
@@ -259,16 +259,16 @@ export const InterviewModule = ({ onExit }: { onExit: () => void }) => {
                         className="w-full max-w-2xl glass-dark p-16 rounded-none border border-white/10 text-center relative overflow-hidden sheen-effect"
                     >
                         <div className="absolute top-0 left-0 w-full h-1 bg-white" />
-                        <span className="text-[10px] font-black text-white/30 uppercase tracking-[0.5em] mb-8 block">Inbound Round</span>
+                        <span className="text-[10px] font-black text-white/30 uppercase tracking-[0.5em] mb-8 block">Current Round</span>
                         <h3 className="text-6xl font-black text-white italic tracking-tighter mb-4 uppercase">{activeRound.type}</h3>
                         <p className="text-white/40 text-xs font-medium max-w-md mx-auto mb-12 uppercase tracking-widest leading-loose">
-                            Analyzing logical depth and professional alignment. Protocol engaged.
+                            Analyzing logical depth and professional alignment. Get ready.
                         </p>
                         <button
                             onClick={() => setView('active-session')}
                             className="px-12 py-5 bg-white text-black font-black text-[10px] uppercase tracking-[0.4em]"
                         >
-                            Begin Round
+                            Start Interview
                         </button>
                     </motion.div>
                 )}
@@ -293,8 +293,8 @@ export const InterviewModule = ({ onExit }: { onExit: () => void }) => {
                                 <div className="absolute inset-0 bg-black/60 flex flex-col items-center justify-center z-30">
                                     <Loader2 className="h-16 w-16 text-white/20 animate-spin" />
                                     <div className="text-center mt-6">
-                                        <h3 className="text-2xl font-black text-white italic uppercase tracking-[0.3em] mb-2">Analyzing Presence</h3>
-                                        <p className="text-white/30 text-[9px] uppercase tracking-[0.4em]">Gemini is decoding biometric confidence...</p>
+                                        <h3 className="text-2xl font-black text-white italic uppercase tracking-[0.3em] mb-2">Analyzing Response</h3>
+                                        <p className="text-white/30 text-[9px] uppercase tracking-[0.4em]">Gemini is generating feedback...</p>
                                     </div>
                                 </div>
                             )}
@@ -367,11 +367,11 @@ export const InterviewModule = ({ onExit }: { onExit: () => void }) => {
                                                         className="w-full py-5 bg-white/10 border border-white/20 text-white font-black text-[10px] uppercase tracking-[0.4em] flex items-center justify-center gap-4 group"
                                                     >
                                                         <Square className="h-3 w-3 fill-white animate-pulse" />
-                                                        Terminate Log ({recordingTime}s)
+                                                        Stop Recording ({recordingTime}s)
                                                     </button>
                                                 )}
                                                 <p className="mt-4 text-[8px] font-black text-white/20 uppercase tracking-[0.3em]">
-                                                    {isRecording ? "TRANSMISSION ACTIVE" : "WAITING FOR VOCAL INPUT"}
+                                                    {isRecording ? "RECORDING ACTIVE" : "WAITING FOR RESPONSE"}
                                                 </p>
                                             </div>
                                         </motion.div>
@@ -386,7 +386,7 @@ export const InterviewModule = ({ onExit }: { onExit: () => void }) => {
                                         >
                                             <div className="flex items-center gap-3 mb-8">
                                                 <Sparkles className="h-4 w-4 text-white/40" />
-                                                <h3 className="text-sm font-black text-white uppercase tracking-[0.2em]">Biometric Feedback</h3>
+                                                <h3 className="text-sm font-black text-white uppercase tracking-[0.2em]">Interview Analysis</h3>
                                             </div>
 
                                             <div className="flex-1 overflow-y-auto pr-4 custom-scrollbar mb-8">
@@ -399,7 +399,7 @@ export const InterviewModule = ({ onExit }: { onExit: () => void }) => {
                                                 onClick={handleNext}
                                                 className="w-full py-5 bg-white text-black font-black uppercase tracking-[0.3em] text-[10px] transition-all hover:scale-[1.02] flex items-center justify-center gap-3"
                                             >
-                                                Next Protocol
+                                                Next Question
                                                 <ChevronRight className="h-4 w-4" />
                                             </button>
                                         </motion.div>
@@ -416,7 +416,7 @@ export const InterviewModule = ({ onExit }: { onExit: () => void }) => {
                     onClick={onExit}
                     className="mt-12 text-[10px] font-black text-white/20 uppercase tracking-[0.5em] hover:text-white transition-colors"
                 >
-                    Terminate Session
+                    Exit Interview
                 </button>
             )}
         </div>
