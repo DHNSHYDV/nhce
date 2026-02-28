@@ -33,7 +33,7 @@ function HomeContent() {
   const view = searchParams.get("view");
   const moduleParam = searchParams.get("module");
 
-  const showCards = view === "modules" || !!moduleParam || view === "leaderboard" || view === "projects" || view === "portfolio" || view === "settings" || view === "leadership" || view === "career" || view === "freelance" || view === "vernacular";
+  const showCards = view === "modules" || !!moduleParam || view === "leaderboard" || view === "projects" || view === "portfolio" || view === "settings" || view === "leadership" || view === "career" || view === "vernacular";
   const selectedModule = moduleParam;
 
   const setShowCards = (val: boolean) => {
@@ -110,16 +110,6 @@ function HomeContent() {
         </div>
       );
     }
-    if (view === "freelance") {
-      return (
-        <div className="w-full flex flex-col items-center gap-12 px-6 pb-24">
-          <div className="w-full max-w-7xl flex justify-start">
-            <BackButton onClick={() => router.push("/", { scroll: false })} />
-          </div>
-          <FreelanceModule />
-        </div>
-      );
-    }
     if (view === "vernacular") {
       return (
         <div className="w-full flex flex-col items-center gap-12 px-6 pb-24">
@@ -166,12 +156,12 @@ function HomeContent() {
               <BackButton onClick={() => setShowCards(false)} />
             </div>
 
-            <div className="text-center mb-12 space-y-6">
+            <div className="text-center mb-12 space-y-6 px-4">
               <div className="flex items-center justify-center gap-3 mb-2">
                 <Sparkles className="h-5 w-5 text-white/40" />
-                <span className="text-[12px] font-black tracking-[0.6em] text-white/40 uppercase font-display">System Ready</span>
+                <span className="text-[10px] md:text-[12px] font-black tracking-[0.6em] text-white/40 uppercase font-display">System Ready</span>
               </div>
-              <h2 className="text-7xl md:text-9xl font-black tracking-tighter text-white italic uppercase leading-none font-display">
+              <h2 className="text-5xl sm:text-7xl md:text-9xl font-black tracking-tighter text-white italic uppercase leading-none font-display">
                 Select <span className="text-white/20">Protocol</span>
               </h2>
             </div>
@@ -218,18 +208,16 @@ function HomeContent() {
                 <span className="text-[11px] font-black tracking-[0.5em] text-white uppercase italic font-display">Advanced Mastery Protocols</span>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {[
                   { id: 'leadership', title: 'Leadership', icon: Shield, desc: 'EI & Command simulations' },
                   { id: 'career', title: 'Career AI', icon: Zap, desc: 'Neural path prediction' },
-                  { id: 'freelance', title: 'Business', icon: MessageSquare, desc: 'Client & Pricing strategy' },
                   { id: 'vernacular', title: 'Bharat', icon: Sparkles, desc: 'Regional language mode' },
                 ].map((item) => (
                   <button
                     key={item.id}
                     onClick={() => {
                       window.history.pushState(null, '', `/?view=${item.id}`);
-                      window.dispatchEvent(new PopStateEvent('popstate'));
                     }}
                     className="glass-dark p-10 rounded-none border border-white/5 group hover:border-white/40 transition-all text-left relative overflow-hidden bg-white/[0.01]"
                   >
@@ -278,14 +266,14 @@ function HomeContent() {
               duration: 0.8,
               ease: [0.16, 1, 0.3, 1]
             }}
-            className="w-full max-w-7xl relative z-10 flex flex-col md:flex-row items-center justify-center gap-4 md:gap-24 px-6 md:px-12 py-12"
+            className="w-full max-w-7xl relative z-10 flex flex-col md:flex-row items-center justify-between gap-12 md:gap-8 px-6 md:px-20 py-12 md:py-24"
           >
             {/* Left: Orbiting Skills Animation */}
             <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.8 }}
-              className="flex-1 flex justify-center items-center"
+              className="w-full md:flex-1 flex justify-center items-center order-2 md:order-1 mt-12 md:mt-0"
             >
               <OrbitingSkills />
             </motion.div>
@@ -305,7 +293,7 @@ function HomeContent() {
                 </div>
               </motion.div>
 
-              <h1 className="text-6xl sm:text-8xl md:text-9xl lg:text-[11rem] font-black tracking-[0.02em] mb-10 md:mb-16 flex flex-col items-center md:items-start leading-[0.8] text-white uppercase italic font-display">
+              <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-[8rem] font-black tracking-[-0.02em] mb-10 md:mb-16 flex flex-col items-center md:items-start leading-[0.75] text-white uppercase italic font-display">
                 <span className="drop-shadow-2xl">Code.</span>
                 <span className="drop-shadow-2xl opacity-50">Skill.</span>
                 <span className="drop-shadow-2xl opacity-20">Conquer.</span>
