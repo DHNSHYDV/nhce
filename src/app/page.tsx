@@ -258,7 +258,7 @@ function HomeContent() {
             exit={{ opacity: 0 }}
             className="w-full flex flex-col items-center"
           >
-            <div className="w-full max-w-7xl relative z-10 flex flex-col md:flex-row items-center justify-center gap-16 md:gap-24 px-6 md:px-12 py-12 md:py-32">
+            <div className="w-full max-w-7xl relative z-10 flex flex-col md:flex-row items-center justify-center gap-12 md:gap-32 px-6 md:px-12 py-10 md:py-32 overflow-hidden">
               {/* Left: Orbiting Skills Animation */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -284,10 +284,10 @@ function HomeContent() {
                   </div>
                 </motion.div>
 
-                <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[8rem] font-black tracking-[-0.03em] mb-10 md:mb-16 flex flex-col items-center md:items-start leading-[0.8] text-white uppercase italic font-display">
-                  <span className="drop-shadow-2xl">Code.</span>
-                  <span className="drop-shadow-2xl opacity-50">Skill.</span>
-                  <span className="drop-shadow-2xl opacity-10">Conquer.</span>
+                <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[8rem] font-black tracking-[-0.04em] mb-10 md:mb-16 flex flex-col items-center md:items-start leading-[0.75] text-white uppercase italic font-display">
+                  <span className="drop-shadow-2xl whitespace-nowrap hover:text-white transition-all cursor-default">Code.</span>
+                  <span className="drop-shadow-2xl opacity-50 whitespace-nowrap hover:opacity-100 transition-all cursor-default">Skill.</span>
+                  <span className="drop-shadow-2xl opacity-10 whitespace-nowrap hover:opacity-100 transition-all cursor-default">Conquer.</span>
                 </h1>
 
                 <div className="flex justify-center md:justify-start mt-6">
