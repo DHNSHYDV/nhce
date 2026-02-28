@@ -5,7 +5,8 @@ import "./globals.css";
 import { Sidebar } from "@/components/Sidebar";
 import { Navbar } from "@/components/Navbar";
 import { ProfileDashboard } from "@/components/ProfileDashboard";
-import { useState } from "react";
+import { NotificationSystem } from "@/components/NotificationSystem";
+import { useState, useEffect } from "react";
 
 const outfit = Outfit({
   variable: "--font-outfit",
@@ -26,6 +27,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const handler = () => setIsNotificationsOpen(true);
+      window.addEventListener('open-notifications', handler);
+      return () => window.removeEventListener('open-notifications', handler);
+    }
+  }, []);
 
   return (
     <html lang="en" suppressHydrationWarning>
@@ -39,10 +49,11 @@ export default function RootLayout({
           >
             <Sidebar onProfileClick={() => setIsProfileOpen(true)} />
             <Navbar />
-            <main className="min-h-screen pt-24 px-6">
+            <main className="min-h-screen pt-24 px-6 overflow-x-hidden">
               {children}
             </main>
             <ProfileDashboard isOpen={isProfileOpen} onClose={() => setIsProfileOpen(false)} />
+            <NotificationSystem isOpen={isNotificationsOpen} onClose={() => setIsNotificationsOpen(false)} />
           </ThemeProvider>
         </Providers>
       </body>
