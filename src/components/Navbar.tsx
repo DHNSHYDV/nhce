@@ -51,12 +51,24 @@ export const Navbar = () => {
                 className="liquid-glass sheen-effect h-14 flex items-center px-12 rounded-none"
             >
                 <div className="hidden md:flex items-center gap-10">
-                    <a href="/" className="text-[12px] font-black uppercase tracking-[0.4em] text-white/40 hover:text-white transition-colors font-display">
+                    <button
+                        onClick={() => window.location.href = "/"}
+                        className="text-[12px] font-black uppercase tracking-[0.4em] text-white/40 hover:text-white transition-colors font-display"
+                    >
                         Home
-                    </a>
-                    <a href="#about" className="text-[12px] font-black uppercase tracking-[0.4em] text-white/40 hover:text-white transition-colors font-display">
+                    </button>
+                    <button
+                        onClick={() => {
+                            if (window.location.pathname !== "/" || window.location.search !== "") {
+                                window.location.href = "/#about";
+                            } else {
+                                document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
+                            }
+                        }}
+                        className="text-[12px] font-black uppercase tracking-[0.4em] text-white/40 hover:text-white transition-colors font-display"
+                    >
                         About
-                    </a>
+                    </button>
                 </div>
             </motion.div>
 
