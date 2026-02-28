@@ -22,6 +22,7 @@ import { LeadershipModule } from "@/components/LeadershipModule";
 import { CareerRoadmapModule } from "@/components/CareerRoadmapModule";
 import { VernacularModule } from "@/components/VernacularModule";
 import { AboutSection } from "@/components/AboutSection";
+import CodeCompiler from "@/components/CodeCompiler";
 
 const BackButton = ({ onClick }: { onClick: () => void }) => (
   <motion.button
@@ -159,6 +160,15 @@ function HomeContent() {
             <InterviewModule onExit={() => setSelectedModule(null)} />
           </div>
         );
+      case "Coding":
+        return (
+          <div className="w-full max-w-7xl flex flex-col items-center gap-12 px-6 pb-24">
+            <div className="w-full flex justify-start">
+              <BackButton onClick={() => setSelectedModule(null)} />
+            </div>
+            <CodeCompiler />
+          </div>
+        );
       default:
         return (
           <div className="w-full flex flex-col items-center gap-8">
@@ -208,6 +218,17 @@ function HomeContent() {
                 </div>
                 <h3 className="text-2xl md:text-3xl font-black italic uppercase tracking-tighter mb-4 font-display">AI Interview</h3>
                 <p className="text-white/40 text-[10px] md:text-[12px] uppercase font-black tracking-widest leading-loose">Multi-round stress simulator</p>
+              </button>
+
+              <button
+                onClick={() => setSelectedModule('Coding')}
+                className="glass-dark p-8 md:p-14 rounded-none border border-white/10 group hover:border-white/40 transition-all text-left relative overflow-hidden sm:col-span-2 md:col-span-1"
+              >
+                <div className="h-12 w-12 md:h-16 md:w-16 bg-white/5 flex items-center justify-center mb-6 md:mb-10 border border-white/10 group-hover:bg-white group-hover:text-black transition-all">
+                  <Zap className="h-6 w-6 md:h-8 md:w-8" />
+                </div>
+                <h3 className="text-2xl md:text-3xl font-black italic uppercase tracking-tighter mb-4 font-display">Coding</h3>
+                <p className="text-white/40 text-[10px] md:text-[12px] uppercase font-black tracking-widest leading-loose">Algorithmic logic synchronization</p>
               </button>
             </div>
 

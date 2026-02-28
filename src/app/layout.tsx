@@ -49,7 +49,7 @@ export default function RootLayout({
           >
             <Sidebar onProfileClick={() => setIsProfileOpen(true)} />
             <Navbar />
-            <main className="min-h-screen pt-24 px-6 overflow-x-hidden">
+            <main className="min-h-screen pt-20 md:pt-24 px-4 md:px-6 overflow-x-hidden">
               {children}
             </main>
             <ProfileDashboard isOpen={isProfileOpen} onClose={() => setIsProfileOpen(false)} />
