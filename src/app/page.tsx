@@ -5,19 +5,14 @@ import { useSearchParams, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Sparkles, ChevronLeft, Zap, MessageSquare, Shield } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { DottedSurface } from "@/components/ui/dotted-surface";
 import { OrbitingSkills } from "@/components/ui/orbiting-skills";
 import { AptitudeModule } from "@/components/AptitudeModule";
 import { CommunicationModule } from "@/components/CommunicationModule";
 import { InterviewModule } from "@/components/InterviewModule";
 import { Leaderboard } from "@/components/Leaderboard";
-import { Navbar } from "@/components/Navbar";
-import { Sidebar } from "@/components/Sidebar";
-import { ProfileDashboard } from "@/components/ProfileDashboard";
 import { ProjectsModule } from "@/components/ProjectsModule";
 import { PortfolioModule } from "@/components/PortfolioModule";
 import { SettingsModule } from "@/components/SettingsModule";
-import { NotificationSystem } from "@/components/NotificationSystem";
 import { LeadershipModule } from "@/components/LeadershipModule";
 import { CareerRoadmapModule } from "@/components/CareerRoadmapModule";
 import { VernacularModule } from "@/components/VernacularModule";
@@ -267,9 +262,7 @@ function HomeContent() {
   };
 
   return (
-    <div className="relative flex flex-col items-center justify-start min-h-[calc(100vh-6rem)] overflow-y-auto overflow-x-hidden selection:bg-white selection:text-black">
-      <DottedSurface />
-
+    <div className="relative min-h-[calc(100vh-6rem)] selection:bg-white selection:text-black">
       <AnimatePresence mode="wait">
         {!showCards ? (
           <motion.div
@@ -277,21 +270,23 @@ function HomeContent() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="w-full flex flex-col items-center"
+            className="relative z-10 w-full flex flex-col items-center"
           >
             <div className="w-full max-w-7xl relative z-10 flex flex-col md:flex-row items-center justify-center gap-12 lg:gap-32 px-4 md:px-12 min-h-[calc(100vh-6rem)] py-12 md:py-20">
-              {/* Left: Orbiting Skills Animation */}
+              {/* Left: Orbiting Skills Animation - Purely decorative in landing */}
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.4, duration: 0.8 }}
-                className="w-full md:flex-1 flex justify-center items-center order-2 md:order-1 mt-12 md:mt-0"
+                className="w-full md:flex-1 flex justify-center items-center order-2 md:order-1 mt-12 md:mt-0 pointer-events-none"
               >
-                <OrbitingSkills />
+                <div className="pointer-events-auto scale-90 md:scale-110">
+                  <OrbitingSkills />
+                </div>
               </motion.div>
 
               {/* Right: Hero Text & Call to Action */}
-              <div className="flex-1 flex flex-col items-center md:items-start text-center md:text-left order-1 md:order-2">
+              <div className="flex-1 flex flex-col items-center md:items-start text-center md:text-left order-1 md:order-2 relative z-20">
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -316,7 +311,7 @@ function HomeContent() {
                     onClick={() => setShowCards(true)}
                     whileHover={{ scale: 1.05, filter: "brightness(1.2)" }}
                     whileTap={{ scale: 0.95 }}
-                    className="px-16 py-8 bg-white text-black font-black rounded-none transition-all flex items-center gap-6 shadow-[0_0_60px_rgba(255,255,255,0.2)] group hover:shadow-[0_0_80px_rgba(255,255,255,0.4)]"
+                    className="px-16 py-8 bg-white text-black font-black rounded-none transition-all flex items-center gap-6 shadow-[0_0_60px_rgba(255,255,255,0.2)] group hover:shadow-[0_0_80px_rgba(255,255,255,0.4)] relative z-30 cursor-pointer"
                   >
                     <span className="tracking-[0.3em] uppercase text-sm font-display">Enter Experience</span>
                     <ArrowRight className="h-6 w-6 group-hover:translate-x-3 transition-transform" />
@@ -340,7 +335,7 @@ function HomeContent() {
               duration: 0.8,
               ease: [0.16, 1, 0.3, 1]
             }}
-            className="w-full h-full relative z-10 flex flex-col items-center py-12"
+            className="w-full h-full relative z-20 flex flex-col items-center py-12"
           >
             {renderModule()}
           </motion.div>
