@@ -24,6 +24,7 @@ import { LeadershipModule } from "@/components/LeadershipModule";
 import { CareerRoadmapModule } from "@/components/CareerRoadmapModule";
 import { FreelanceModule } from "@/components/FreelanceModule";
 import { VernacularModule } from "@/components/VernacularModule";
+import { AboutSection } from "@/components/AboutSection";
 
 function HomeContent() {
   const searchParams = useSearchParams();
@@ -241,6 +242,9 @@ function HomeContent() {
                 ))}
               </div>
             </div>
+
+            {/* About Section */}
+            {!showCards && <AboutSection />}
           </div>
         );
     }

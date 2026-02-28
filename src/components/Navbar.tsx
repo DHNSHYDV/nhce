@@ -31,9 +31,14 @@ export const Navbar = () => {
                         <div className="h-10 w-10 flex items-center justify-center liquid-glass group-hover:border-white/40 transition-all">
                             <Zap className="h-5 w-5 text-white" />
                         </div>
-                        <h1 className="text-2xl font-black italic tracking-tighter text-white uppercase font-display">
-                            Vi<span className="text-white/40 group-hover:text-white transition-colors italic">.AI</span>
-                        </h1>
+                        <div className="flex flex-col">
+                            <h1 className="text-xl md:text-2xl font-black italic tracking-tighter text-white uppercase font-display leading-none">
+                                Decide To Code
+                            </h1>
+                            <span className="text-[8px] font-black tracking-[0.4em] text-white/20 uppercase italic mt-1 group-hover:text-white/40 transition-colors">
+                                Career Ecosystem
+                            </span>
+                        </div>
                     </div>
                 </motion.div>
             </Link>
@@ -46,15 +51,12 @@ export const Navbar = () => {
                 className="liquid-glass sheen-effect h-14 flex items-center px-12 rounded-none"
             >
                 <div className="hidden md:flex items-center gap-10">
-                    {["Mission", "Network", "Simulations"].map((item) => (
-                        <a
-                            key={item}
-                            href={`#${item.toLowerCase()}`}
-                            className="text-[12px] font-black uppercase tracking-[0.4em] text-white/40 hover:text-white transition-colors font-display"
-                        >
-                            {item}
-                        </a>
-                    ))}
+                    <a href="/" className="text-[12px] font-black uppercase tracking-[0.4em] text-white/40 hover:text-white transition-colors font-display">
+                        Home
+                    </a>
+                    <a href="#about" className="text-[12px] font-black uppercase tracking-[0.4em] text-white/40 hover:text-white transition-colors font-display">
+                        About
+                    </a>
                 </div>
             </motion.div>
 
