@@ -296,9 +296,9 @@ export function OrbitingSkills() {
     ];
 
     return (
-        <div className="w-full flex items-center justify-center overflow-visible py-20 pb-40">
+        <div className="w-full flex items-center justify-center overflow-visible py-10 md:py-20">
             <div
-                className="relative w-[280px] h-[280px] md:w-[550px] md:h-[550px] flex items-center justify-center mx-auto"
+                className="relative w-[280px] h-[280px] md:w-[480px] md:h-[480px] flex items-center justify-center mx-auto"
                 onMouseEnter={() => setIsPaused(true)}
                 onMouseLeave={() => setIsPaused(false)}
             >
