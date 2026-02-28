@@ -20,6 +20,10 @@ import { ProjectsModule } from "@/components/ProjectsModule";
 import { PortfolioModule } from "@/components/PortfolioModule";
 import { SettingsModule } from "@/components/SettingsModule";
 import { NotificationSystem } from "@/components/NotificationSystem";
+import { LeadershipModule } from "@/components/LeadershipModule";
+import { CareerRoadmapModule } from "@/components/CareerRoadmapModule";
+import { FreelanceModule } from "@/components/FreelanceModule";
+import { VernacularModule } from "@/components/VernacularModule";
 
 function HomeContent() {
   const searchParams = useSearchParams();
@@ -28,7 +32,7 @@ function HomeContent() {
   const view = searchParams.get("view");
   const moduleParam = searchParams.get("module");
 
-  const showCards = view === "modules" || !!moduleParam || view === "leaderboard" || view === "projects" || view === "portfolio" || view === "settings";
+  const showCards = view === "modules" || !!moduleParam || view === "leaderboard" || view === "projects" || view === "portfolio" || view === "settings" || view === "leadership" || view === "career" || view === "freelance" || view === "vernacular";
   const selectedModule = moduleParam;
 
   const setShowCards = (val: boolean) => {
@@ -82,6 +86,46 @@ function HomeContent() {
             <BackButton onClick={() => router.push("/", { scroll: false })} />
           </div>
           <SettingsModule />
+        </div>
+      );
+    }
+    if (view === "leadership") {
+      return (
+        <div className="w-full flex flex-col items-center gap-12 px-6 pb-24">
+          <div className="w-full max-w-7xl flex justify-start">
+            <BackButton onClick={() => router.push("/", { scroll: false })} />
+          </div>
+          <LeadershipModule />
+        </div>
+      );
+    }
+    if (view === "career") {
+      return (
+        <div className="w-full flex flex-col items-center gap-12 px-6 pb-24">
+          <div className="w-full max-w-7xl flex justify-start">
+            <BackButton onClick={() => router.push("/", { scroll: false })} />
+          </div>
+          <CareerRoadmapModule />
+        </div>
+      );
+    }
+    if (view === "freelance") {
+      return (
+        <div className="w-full flex flex-col items-center gap-12 px-6 pb-24">
+          <div className="w-full max-w-7xl flex justify-start">
+            <BackButton onClick={() => router.push("/", { scroll: false })} />
+          </div>
+          <FreelanceModule />
+        </div>
+      );
+    }
+    if (view === "vernacular") {
+      return (
+        <div className="w-full flex flex-col items-center gap-12 px-6 pb-24">
+          <div className="w-full max-w-7xl flex justify-start">
+            <BackButton onClick={() => router.push("/", { scroll: false })} />
+          </div>
+          <VernacularModule />
         </div>
       );
     }
@@ -164,6 +208,38 @@ function HomeContent() {
                 <h3 className="text-2xl font-black italic uppercase tracking-tighter mb-2">AI Interview</h3>
                 <p className="text-white/40 text-[10px] uppercase font-black tracking-widest leading-loose">Multi-round stress simulator</p>
               </button>
+            </div>
+
+            {/* Advanced Simulations Grid */}
+            <div className="w-full max-w-6xl px-8 mt-16 space-y-8">
+              <div className="flex items-center gap-3 opacity-20">
+                <div className="h-px w-8 bg-white" />
+                <span className="text-[9px] font-black tracking-[0.4em] text-white uppercase italic">Advanced Mastery Protocols</span>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {[
+                  { id: 'leadership', title: 'Leadership', icon: Shield, desc: 'EI & Command simulations' },
+                  { id: 'career', title: 'Career AI', icon: Zap, desc: 'Neural path prediction' },
+                  { id: 'freelance', title: 'Business', icon: MessageSquare, desc: 'Client & Pricing strategy' },
+                  { id: 'vernacular', title: 'Bharat', icon: Sparkles, desc: 'Regional language mode' },
+                ].map((item) => (
+                  <button
+                    key={item.id}
+                    onClick={() => {
+                      window.history.pushState(null, '', `/?view=${item.id}`);
+                      window.dispatchEvent(new PopStateEvent('popstate'));
+                    }}
+                    className="glass-dark p-8 rounded-none border border-white/5 group hover:border-white/40 transition-all text-left relative overflow-hidden bg-white/[0.01]"
+                  >
+                    <div className="h-10 w-10 bg-white/5 flex items-center justify-center mb-6 border border-white/10 group-hover:bg-white group-hover:text-black transition-all">
+                      <item.icon className="h-4 w-4" />
+                    </div>
+                    <h3 className="text-sm font-black italic uppercase tracking-tighter mb-1">{item.title}</h3>
+                    <p className="text-white/20 text-[8px] uppercase font-black tracking-widest">{item.desc}</p>
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
         );

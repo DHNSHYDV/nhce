@@ -11,6 +11,10 @@ const menuItems = [
     { icon: User, label: "Profile", color: "text-white/40" },
     { icon: Code, label: "Projects", color: "text-white/40" },
     { icon: PieChart, label: "Portfolio", color: "text-white/40" },
+    { icon: Shield, label: "Leadership", color: "text-white/40" },
+    { icon: Zap, label: "Career Path", color: "text-white/40" },
+    { icon: Code, label: "Business", color: "text-white/40" },
+    { icon: Sparkles, label: "Bharat Mode", color: "text-white/40" },
     { icon: Settings, label: "Settings", color: "text-white/40" },
 ];
 
@@ -37,6 +41,18 @@ export const Sidebar = ({ onProfileClick }: SidebarProps) => {
         }
         if (label === "Settings") {
             router.push('/?view=settings', { scroll: false });
+        }
+        if (label === "Leadership") {
+            router.push('/?view=leadership', { scroll: false });
+        }
+        if (label === "Career Path") {
+            router.push('/?view=career', { scroll: false });
+        }
+        if (label === "Business") {
+            router.push('/?view=freelance', { scroll: false });
+        }
+        if (label === "Bharat Mode") {
+            router.push('/?view=vernacular', { scroll: false });
         }
         setIsOpen(false);
     };
