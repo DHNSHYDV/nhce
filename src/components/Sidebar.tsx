@@ -101,9 +101,9 @@ export const Sidebar = ({ onProfileClick }: SidebarProps) => {
                                 className="group relative"
                                 onClick={() => handleItemClick(item.label)}
                             >
-                                <div className="flex h-12 items-center gap-4 rounded-none liquid-glass sheen-effect px-5 py-2 w-64 transition-all cursor-pointer border border-white/5 group-hover:border-white/40 group-hover:translate-x-3">
-                                    <item.icon className={cn("h-4 w-4 transition-colors group-hover:text-white", item.color)} />
-                                    <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white/40 group-hover:text-white transition-colors">
+                                <div className="flex h-14 items-center gap-6 rounded-none liquid-glass sheen-effect px-6 py-2 w-72 transition-all cursor-pointer border border-white/5 group-hover:border-white/40 group-hover:translate-x-4">
+                                    <item.icon className={cn("h-5 w-5 transition-colors group-hover:text-white", item.color)} />
+                                    <span className="text-[12px] font-black uppercase tracking-[0.4em] text-white/40 group-hover:text-white transition-colors font-display">
                                         {item.label}
                                     </span>
 

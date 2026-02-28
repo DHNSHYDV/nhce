@@ -165,12 +165,12 @@ function HomeContent() {
               <BackButton onClick={() => setShowCards(false)} />
             </div>
 
-            <div className="text-center mb-8 space-y-4">
-              <div className="flex items-center justify-center gap-2 mb-2">
-                <Sparkles className="h-4 w-4 text-white/40" />
-                <span className="text-[10px] font-black tracking-[0.5em] text-white/40 uppercase">System Ready</span>
+            <div className="text-center mb-12 space-y-6">
+              <div className="flex items-center justify-center gap-3 mb-2">
+                <Sparkles className="h-5 w-5 text-white/40" />
+                <span className="text-[12px] font-black tracking-[0.6em] text-white/40 uppercase font-display">System Ready</span>
               </div>
-              <h2 className="text-6xl md:text-8xl font-black tracking-tighter text-white italic uppercase leading-none">
+              <h2 className="text-7xl md:text-9xl font-black tracking-tighter text-white italic uppercase leading-none font-display">
                 Select <span className="text-white/20">Protocol</span>
               </h2>
             </div>
@@ -178,46 +178,46 @@ function HomeContent() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-6xl px-8">
               <button
                 onClick={() => setSelectedModule('Aptitude')}
-                className="glass-dark p-12 rounded-none border border-white/10 group hover:border-white/40 transition-all text-left relative overflow-hidden"
+                className="glass-dark p-14 rounded-none border border-white/10 group hover:border-white/40 transition-all text-left relative overflow-hidden"
               >
-                <div className="h-12 w-12 bg-white/5 flex items-center justify-center mb-8 border border-white/10 group-hover:bg-white group-hover:text-black transition-all">
-                  <Zap className="h-6 w-6" />
+                <div className="h-16 w-16 bg-white/5 flex items-center justify-center mb-10 border border-white/10 group-hover:bg-white group-hover:text-black transition-all">
+                  <Zap className="h-8 w-8" />
                 </div>
-                <h3 className="text-2xl font-black italic uppercase tracking-tighter mb-2">Aptitude</h3>
-                <p className="text-white/40 text-[10px] uppercase font-black tracking-widest leading-loose">Cognitive logic assessment protocol</p>
+                <h3 className="text-3xl font-black italic uppercase tracking-tighter mb-4 font-display">Aptitude</h3>
+                <p className="text-white/40 text-[12px] uppercase font-black tracking-widest leading-loose">Cognitive logic assessment protocol</p>
               </button>
 
               <button
                 onClick={() => setSelectedModule('Communication')}
-                className="glass-dark p-12 rounded-none border border-white/10 group hover:border-white/40 transition-all text-left relative overflow-hidden"
+                className="glass-dark p-14 rounded-none border border-white/10 group hover:border-white/40 transition-all text-left relative overflow-hidden"
               >
-                <div className="h-12 w-12 bg-white/5 flex items-center justify-center mb-8 border border-white/10 group-hover:bg-white group-hover:text-black transition-all">
-                  <MessageSquare className="h-6 w-6" />
+                <div className="h-16 w-16 bg-white/5 flex items-center justify-center mb-10 border border-white/10 group-hover:bg-white group-hover:text-black transition-all">
+                  <MessageSquare className="h-8 w-8" />
                 </div>
-                <h3 className="text-2xl font-black italic uppercase tracking-tighter mb-2">Communication</h3>
-                <p className="text-white/40 text-[10px] uppercase font-black tracking-widest leading-loose">Vocal and linguistic synchronization</p>
+                <h3 className="text-3xl font-black italic uppercase tracking-tighter mb-4 font-display">Communication</h3>
+                <p className="text-white/40 text-[12px] uppercase font-black tracking-widest leading-loose">Vocal and linguistic synchronization</p>
               </button>
 
               <button
                 onClick={() => setSelectedModule('Interview')}
-                className="glass-dark p-12 rounded-none border border-white/10 group hover:border-white/40 transition-all text-left relative overflow-hidden"
+                className="glass-dark p-14 rounded-none border border-white/10 group hover:border-white/40 transition-all text-left relative overflow-hidden"
               >
-                <div className="h-12 w-12 bg-white/5 flex items-center justify-center mb-8 border border-white/10 group-hover:bg-white group-hover:text-black transition-all">
-                  <Shield className="h-6 w-6" />
+                <div className="h-16 w-16 bg-white/5 flex items-center justify-center mb-10 border border-white/10 group-hover:bg-white group-hover:text-black transition-all">
+                  <Shield className="h-8 w-8" />
                 </div>
-                <h3 className="text-2xl font-black italic uppercase tracking-tighter mb-2">AI Interview</h3>
-                <p className="text-white/40 text-[10px] uppercase font-black tracking-widest leading-loose">Multi-round stress simulator</p>
+                <h3 className="text-3xl font-black italic uppercase tracking-tighter mb-4 font-display">AI Interview</h3>
+                <p className="text-white/40 text-[12px] uppercase font-black tracking-widest leading-loose">Multi-round stress simulator</p>
               </button>
             </div>
 
             {/* Advanced Simulations Grid */}
-            <div className="w-full max-w-6xl px-8 mt-16 space-y-8">
-              <div className="flex items-center gap-3 opacity-20">
-                <div className="h-px w-8 bg-white" />
-                <span className="text-[9px] font-black tracking-[0.4em] text-white uppercase italic">Advanced Mastery Protocols</span>
+            <div className="w-full max-w-6xl px-8 mt-24 space-y-10">
+              <div className="flex items-center gap-4 opacity-20">
+                <div className="h-px w-12 bg-white" />
+                <span className="text-[11px] font-black tracking-[0.5em] text-white uppercase italic font-display">Advanced Mastery Protocols</span>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 {[
                   { id: 'leadership', title: 'Leadership', icon: Shield, desc: 'EI & Command simulations' },
                   { id: 'career', title: 'Career AI', icon: Zap, desc: 'Neural path prediction' },
@@ -230,13 +230,13 @@ function HomeContent() {
                       window.history.pushState(null, '', `/?view=${item.id}`);
                       window.dispatchEvent(new PopStateEvent('popstate'));
                     }}
-                    className="glass-dark p-8 rounded-none border border-white/5 group hover:border-white/40 transition-all text-left relative overflow-hidden bg-white/[0.01]"
+                    className="glass-dark p-10 rounded-none border border-white/5 group hover:border-white/40 transition-all text-left relative overflow-hidden bg-white/[0.01]"
                   >
-                    <div className="h-10 w-10 bg-white/5 flex items-center justify-center mb-6 border border-white/10 group-hover:bg-white group-hover:text-black transition-all">
-                      <item.icon className="h-4 w-4" />
+                    <div className="h-12 w-12 bg-white/5 flex items-center justify-center mb-8 border border-white/10 group-hover:bg-white group-hover:text-black transition-all">
+                      <item.icon className="h-5 w-5" />
                     </div>
-                    <h3 className="text-sm font-black italic uppercase tracking-tighter mb-1">{item.title}</h3>
-                    <p className="text-white/20 text-[8px] uppercase font-black tracking-widest">{item.desc}</p>
+                    <h3 className="text-lg font-black italic uppercase tracking-tighter mb-2 font-display">{item.title}</h3>
+                    <p className="text-white/20 text-[10px] uppercase font-black tracking-widest leading-relaxed">{item.desc}</p>
                   </button>
                 ))}
               </div>
@@ -293,29 +293,29 @@ function HomeContent() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.6 }}
               >
-                <div className="flex items-center gap-3 mb-8 opacity-40">
-                  <div className="h-px w-8 bg-white" />
-                  <span className="text-[10px] font-black tracking-[0.5em] text-white uppercase">
+                <div className="flex items-center gap-4 mb-10 opacity-40">
+                  <div className="h-px w-12 bg-white" />
+                  <span className="text-[12px] font-black tracking-[0.6em] text-white uppercase font-display">
                     Protocol 01: Initialize
                   </span>
                 </div>
               </motion.div>
 
-              <h1 className="text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-black tracking-[0.02em] mb-8 md:mb-12 flex flex-col items-center md:items-start leading-[0.85] text-white uppercase italic">
+              <h1 className="text-6xl sm:text-8xl md:text-9xl lg:text-[11rem] font-black tracking-[0.02em] mb-10 md:mb-16 flex flex-col items-center md:items-start leading-[0.8] text-white uppercase italic font-display">
                 <span className="drop-shadow-2xl">Code.</span>
                 <span className="drop-shadow-2xl opacity-50">Skill.</span>
                 <span className="drop-shadow-2xl opacity-20">Conquer.</span>
               </h1>
 
-              <div className="flex justify-center md:justify-start mt-4">
+              <div className="flex justify-center md:justify-start mt-6">
                 <motion.button
                   onClick={() => setShowCards(true)}
                   whileHover={{ scale: 1.05, filter: "brightness(1.2)" }}
                   whileTap={{ scale: 0.95 }}
-                  className="px-12 py-6 bg-white text-black font-black rounded-none transition-all flex items-center gap-4 shadow-[0_0_50px_rgba(255,255,255,0.2)] group hover:shadow-[0_0_70px_rgba(255,255,255,0.4)]"
+                  className="px-16 py-8 bg-white text-black font-black rounded-none transition-all flex items-center gap-6 shadow-[0_0_60px_rgba(255,255,255,0.2)] group hover:shadow-[0_0_80px_rgba(255,255,255,0.4)]"
                 >
-                  <span className="tracking-[0.2em] uppercase text-sm">Enter Experience</span>
-                  <ArrowRight className="h-5 w-5 group-hover:translate-x-2 transition-transform" />
+                  <span className="tracking-[0.3em] uppercase text-sm font-display">Enter Experience</span>
+                  <ArrowRight className="h-6 w-6 group-hover:translate-x-3 transition-transform" />
                 </motion.button>
               </div>
             </div>

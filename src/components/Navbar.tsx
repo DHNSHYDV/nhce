@@ -27,12 +27,13 @@ export const Navbar = () => {
                     animate={{ opacity: 1, y: 0 }}
                     className="liquid-glass sheen-effect h-14 flex items-center px-8 rounded-none group cursor-pointer hover:border-white/40 transition-all duration-500"
                 >
-                    <div className="flex items-center gap-3">
-                        <div className="relative">
-                            <Sparkles className="h-5 w-5 text-white/80 fill-white/20" />
-                            <div className="absolute inset-0 blur-md bg-white/10 scale-150 rounded-full" />
+                    <div className="flex items-center gap-4 cursor-pointer group" onClick={() => (window.location.href = "/")}>
+                        <div className="h-10 w-10 flex items-center justify-center liquid-glass group-hover:border-white/40 transition-all">
+                            <Zap className="h-5 w-5 text-white" />
                         </div>
-                        <span className="text-[10px] font-black tracking-[0.4em] text-white/60 group-hover:text-white transition-colors uppercase italic">Decide to Code</span>
+                        <h1 className="text-2xl font-black italic tracking-tighter text-white uppercase font-display">
+                            Vi<span className="text-white/40 group-hover:text-white transition-colors italic">.AI</span>
+                        </h1>
                     </div>
                 </motion.div>
             </Link>
@@ -44,10 +45,16 @@ export const Navbar = () => {
                 transition={{ delay: 0.1 }}
                 className="liquid-glass sheen-effect h-14 flex items-center px-12 rounded-none"
             >
-                <div className="flex items-center gap-10 text-[9px] font-black text-white/20 uppercase tracking-[0.4em]">
-                    <Link href="/" className="hover:text-white transition-all hover:scale-105 active:scale-95">Home</Link>
-                    <div className="h-1 w-1 rounded-full bg-white/5" />
-                    <a href="#" className="hover:text-white transition-all hover:scale-105 active:scale-95">About Us</a>
+                <div className="hidden md:flex items-center gap-10">
+                    {["Mission", "Network", "Simulations"].map((item) => (
+                        <a
+                            key={item}
+                            href={`#${item.toLowerCase()}`}
+                            className="text-[12px] font-black uppercase tracking-[0.4em] text-white/40 hover:text-white transition-colors font-display"
+                        >
+                            {item}
+                        </a>
+                    ))}
                 </div>
             </motion.div>
 
