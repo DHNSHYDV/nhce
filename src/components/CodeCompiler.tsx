@@ -34,8 +34,8 @@ export default function CodeCompiler() {
             colors: {
                 'editor.background': '#00000000',
                 'editor.lineHighlightBackground': '#FFFFFF05',
-                'editorLineNumber.foreground': '#5A5A5A',
-                'editorLineNumber.activeForeground': '#10b981',
+                'editorLineNumber.foreground': '#404040',
+                'editorLineNumber.activeForeground': '#FFFFFF',
             }
         });
         monaco.editor.setTheme('glassTheme');
@@ -49,7 +49,7 @@ export default function CodeCompiler() {
 
     const handleRun = async () => {
         setIsRunning(true);
-        setOutput(`> ${language.name} compiler initialized...\n> Compiling ${language.id === 'java' ? 'Main.java' : 'source'}${language.extension}...\n> Execution started...\n\n`);
+        setOutput(`> ${language.name} initializing protocol...\n> Analyzing source${language.extension}...\n> Execution sequence started...\n\n`);
         setExecutionTime(null);
 
         const startTime = performance.now();
@@ -99,16 +99,16 @@ export default function CodeCompiler() {
             <div className="absolute -inset-1 bg-gradient-to-r from-emerald-500/10 to-blue-500/10 rounded-[2.5rem] blur-2xl opacity-0 group-hover/ide:opacity-100 transition-opacity duration-1000 pointer-events-none" />
 
             {/* Header / Toolbar */}
-            <div className="relative z-50 flex items-center justify-between px-8 py-5 border-b border-white/5 bg-slate-900/40 backdrop-blur-md">
+            <div className="relative z-50 flex items-center justify-between px-8 py-5 border-b border-white/5 bg-black/40 backdrop-blur-md">
                 <div className="flex items-center gap-6">
                     <div className="flex items-center gap-3">
-                        <div className="p-2 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400">
+                        <div className="p-2 rounded-xl bg-white/5 border border-white/10 text-white/40">
                             <Code2 className="h-5 w-5" />
                         </div>
-                        <h3 className="text-lg font-black tracking-tight text-foreground uppercase italic transition-colors">IDE<span className="text-emerald-500 font-sans not-italic">.beta</span></h3>
+                        <h3 className="text-lg font-black tracking-tight text-white uppercase italic transition-colors">IDE<span className="text-white opacity-20 font-sans not-italic">.core</span></h3>
                     </div>
 
-                    <div className="h-6 w-px bg-white/10" />
+                    <div className="h-6 w-px bg-white/5" />
 
                     {/* Language Selector */}
                     <div className="relative">
@@ -152,36 +152,36 @@ export default function CodeCompiler() {
                 <div className="flex items-center gap-3">
                     <button
                         onClick={handleCopy}
-                        className="p-2.5 rounded-xl bg-white/5 border border-white/10 hover:border-white/20 text-slate-400 hover:text-white transition-all relative group"
+                        className="p-2.5 rounded-none bg-white/5 border border-white/10 hover:border-white/20 text-white/40 hover:text-white transition-all relative group"
                     >
-                        {isCopied ? <Check className="h-5 w-5 text-emerald-400" /> : <Copy className="h-5 w-5" />}
-                        <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-[10px] font-black uppercase tracking-widest text-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity">Copy</span>
+                        {isCopied ? <Check className="h-5 w-5 text-white" /> : <Copy className="h-5 w-5" />}
+                        <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-[9px] font-black uppercase tracking-widest text-white opacity-0 group-hover:opacity-100 transition-opacity">Copy</span>
                     </button>
 
                     <button
                         onClick={() => setCode(language.default)}
-                        className="p-2.5 rounded-xl bg-white/5 border border-white/10 hover:border-white/20 text-slate-400 hover:text-white transition-all group relative"
+                        className="p-2.5 rounded-none bg-white/5 border border-white/10 hover:border-white/20 text-white/40 hover:text-white transition-all group relative"
                     >
                         <RotateCcw className="h-5 w-5 group-hover:rotate-180 transition-transform duration-500" />
-                        <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-[10px] font-black uppercase tracking-widest text-red-400 opacity-0 group-hover:opacity-100 transition-opacity">Reset</span>
+                        <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-[9px] font-black uppercase tracking-widest text-white opacity-0 group-hover:opacity-100 transition-opacity">Reset</span>
                     </button>
 
                     <button
                         onClick={handleRun}
                         disabled={isRunning}
                         className={cn(
-                            "flex items-center gap-3 px-8 py-2.5 rounded-xl font-black text-sm uppercase tracking-widest transition-all",
+                            "flex items-center gap-3 px-8 py-2.5 rounded-none font-black text-[10px] uppercase tracking-[0.3em] transition-all",
                             isRunning
-                                ? "bg-slate-800 text-slate-500 border border-white/5 cursor-not-allowed"
-                                : "bg-emerald-500 hover:bg-emerald-400 text-slate-950 shadow-[0_0_20px_rgba(16,185,129,0.3)] shadow-inner"
+                                ? "bg-white/5 text-white/20 border border-white/5 cursor-not-allowed"
+                                : "bg-white text-black hover:brightness-110 shadow-[0_0_30px_rgba(255,255,255,0.1)]"
                         )}
                     >
                         {isRunning ? (
-                            <div className="h-4 w-4 border-2 border-slate-500 border-t-white rounded-full animate-spin" />
+                            <div className="h-3 w-3 border border-white/20 border-t-white rounded-full animate-spin" />
                         ) : (
-                            <Play className="h-4 w-4 fill-current" />
+                            <Play className="h-3 w-3 fill-current" />
                         )}
-                        {isRunning ? "Running..." : "Run Code"}
+                        {isRunning ? "Running" : "Initialize"}
                     </button>
                 </div>
             </div>
@@ -226,14 +226,14 @@ export default function CodeCompiler() {
                         <Terminal className="h-4 w-4 text-slate-500" />
                         <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Standard Output</span>
                     </div>
-                    <div className="flex-1 p-6 font-mono text-sm overflow-y-auto whitespace-pre-wrap break-all custom-scrollbar">
+                    <div className="flex-1 p-8 font-mono text-[13px] overflow-y-auto whitespace-pre-wrap break-all custom-scrollbar leading-relaxed">
                         <AnimatePresence mode="wait">
                             {output ? (
                                 <motion.div
                                     key="output"
-                                    initial={{ opacity: 0, x: -10 }}
-                                    animate={{ opacity: 1, x: 0 }}
-                                    className="text-emerald-400/90"
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    className="text-white/80"
                                 >
                                     {output}
                                 </motion.div>
@@ -242,23 +242,23 @@ export default function CodeCompiler() {
                                     key="placeholder"
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
-                                    className="text-slate-600 italic"
+                                    className="text-white/20 italic tracking-tight"
                                 >
-                                    {isRunning ? "Awaiting stream..." : "Click run to see output."}
+                                    {isRunning ? "Attaching debugger..." : "Waiting for kernel activity."}
                                 </motion.div>
                             )}
                         </AnimatePresence>
                     </div>
                     {/* Performance Micro-Stat */}
-                    <div className="p-4 flex items-center justify-between bg-slate-950/40 border-t border-white/5 shrink-0">
+                    <div className="p-4 flex items-center justify-between bg-black/40 border-t border-white/5 shrink-0">
                         <div className="flex items-center gap-2">
-                            <div className={cn("h-1.5 w-1.5 rounded-full animate-pulse", isRunning ? "bg-amber-500" : "bg-emerald-500")} />
-                            <span className="text-[9px] font-bold text-slate-500 uppercase tracking-tighter">
-                                {isRunning ? "Running" : "System Ready"}
+                            <div className={cn("h-1 w-1 rounded-full", isRunning ? "bg-white animate-pulse" : "bg-white/20")} />
+                            <span className="text-[8px] font-black text-white/30 uppercase tracking-[0.2em]">
+                                {isRunning ? "Active" : "Ready"}
                             </span>
                         </div>
-                        <span className="text-[9px] font-bold text-slate-700 uppercase tracking-tighter">
-                            Lat: {executionTime ? `${executionTime}s` : "0.00s"}
+                        <span className="text-[8px] font-black text-white/20 uppercase tracking-[0.2em]">
+                            {executionTime ? `${executionTime}s` : "0.0s"}
                         </span>
                     </div>
                 </div>
@@ -272,11 +272,11 @@ export default function CodeCompiler() {
                     background: rgba(0,0,0,0.1);
                 }
                 .custom-scrollbar::-webkit-scrollbar-thumb {
-                    background: rgba(16, 185, 129, 0.2);
-                    border-radius: 4px;
+                    background: rgba(255, 255, 255, 0.05);
+                    border-radius: 0px;
                 }
                 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-                    background: rgba(16, 185, 129, 0.4);
+                    background: rgba(255, 255, 255, 0.1);
                 }
             `}</style>
         </div>

@@ -1,5 +1,6 @@
 "use client"
 import React, { useEffect, useState, memo } from 'react';
+import { cn } from '@/lib/utils';
 
 // --- Type Definitions ---
 type IconType = 'html' | 'css' | 'javascript' | 'react' | 'node' | 'tailwind';
@@ -53,8 +54,7 @@ const iconComponents: Record<IconType, { component: () => React.JSX.Element; col
     javascript: {
         component: () => (
             <svg viewBox="0 0 24 24" fill="currentColor" className="w-full h-full">
-                <rect width="24" height="24" fill="#F7DF1E" />
-                <path d="M22.034 18.276c-.175-1.095-.888-2.015-3.003-2.873-.736-.345-1.554-.585-1.797-1.14-.091-.33-.105-.51-.046-.705.15-.646.915-.84 1.515-.66.39.12.75.42.976.9 1.034-.676 1.034-.676 1.755-1.125-.27-.42-.404-.601-.586-.78-.63-.705-1.469-1.065-2.834-1.034l-.705.089c-.676.165-1.32.525-1.71 1.005-1.14 1.291-.811 3.541.569 4.471 1.365 1.02 3.361 1.244 3.616 2.205.24 1.17-.87 1.545-1.966 1.41-.811-.18-1.26-.586-1.755-1.336l-1.83 1.051c.21.48.45.689.81 1.109 1.74 1.756 6.09 1.666 6.871-1.004.029-.09.24-.705.074-1.65l.046.067zm-8.983-7.245h-2.248c0 1.938-.009 3.864-.009 5.805 0 1.232.063 2.363-.138 2.711-.33.689-1.18.601-1.566.48-.396-.196-.597-.466-.83-.855-.063-.105-.11-.196-.127-.196l-1.825 1.125c.305.63.75 1.172 1.324 1.517.855.51 2.004.675 3.207.405.783-.226 1.458-.691 1.811-1.411.51-.93.402-2.07.397-3.346.012-2.054 0-4.109 0-6.179l.004-.056z" fill="#323330" />
+                <path d="M22.034 18.276c-.175-1.095-.888-2.015-3.003-2.873-.736-.345-1.554-.585-1.797-1.14-.091-.33-.105-.51-.046-.705.15-.646.915-.84 1.515-.66.39.12.75.42.976.9 1.034-.676 1.034-.676 1.755-1.125-.27-.42-.404-.601-.586-.78-.63-.705-1.469-1.065-2.834-1.034l-.705.089c-.676.165-1.32.525-1.71 1.005-1.14 1.291-.811 3.541.569 4.471 1.365 1.02 3.361 1.244 3.616 2.205.24 1.17-.87 1.545-1.966 1.41-.811-.18-1.26-.586-1.755-1.336l-1.83 1.051c.21.48.45.689.81 1.109 1.74 1.756 6.09 1.666 6.871-1.004.029-.09.24-.705.074-1.65l.046.067zm-8.983-7.245h-2.248c0 1.938-.009 3.864-.009 5.805 0 1.232.063 2.363-.138 2.711-.33.689-1.18.601-1.566.48-.396-.196-.597-.466-.83-.855-.063-.105-.11-.196-.127-.196l-1.825 1.125c.305.63.75 1.172 1.324 1.517.855.51 2.004.675 3.207.405.783-.226 1.458-.691 1.811-1.411.51-.93.402-2.07.397-3.346.012-2.054 0-4.109 0-6.179l.004-.056z" fill="#F7DF1E" />
             </svg>
         ),
         color: '#F7DF1E'
@@ -138,7 +138,7 @@ const skillsConfig: SkillConfig[] = [
         speed: -0.6,
         iconType: 'react',
         phaseShift: 0,
-        glowColor: 'purple',
+        glowColor: 'cyan',
         label: 'React'
     },
     {
@@ -148,7 +148,7 @@ const skillsConfig: SkillConfig[] = [
         speed: -0.6,
         iconType: 'node',
         phaseShift: (2 * Math.PI) / 3,
-        glowColor: 'purple',
+        glowColor: 'cyan',
         label: 'Node.js'
     },
     {
@@ -158,7 +158,7 @@ const skillsConfig: SkillConfig[] = [
         speed: -0.6,
         iconType: 'tailwind',
         phaseShift: (4 * Math.PI) / 3,
-        glowColor: 'purple',
+        glowColor: 'cyan',
         label: 'Tailwind CSS'
     },
 ];
@@ -184,12 +184,10 @@ const OrbitingSkill = memo(({ config, angle }: OrbitingSkillProps) => {
             onMouseLeave={() => setIsHovered(false)}
         >
             <div
-                className={`
-          relative w-full h-full p-2 bg-gray-800/90 backdrop-blur-sm
-          rounded-full flex items-center justify-center
-          transition-all duration-300 cursor-pointer
-          ${isHovered ? 'scale-125 shadow-2xl' : 'shadow-lg hover:shadow-xl'}
-        `}
+                className={cn(
+                    "relative w-full h-full p-2 bg-black/60 backdrop-blur-md rounded-none flex items-center justify-center transition-all duration-300 cursor-pointer border border-white/10",
+                    isHovered ? "scale-110 border-white/40" : "shadow-lg"
+                )}
                 style={{
                     boxShadow: isHovered
                         ? `0 0 30px ${iconComponents[iconType]?.color}40, 0 0 60px ${iconComponents[iconType]?.color}20`
@@ -210,16 +208,11 @@ OrbitingSkill.displayName = 'OrbitingSkill';
 
 // --- Optimized Orbit Path Component ---
 const GlowingOrbitPath = memo(({ radius, glowColor = 'cyan', animationDelay = 0 }: GlowingOrbitPathProps) => {
-    const glowColors = {
+    const glowColors: Record<string, { primary: string, secondary: string, border: string }> = {
         cyan: {
-            primary: 'rgba(6, 182, 212, 0.4)',
-            secondary: 'rgba(6, 182, 212, 0.2)',
-            border: 'rgba(6, 182, 212, 0.3)'
-        },
-        purple: {
-            primary: 'rgba(147, 51, 234, 0.4)',
-            secondary: 'rgba(147, 51, 234, 0.2)',
-            border: 'rgba(147, 51, 234, 0.3)'
+            primary: 'rgba(255, 255, 255, 0.05)',
+            secondary: 'rgba(255, 255, 255, 0.02)',
+            border: 'rgba(255, 255, 255, 0.05)'
         }
     };
 
@@ -283,7 +276,7 @@ export function OrbitingSkills() {
 
     const orbitConfigs: Array<{ radius: number; glowColor: GlowColor; delay: number }> = [
         { radius: 100, glowColor: 'cyan', delay: 0 },
-        { radius: 180, glowColor: 'purple', delay: 1.5 }
+        { radius: 180, glowColor: 'cyan', delay: 1.5 }
     ];
 
     return (
@@ -294,18 +287,11 @@ export function OrbitingSkills() {
                 onMouseLeave={() => setIsPaused(false)}
             >
 
-                {/* Central "Code" Icon with enhanced glow */}
-                <div className="w-20 h-20 bg-gradient-to-br from-gray-700 to-gray-900 rounded-full flex items-center justify-center z-10 relative shadow-2xl">
-                    <div className="absolute inset-0 rounded-full bg-cyan-500/30 blur-xl animate-pulse"></div>
-                    <div className="absolute inset-0 rounded-full bg-purple-500/20 blur-2xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+                {/* Central "Code" Icon with refined mono glow */}
+                <div className="w-16 h-16 bg-black border border-white/10 rounded-none flex items-center justify-center z-10 relative sheen-effect shadow-2xl">
+                    <div className="absolute inset-0 bg-white/5 blur-xl animate-pulse"></div>
                     <div className="relative z-10">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="url(#gradient)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                            <defs>
-                                <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" stopColor="#06B6D4" />
-                                    <stop offset="100%" stopColor="#9333EA" />
-                                </linearGradient>
-                            </defs>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                             <polyline points="16 18 22 12 16 6"></polyline>
                             <polyline points="8 6 2 12 8 18"></polyline>
                         </svg>

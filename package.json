@@ -13,8 +13,10 @@
     "db:studio": "prisma studio"
   },
   "dependencies": {
+    "@google/generative-ai": "^0.24.1",
     "@monaco-editor/react": "^4.7.0",
     "@prisma/client": "^6.19.2",
+    "@types/three": "^0.183.1",
     "bcryptjs": "^3.0.3",
     "clsx": "^2.1.1",
     "framer-motion": "^12.34.3",
@@ -26,7 +28,8 @@
     "prisma": "^6.19.2",
     "react": "19.2.3",
     "react-dom": "19.2.3",
-    "tailwind-merge": "^3.5.0"
+    "tailwind-merge": "^3.5.0",
+    "three": "^0.183.1"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

@@ -84,12 +84,12 @@ export const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
                         exit={{ opacity: 0, scale: 0.9, y: 20 }}
                         className="fixed left-1/2 top-1/2 z-50 w-full max-w-md -translate-x-1/2 -translate-y-1/2 p-4"
                     >
-                        <div className="relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-slate-900/40 p-1 shadow-2xl backdrop-blur-2xl">
-                            {/* Decorative Background Glows */}
-                            <div className="absolute -left-20 -top-20 h-40 w-40 rounded-full bg-emerald-500/10 blur-[80px]" />
-                            <div className="absolute -right-20 -bottom-20 h-40 w-40 rounded-full bg-blue-500/10 blur-[80px]" />
+                        <div className="relative overflow-hidden rounded-none border border-white/10 bg-black/60 p-1 shadow-2xl backdrop-blur-2xl">
+                            {/* Ambient Mono Glow */}
+                            <div className="absolute -left-20 -top-20 h-40 w-40 rounded-full bg-white/5 blur-[80px]" />
+                            <div className="absolute -right-20 -bottom-20 h-40 w-40 rounded-full bg-white/5 blur-[80px]" />
 
-                            <div className="relative h-full rounded-[2.3rem] border border-white/5 bg-slate-950/40 p-8 md:p-10">
+                            <div className="relative h-full rounded-none border border-white/5 bg-black/40 p-8 md:p-10">
                                 {/* Close Button */}
                                 <button
                                     onClick={onClose}
@@ -99,39 +99,39 @@ export const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
                                 </button>
 
                                 {/* Header */}
-                                <div className="mb-8 text-center">
-                                    <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl border border-emerald-500/20 bg-emerald-500/10 shadow-[0_0_20px_rgba(16,185,129,0.1)]">
-                                        <Sparkles className="h-8 w-8 text-emerald-400" />
+                                <div className="mb-10 text-center">
+                                    <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-none border border-white/10 bg-white/5 shadow-xl">
+                                        <Sparkles className="h-8 w-8 text-white/40" />
                                     </div>
-                                    <h2 className="text-3xl font-black tracking-tight text-white mb-2">
-                                        {mode === "login" ? "Welcome Back" : "Create Account"}
+                                    <h2 className="text-3xl font-black tracking-tighter text-white mb-2 uppercase italic">
+                                        {mode === "login" ? "Kernel.join()" : "Account.init()"}
                                     </h2>
-                                    <p className="text-sm font-medium text-slate-400">
+                                    <p className="text-[10px] font-black uppercase tracking-[0.3em] text-white/20">
                                         {mode === "login"
-                                            ? "Join the elite league of coders again."
-                                            : "Start your journey to becoming a 1% engineer."}
+                                            ? "Requesting permission to sync"
+                                            : "Generating new identity signature"}
                                     </p>
                                 </div>
 
                                 {/* Tabs */}
-                                <div className="mb-8 flex rounded-2xl bg-white/5 p-1">
+                                <div className="mb-8 flex rounded-none bg-white/5 p-1">
                                     <button
                                         onClick={() => setMode("login")}
                                         className={cn(
-                                            "flex-1 rounded-xl py-2.5 text-xs font-black uppercase tracking-widest transition-all",
-                                            mode === "login" ? "bg-white/10 text-white shadow-xl" : "text-slate-500 hover:text-slate-300"
+                                            "flex-1 rounded-none py-3 text-[9px] font-black uppercase tracking-[0.2em] transition-all",
+                                            mode === "login" ? "bg-white text-black shadow-2xl" : "text-white/20 hover:text-white/40"
                                         )}
                                     >
-                                        Login
+                                        Log In
                                     </button>
                                     <button
                                         onClick={() => setMode("signup")}
                                         className={cn(
-                                            "flex-1 rounded-xl py-2.5 text-xs font-black uppercase tracking-widest transition-all",
-                                            mode === "signup" ? "bg-white/10 text-white shadow-xl" : "text-slate-500 hover:text-slate-300"
+                                            "flex-1 rounded-none py-3 text-[9px] font-black uppercase tracking-[0.2em] transition-all",
+                                            mode === "signup" ? "bg-white text-black shadow-2xl" : "text-white/20 hover:text-white/40"
                                         )}
                                     >
-                                        Sign Up
+                                        Register
                                     </button>
                                 </div>
 
@@ -147,34 +147,34 @@ export const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
                                                     required
                                                     value={username}
                                                     onChange={(e) => setUsername(e.target.value)}
-                                                    className="w-full rounded-2xl border border-white/10 bg-white/5 py-4 pl-12 pr-4 text-sm font-medium text-white transition-all focus:border-emerald-500/50 focus:bg-white/10 focus:outline-none focus:ring-1 focus:ring-emerald-500/30"
+                                                    className="w-full rounded-none border border-white/10 bg-white/[0.03] py-4 pl-12 pr-4 text-[10px] font-black uppercase tracking-widest text-white transition-all focus:border-white/40 focus:bg-white/5 focus:outline-none"
                                                 />
                                             </div>
                                         </div>
                                     )}
                                     <div className="space-y-2">
                                         <div className="relative">
-                                            <Mail className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-500" />
+                                            <Mail className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-white/20" />
                                             <input
                                                 type="email"
-                                                placeholder="Email Address"
+                                                placeholder="Email / Signature"
                                                 required
                                                 value={email}
                                                 onChange={(e) => setEmail(e.target.value)}
-                                                className="w-full rounded-2xl border border-white/10 bg-white/5 py-4 pl-12 pr-4 text-sm font-medium text-white transition-all focus:border-emerald-500/50 focus:bg-white/10 focus:outline-none focus:ring-1 focus:ring-emerald-500/30"
+                                                className="w-full rounded-none border border-white/10 bg-white/[0.03] py-4 pl-12 pr-4 text-[10px] font-black uppercase tracking-widest text-white transition-all focus:border-white/40 focus:bg-white/5 focus:outline-none"
                                             />
                                         </div>
                                     </div>
                                     <div className="space-y-2">
                                         <div className="relative">
-                                            <Lock className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-500" />
+                                            <Lock className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-white/20" />
                                             <input
                                                 type="password"
-                                                placeholder="Password"
+                                                placeholder="Keycode"
                                                 required
                                                 value={password}
                                                 onChange={(e) => setPassword(e.target.value)}
-                                                className="w-full rounded-2xl border border-white/10 bg-white/5 py-4 pl-12 pr-4 text-sm font-medium text-white transition-all focus:border-emerald-500/50 focus:bg-white/10 focus:outline-none focus:ring-1 focus:ring-emerald-500/30"
+                                                className="w-full rounded-none border border-white/10 bg-white/[0.03] py-4 pl-12 pr-4 text-[10px] font-black uppercase tracking-widest text-white transition-all focus:border-white/40 focus:bg-white/5 focus:outline-none"
                                             />
                                         </div>
                                     </div>
@@ -190,24 +190,24 @@ export const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
                                     )}
 
                                     <motion.button
-                                        whileHover={{ scale: 1.02, y: -1 }}
+                                        whileHover={{ scale: 1.02 }}
                                         whileTap={{ scale: 0.98 }}
                                         disabled={loading}
-                                        className="group relative flex w-full items-center justify-center gap-2 overflow-hidden rounded-2xl bg-emerald-500 py-4 text-sm font-black text-slate-950 transition-all hover:bg-emerald-400 disabled:opacity-50"
+                                        className="group relative flex w-full items-center justify-center gap-3 overflow-hidden rounded-none bg-white py-5 text-[10px] font-black uppercase tracking-[0.4em] text-black transition-all disabled:opacity-50"
                                     >
-                                        {loading ? "Authenticating..." : mode === "login" ? "Enter Dashboard" : "Create Account"}
-                                        {!loading && <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />}
+                                        {loading ? "Decrypting..." : mode === "login" ? "Establish Sync" : "Initialize Identity"}
+                                        {!loading && <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1" />}
                                     </motion.button>
                                 </form>
 
                                 {/* Footer Link */}
-                                <div className="mt-8 text-center text-xs font-medium text-slate-500">
-                                    {mode === "login" ? "Don't have an account?" : "Already have an account?"}{" "}
+                                <div className="mt-8 text-center text-[9px] font-black uppercase tracking-[0.2em] text-white/20">
+                                    {mode === "login" ? "No identity signature?" : "Already synced?"}{" "}
                                     <button
                                         onClick={() => setMode(mode === "login" ? "signup" : "login")}
-                                        className="font-black text-emerald-400 hover:text-emerald-300 transition-colors"
+                                        className="text-white hover:underline transition-all"
                                     >
-                                        {mode === "login" ? "Sign Up Now" : "Log In"}
+                                        {mode === "login" ? "Generate Now" : "Sync Profile"}
                                     </button>
                                 </div>
                             </div>
