@@ -156,6 +156,7 @@ export const InterviewModule = ({ onExit }: { onExit: () => void }) => {
                 setRecordings(prev => [...prev, newAnalysis]);
                 setCurrentAnalysis(data.analysis);
                 setView('analysis');
+                stopCamera(); // Automatically turn off camera after recording is processed
             };
         } catch (error) {
             console.error(error);
@@ -167,6 +168,7 @@ export const InterviewModule = ({ onExit }: { onExit: () => void }) => {
         if (currentQuestionIndex < activeRound.questions.length - 1) {
             setCurrentQuestionIndex(prev => prev + 1);
             setView('active-session');
+            startCamera(); // Restart camera for the next question
         } else if (activeRoundIndex < rounds.length - 1) {
             setActiveRoundIndex(prev => prev + 1);
             setCurrentQuestionIndex(0);
@@ -335,6 +337,15 @@ export const InterviewModule = ({ onExit }: { onExit: () => void }) => {
                                         >
                                             <div className="flex justify-between items-center mb-10">
                                                 <span className="text-[9px] font-black uppercase tracking-[0.3em] text-white/40">{activeRound.type} ROUND</span>
+                                                <button
+                                                    onClick={() => {
+                                                        stopCamera();
+                                                        onExit();
+                                                    }}
+                                                    className="text-[8px] font-black uppercase tracking-[0.2em] text-white/20 hover:text-white/60 transition-colors"
+                                                >
+                                                    End Session
+                                                </button>
                                                 <span className="text-[9px] font-black uppercase tracking-[0.3em] text-white/20">{currentQuestionIndex + 1} / {activeRound.questions.length}</span>
                                             </div>
 
