@@ -20,6 +20,7 @@ interface SidebarProps {
 
 export const Sidebar = ({ onProfileClick }: SidebarProps) => {
     const router = useRouter();
+    const [isOpen, setIsOpen] = useState(false);
 
     const handleItemClick = (label: string) => {
         if (label === "Profile") {
