@@ -204,13 +204,13 @@ export const InterviewModule = ({ onExit }: { onExit: () => void }) => {
                         exit={{ opacity: 0, y: -20 }}
                         className="w-full flex flex-col items-center gap-12"
                     >
-                        <div className="text-center space-y-6">
-                            <div className="flex items-center justify-center gap-2 mb-2">
-                                <Shield className="h-4 w-4 text-white/40" />
-                                <span className="text-[10px] font-black tracking-[0.4em] text-white/40 uppercase">AI Interview Session</span>
+                        <div className="space-y-6 text-center">
+                            <div className="flex items-center justify-center gap-4">
+                                <Brain className="h-6 w-6 text-white/40" />
+                                <span className="text-[12px] font-black tracking-[0.6em] text-white/40 uppercase italic font-display">Neural Link Established</span>
                             </div>
-                            <h2 className="text-5xl md:text-6xl font-black tracking-tighter text-white uppercase italic leading-none">
-                                Practice Your <span className="text-white/40">Interviews</span>
+                            <h2 className="text-6xl md:text-8xl font-black text-white italic tracking-tighter uppercase leading-none font-display">
+                                AI <span className="text-white/40">Interview</span>
                             </h2>
                             <p className="text-white/30 font-medium max-w-xl mx-auto text-xs uppercase tracking-[0.2em]">
                                 High-stakes interview practice with AI feedback.
@@ -370,6 +370,22 @@ export const InterviewModule = ({ onExit }: { onExit: () => void }) => {
                                                         Stop Recording ({recordingTime}s)
                                                     </button>
                                                 )}
+                                                <div className="hidden lg:block glass-dark border border-white/10 p-10 w-96">
+                                                    <div className="text-[12px] font-black text-white/20 uppercase tracking-[0.4em] mb-4 font-display">Status Report</div>
+                                                    <div className="space-y-4">
+                                                        <div className="flex justify-between items-center text-[10px] font-black uppercase tracking-widest">
+                                                            <span className="text-white/40">Latency</span>
+                                                            <span className="text-white">24ms</span>
+                                                        </div>
+                                                        <div className="h-1 bg-white/5 w-full">
+                                                            <motion.div
+                                                                className="h-full bg-white opacity-40 shadow-[0_0_20px_white]"
+                                                                initial={{ width: 0 }}
+                                                                animate={{ width: "80%" }}
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                 <p className="mt-4 text-[8px] font-black text-white/20 uppercase tracking-[0.3em]">
                                                     {isRecording ? "RECORDING ACTIVE" : "WAITING FOR RESPONSE"}
                                                 </p>

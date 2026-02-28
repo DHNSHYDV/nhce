@@ -84,17 +84,21 @@ export const AptitudeModule = () => {
                         exit={{ opacity: 0, y: -20 }}
                         className="w-full flex flex-col items-center gap-12"
                     >
-                        <div className="text-center space-y-6">
-                            <div className="flex items-center justify-center gap-2 mb-2">
-                                <Brain className="h-4 w-4 text-white/40" />
-                                <span className="text-[10px] font-black tracking-[0.4em] text-white/40 uppercase">Aptitude & Logic</span>
+                        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-10 mb-20">
+                            <div className="space-y-6">
+                                <div className="flex items-center gap-4">
+                                    <Zap className="h-6 w-6 text-white/40" />
+                                    <span className="text-[12px] font-black tracking-[0.6em] text-white/40 uppercase italic font-display">Intelligence Protocol</span>
+                                </div>
+                                <h2 className="text-6xl md:text-8xl font-black text-white italic tracking-tighter uppercase leading-none font-display">
+                                    Aptitude <span className="text-white/40">Sync</span>
+                                </h2>
                             </div>
-                            <h2 className="text-5xl md:text-6xl font-black tracking-tighter text-white uppercase italic">
-                                Test your <span className="text-white/40">Logic</span>
-                            </h2>
-                            <p className="text-white/40 font-medium max-w-xl mx-auto text-sm">
-                                AI-powered logic tests to sharpen your critical thinking.
-                            </p>
+                            <div className="hidden md:block">
+                                <p className="text-white/30 text-[11px] uppercase tracking-[0.5em] max-w-[300px] text-right leading-relaxed font-display">
+                                    Real-time cognitive stress analysis and logic verification.
+                                </p>
+                            </div>
                         </div>
 
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">

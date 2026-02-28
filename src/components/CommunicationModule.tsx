@@ -144,17 +144,21 @@ export const CommunicationModule = ({ onExit }: CommunicationModuleProps) => {
                         exit={{ opacity: 0, y: -20 }}
                         className="w-full flex flex-col items-center gap-12"
                     >
-                        <div className="text-center space-y-6">
-                            <div className="flex items-center justify-center gap-2 mb-2">
-                                <MessageSquare className="h-4 w-4 text-white/40" />
-                                <span className="text-[10px] font-black tracking-[0.4em] text-white/40 uppercase">Communication Skills</span>
+                        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-10 mb-20">
+                            <div className="space-y-6">
+                                <div className="flex items-center gap-4">
+                                    <MessageSquare className="h-6 w-6 text-white/40" />
+                                    <span className="text-[12px] font-black tracking-[0.6em] text-white/40 uppercase italic font-display">Linguistic Calibration</span>
+                                </div>
+                                <h2 className="text-6xl md:text-8xl font-black text-white italic tracking-tighter uppercase leading-none font-display">
+                                    Communication <span className="text-white/40">Link</span>
+                                </h2>
                             </div>
-                            <h2 className="text-5xl md:text-6xl font-black tracking-tighter text-white uppercase italic">
-                                Improve your <span className="text-white/40">Speaking</span>
-                            </h2>
-                            <p className="text-white/40 font-medium max-w-xl mx-auto text-sm">
-                                AI analysis of your communication style and interview presence.
-                            </p>
+                            <div className="hidden md:block">
+                                <p className="text-white/30 text-[11px] uppercase tracking-[0.5em] max-w-[300px] text-right leading-relaxed font-display">
+                                    Multimodal linguistic analysis and vocal sentiment tracking.
+                                </p>
+                            </div>
                         </div>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">

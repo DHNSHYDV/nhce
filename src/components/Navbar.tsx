@@ -2,7 +2,7 @@
 
 import React from "react";
 
-import { Search, Bell, Sparkles, User as UserIcon, LogOut } from "lucide-react";
+import { Search, Bell, Sparkles, User as UserIcon, LogOut, Zap } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
