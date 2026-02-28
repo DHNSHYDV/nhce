@@ -28,6 +28,19 @@ export const Sidebar = ({ onProfileClick }: SidebarProps) => {
             window.history.pushState(null, '', '/?view=leaderboard');
             window.dispatchEvent(new PopStateEvent('popstate'));
         }
+        if (label === "Projects") {
+            window.history.pushState(null, '', '/?view=projects');
+            window.dispatchEvent(new PopStateEvent('popstate'));
+        }
+        if (label === "Portfolio") {
+            window.history.pushState(null, '', '/?view=portfolio');
+            window.dispatchEvent(new PopStateEvent('popstate'));
+        }
+        if (label === "Settings") {
+            window.history.pushState(null, '', '/?view=settings');
+            window.dispatchEvent(new PopStateEvent('popstate'));
+        }
+        setIsOpen(false);
     };
 
     return (

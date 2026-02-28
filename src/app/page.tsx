@@ -16,6 +16,10 @@ import { Leaderboard } from "@/components/Leaderboard";
 import { Navbar } from "@/components/Navbar";
 import { Sidebar } from "@/components/Sidebar";
 import { ProfileDashboard } from "@/components/ProfileDashboard";
+import { ProjectsModule } from "@/components/ProjectsModule";
+import { PortfolioModule } from "@/components/PortfolioModule";
+import { SettingsModule } from "@/components/SettingsModule";
+import { NotificationSystem } from "@/components/NotificationSystem";
 
 function HomeContent() {
   const searchParams = useSearchParams();
@@ -23,6 +27,16 @@ function HomeContent() {
 
   const view = searchParams.get("view");
   const moduleParam = searchParams.get("module");
+  const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
+
+  // Listen for custom notification trigger event
+  useState(() => {
+    if (typeof window !== 'undefined') {
+      const handler = () => setIsNotificationsOpen(true);
+      window.addEventListener('open-notifications', handler);
+      return () => window.removeEventListener('open-notifications', handler);
+    }
+  });
 
   const showCards = view === "modules" || !!moduleParam || view === "leaderboard";
   const selectedModule = moduleParam;
@@ -48,6 +62,36 @@ function HomeContent() {
       return (
         <div className="w-full">
           <Leaderboard onExit={() => router.push("/", { scroll: false })} />
+        </div>
+      );
+    }
+    if (view === "projects") {
+      return (
+        <div className="w-full flex flex-col items-center gap-12 px-6 pb-24">
+          <div className="w-full max-w-7xl flex justify-start">
+            <BackButton onClick={() => router.push("/", { scroll: false })} />
+          </div>
+          <ProjectsModule />
+        </div>
+      );
+    }
+    if (view === "portfolio") {
+      return (
+        <div className="w-full flex flex-col items-center gap-12 px-6 pb-24">
+          <div className="w-full max-w-7xl flex justify-start">
+            <BackButton onClick={() => router.push("/", { scroll: false })} />
+          </div>
+          <PortfolioModule />
+        </div>
+      );
+    }
+    if (view === "settings") {
+      return (
+        <div className="w-full flex flex-col items-center gap-12 px-6 pb-24">
+          <div className="w-full max-w-7xl flex justify-start">
+            <BackButton onClick={() => router.push("/", { scroll: false })} />
+          </div>
+          <SettingsModule />
         </div>
       );
     }
@@ -245,6 +289,7 @@ export default function Home() {
       </div>
 
       <ProfileDashboard isOpen={isProfileOpen} onClose={() => setIsProfileOpen(false)} />
+      <NotificationSystem isOpen={isNotificationsOpen} onClose={() => setIsNotificationsOpen(false)} />
     </main>
   );
 }

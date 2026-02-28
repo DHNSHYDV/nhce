@@ -91,7 +91,10 @@ export const Navbar = () => {
 
                     <div className="w-px h-6 bg-white/5 mx-1" />
 
-                    <button className="p-3 text-white/20 hover:text-white hover:bg-white/5 rounded-none transition-all active:scale-90 relative">
+                    <button
+                        onClick={() => window.dispatchEvent(new CustomEvent('open-notifications'))}
+                        className="p-3 text-white/20 hover:text-white hover:bg-white/5 rounded-none transition-all active:scale-90 relative"
+                    >
                         <Bell className="h-4 w-4" />
                         <span className="absolute top-3 right-3 h-1.5 w-1.5 rounded-full bg-white shadow-[0_0_10px_rgba(255,255,255,0.5)]" />
                     </button>
